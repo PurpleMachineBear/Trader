@@ -36,3 +36,6 @@ experiments/.registry/
 
 # Misc logs
 *.log
+
+# Local LEAN CLI config can contain plaintext credentials
+lean.json
