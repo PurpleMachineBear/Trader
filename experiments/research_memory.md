@@ -444,3 +444,17 @@ This file is the persistent memory for LEAN strategy research in this repository
   - leveraged `TQQQ/*/GLD` exploit with explicit risk scaling
 - Treat `0.75` leveraged sizing as the current leading deployable hypothesis and validate it across multiple subperiods before spending much more budget on smaller or larger sizing changes.
 - For the final deployment round, prioritize only structures that passed multi-window validation instead of reopening the broad search space.
+- `iter_093` integrated cloud `platform5 pre1` earnings state into a master-style portfolio and compared it against both `VOO` and the current master.
+- The integration plumbing is now validated:
+  - the carryover cloud intraday canary matched `iter_091` exactly
+  - the cloud master smoke matched the local recent-broad master almost exactly
+- The event state itself is not a good production switch for the main master intraday sleeve:
+  - recent broad control: `59.176%`, `Sharpe 1.836`, `DD 10.9%`
+  - broad `gate >= 1`: `55.517%`, `11` orders
+  - broad `gate >= 2`: `55.409%`, `9` orders
+  - broad `tilt 0.30/0.10`: `57.531%`, still below control
+  - earlier `2024_2025` control: `60.255%`, `Sharpe 1.224`, `DD 6.3%`
+  - earlier `gate >= 1`: `58.972%`, `41` orders
+  - earlier `gate >= 2`: `59.029%`, `33` orders
+  - earlier `tilt 0.30/0.10`: `59.775%`, still below control
+- Keep cloud event state as a `shadow state reference`, not as a direct activation or allocation rule for the production master.

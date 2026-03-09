@@ -30,6 +30,11 @@ class CloudEarningsResearch(QCAlgorithm):
         self.universe_settings.data_normalization_mode = DataNormalizationMode.RAW
 
         self.strategy_style = (self.get_parameter("strategy_style") or "swing").strip().lower()
+        if self.strategy_style == "master_portfolio":
+            from master_integration import CloudMasterEventIntegration
+
+            self.master_integration = CloudMasterEventIntegration(self)
+            return
 
         self.bucket_map = {
             "growth4": ["AMZN", "META", "NVDA", "TSLA"],
@@ -263,10 +268,17 @@ class CloudEarningsResearch(QCAlgorithm):
         return symbols
 
     def on_data(self, data: Slice) -> None:
+        if self.strategy_style == "master_portfolio":
+            self.master_integration.on_data(data)
+            return
         if self.strategy_style == "intraday":
             self._on_data_intraday(data)
         else:
             self._on_data_swing(data)
+
+    def on_order_event(self, order_event: OrderEvent) -> None:
+        if self.strategy_style == "master_portfolio":
+            self.master_integration.on_order_event(order_event)
 
     def _on_data_swing(self, data: Slice) -> None:
         today = self.time.date()
@@ -881,6 +893,9 @@ class CloudEarningsResearch(QCAlgorithm):
             self.symbol_quality_win_count[ticker] = self.symbol_quality_win_count.get(ticker, 0) + 1
 
     def on_end_of_algorithm(self) -> None:
+        if self.strategy_style == "master_portfolio":
+            self.master_integration.on_end_of_algorithm()
+            return
         summary = ", ".join(
             f"{ticker}:{count}"
             for ticker, count in sorted(

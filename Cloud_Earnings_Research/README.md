@@ -6,12 +6,14 @@ This project is the first cloud-backed research lane for `QuantConnect Upcoming 
 
 ## Current Local Code
 
-- `main.py` now supports two styles:
+- `main.py` now supports three styles:
   - `strategy_style=swing`
   - `strategy_style=intraday`
+  - `strategy_style=master_portfolio`
 - The project still uses `EODHDUpcomingEarnings` as the event source, but it can now either:
   - rebalance a small multi-day event basket
   - or trade a minute-level intraday `BSL` / `failed_breakdown` pilot on qualified event days
+  - or use the earnings basket as a shadow event-state input for a master-style `daily core + fixed NVDA/TSLA intraday sleeve` portfolio
 
 ## Current Cloud Status
 
@@ -35,6 +37,7 @@ Workaround:
 
 - The swing lane already produced a real cloud-only event branch around `platform5 pre1 hold3`.
 - The new intraday lane has also passed smoke and first formal rounds.
+- The project now also supports a cloud-backed `master_portfolio` integration lane.
 - The current cloud intraday control is:
   - `platform5 pre1 intraday BSL`
   - no recent-weakness requirement
@@ -42,6 +45,11 @@ Workaround:
   - `QQQ/XLK` context with `context_min_positive = 1`
 
 This branch is still a shadow/reference lane, not a frozen paper promotion candidate.
+
+- The current cloud-to-master verdict is:
+  - `platform5 pre1` event state can be wired into the master safely
+  - but the tested count-based activation gates and the simple `0.30 / 0.10` tilt do not improve the ungated master
+  - event state therefore remains a shadow reference, not a production master switch
 
 ## Current Event-State Knobs
 
