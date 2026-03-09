@@ -206,6 +206,7 @@ For serious rounds, add an `analysis.md` that explicitly states:
 - Prefer reporting on the most recent available date rather than arbitrarily stopping at an older year if current data is available.
 - Prefer local symbols with data already present unless the user explicitly expands the dataset.
 - Do not assume QuantConnect alternative datasets are locally testable. If a required dataset is marked `CloudOnly`, treat it as a separate cloud-backed research lane instead of silently mixing it into the local executor loop.
+- Treat `lean backtest --verbose` and similar verbose LEAN CLI runs as sensitive operational commands. The emitted effective Lean configuration can contain plaintext brokerage credentials. Do not use verbose mode casually, and never copy those secrets into chat, reports, or memory files.
 - For cloud-backed lanes, do not assume a successful cloud backtest means the latest local code is running. If `lean cloud push` failed, treat the cloud project as potentially stale until a fresh push succeeds.
 - If a cloud push times out or fails before a batch that depends on new code changes, treat the entire affected batch as stale and rerun it from scratch after a confirmed successful push.
 - If `lean cloud push` reports `Invalid credentials` but `lean whoami`, `authenticate`, and `projects/read` still work, test whether `projects/update` is failing on non-code metadata such as `description`. For now, prefer empty local `config.json.description` values in cloud-backed research projects and keep narrative notes in `README.md`.

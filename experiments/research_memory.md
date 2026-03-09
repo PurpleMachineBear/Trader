@@ -488,3 +488,6 @@ This file is the persistent memory for LEAN strategy research in this repository
   - handle concurrent round creation through atomic reservation plus `reservation.json` and a shared registry, not by guessing the next iteration id
   - prefer one `codex/<agent>/<topic>` branch per active workstream and merge coherent milestones back deliberately
   - preserve abandoned or invalid concurrent rounds as evidence instead of deleting half-written directories
+- Operational security lesson:
+  - `lean backtest --verbose` can echo the effective Lean configuration with plaintext brokerage fields
+  - avoid verbose LEAN CLI commands unless strictly needed for debugging, and never copy those secrets into chat, reports, or memory

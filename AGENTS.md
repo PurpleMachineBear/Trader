@@ -109,6 +109,7 @@ If the user asks for a lightweight pass, `plan.json -> results.json -> in-chat a
 - Do not assume external API access.
 - Treat `blocklist` symbols as hard compliance exclusions. Do not put them in candidate tradeable symbols even for exploratory backtests.
 - Treat broker credentials as highly sensitive operational secrets. Do not run `lean cloud status --verbose` or similar verbose cloud commands unless absolutely necessary for debugging, and never repeat or summarize plaintext credentials if such output is produced.
+- Treat `lean backtest --verbose` and similar verbose LEAN CLI commands as potentially secret-bearing because the effective Lean configuration can include plaintext brokerage fields. Do not use verbose mode casually, and never repeat or summarize plaintext credentials if such output is produced.
 - Do not overwrite previous iterations.
 - Keep strategy logic parameterized and reproducible from `spec.json`.
 - Keep executor outputs factual. Do not embed synthetic judgment or strategy recommendations in local scripts.

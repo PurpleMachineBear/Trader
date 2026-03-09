@@ -59,6 +59,31 @@ class DualMomentumCoreSleeve:
             self.request_rebalance,
         )
 
+    def _decision_reason(
+        self,
+        target: Symbol | None,
+        best_offensive: Symbol,
+        best_offensive_score: float,
+        defensive_score: float,
+    ) -> str:
+        if target is None:
+            return (
+                "cash_all_negative "
+                f"best_offensive={best_offensive.value}:{best_offensive_score:.3f} "
+                f"gld={defensive_score:.3f}"
+            )
+        if target == self.gld:
+            return (
+                "defensive_wins "
+                f"best_offensive={best_offensive.value}:{best_offensive_score:.3f} "
+                f"gld={defensive_score:.3f}"
+            )
+        return (
+            "offensive_wins "
+            f"target={target.value}:{best_offensive_score:.3f} "
+            f"gld={defensive_score:.3f}"
+        )
+
     def request_rebalance(self):
         self.rebalance_requested = True
 
@@ -123,18 +148,37 @@ class DualMomentumCoreSleeve:
         else:
             target = None
 
+        decision_reason = self._decision_reason(
+            target=target,
+            best_offensive=best_offensive,
+            best_offensive_score=best_offensive_score,
+            defensive_score=defensive_score,
+        )
+
         current_invested = self._current_invested()
         if target != current_invested:
             if target is None:
                 self._liquidate_core()
                 self.current_target = None
-                self.algo.log("[CORE] target=CASH")
+                self.algo.log(f"[CORE] target=CASH reason={decision_reason}")
             elif current_invested is None:
                 self._set_target(target)
             else:
                 self.pending_target = target
                 self.current_target = None
                 self._liquidate_core()
+                self.algo.log(
+                    f"[CORE] rotate_from={current_invested.value} "
+                    f"to={target.value} reason={decision_reason}"
+                )
+        else:
+            held_value = current_invested.value if current_invested is not None else "CASH"
+            self.algo.log(
+                f"[CORE] hold={held_value} reason={decision_reason} "
+                f"roc_qqq={self.roc_qqq.current.value:.3f} "
+                f"roc_voo={self.roc_voo.current.value:.3f} "
+                f"roc_gld={self.roc_gld.current.value:.3f}"
+            )
 
         self.next_rebalance_date = self.algo.time.date() + timedelta(days=self.rebalance_days)
 
