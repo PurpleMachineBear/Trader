@@ -121,6 +121,9 @@ class DualMomentumCoreSleeve:
         )
 
     def request_rebalance(self):
+        if not self.algo.is_warming_up:
+            next_date = self.next_rebalance_date.isoformat() if self.next_rebalance_date else "-"
+            self.algo.log(f"[CORE] rebalance_request date={self.algo.time.date().isoformat()} next_due={next_date}")
         self.rebalance_requested = True
 
     def _current_invested(self):
@@ -268,6 +271,10 @@ class FixedAggressiveBSLSleeve:
         self.target_price = None
         self.entry_time = None
         self.trade_taken = False
+        self.watchlist_logged = False
+        self.no_watchlist_logged = False
+        self.context_block_logged = False
+        self.entry_window_expired_logged = False
 
         self._bootstrap_daily_history()
 
@@ -348,6 +355,10 @@ class FixedAggressiveBSLSleeve:
         self.target_price = None
         self.entry_time = None
         self.trade_taken = False
+        self.watchlist_logged = False
+        self.no_watchlist_logged = False
+        self.context_block_logged = False
+        self.entry_window_expired_logged = False
 
     def _is_premarket(self):
         current_time = self.algo.time.time()
@@ -474,6 +485,21 @@ class FixedAggressiveBSLSleeve:
         candidates.sort(key=lambda item: item[0], reverse=True)
         return [symbol for _, symbol in candidates[:self.selection_pool_size]]
 
+    def _watchlist_diagnostics(self):
+        details = []
+        for symbol in self.tradable_symbols:
+            state = self.state[symbol]
+            qualifies = self._qualifies(symbol)
+            score = self._rank_score(symbol) if qualifies else 0.0
+            details.append(
+                f"{symbol.value}:q={int(bool(qualifies))}"
+                f":score={score:.4f}"
+                f":gap={state['gap_pct']:.3f}"
+                f":pmvol={state['premarket_vol_ratio']:.3f}"
+                f":down={state['downtrend_return']:.3f}"
+            )
+        return " | ".join(details)
+
     def _entries_available(self):
         if not self.enable_trading:
             return False
@@ -545,13 +571,14 @@ class FixedAggressiveBSLSleeve:
         self.algo.log(f"[INTRADAY] exit={symbol.value} reason={exit_tag} price={price:.2f}")
         return True
 
-    def _context_allows_entry(self):
+    def _context_status(self):
         positive_count = 0
+        details = []
         for symbol in self.context_symbols:
             state = self.state[symbol]
             price = state["regular_close"]
             if price is None:
-                return False
+                return False, positive_count, 0, "context_missing_price"
 
             positive = True
             if self.context_require_above_vwap:
@@ -564,9 +591,10 @@ class FixedAggressiveBSLSleeve:
                     positive = False
             if positive:
                 positive_count += 1
+            details.append(f"{symbol.value}:{int(positive)}")
 
         required_count = self.context_min_positive or len(self.context_symbols)
-        return positive_count >= required_count
+        return positive_count >= required_count, positive_count, required_count, ",".join(details)
 
     def _maybe_enter(self, symbol: Symbol, bar: TradeBar):
         state = self.state[symbol]
@@ -677,14 +705,32 @@ class FixedAggressiveBSLSleeve:
 
         minutes_from_open = self._minutes_from_open()
         if minutes_from_open < self.opening_range_minutes or minutes_from_open > self.max_entry_minutes:
+            if minutes_from_open > self.max_entry_minutes and not self.trade_taken and not self.entry_window_expired_logged:
+                watchlist = ",".join(symbol.value for symbol in self.watchlist_symbols) or "-"
+                self.algo.log(f"[INTRADAY] no_entry_by_cutoff watchlist={watchlist}")
+                self.entry_window_expired_logged = True
             return
 
         if not self.watchlist_symbols:
             self.watchlist_symbols = self._select_watchlist()
             if not self.watchlist_symbols:
+                if not self.no_watchlist_logged:
+                    self.algo.log(f"[INTRADAY] no_watchlist {self._watchlist_diagnostics()}")
+                    self.no_watchlist_logged = True
                 return
+            if not self.watchlist_logged:
+                watchlist = ",".join(symbol.value for symbol in self.watchlist_symbols)
+                self.algo.log(f"[INTRADAY] watchlist={watchlist} {self._watchlist_diagnostics()}")
+                self.watchlist_logged = True
 
-        if not self._context_allows_entry():
+        context_ok, positive_count, required_count, detail_text = self._context_status()
+        if not context_ok:
+            if not self.context_block_logged:
+                self.algo.log(
+                    f"[INTRADAY] context_blocked positive={positive_count} "
+                    f"required={required_count} detail={detail_text}"
+                )
+                self.context_block_logged = True
             return
 
         for symbol in self.watchlist_symbols:
