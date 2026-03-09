@@ -4,7 +4,7 @@ Last updated: `2026-03-08`
 
 ## Current Position
 
-- Official completed experiments: `2093`
+- Official completed experiments: `2109`
 - Daily track leaders:
   - `GLD 18/110 + 189d time stop`
   - `QQQ/VOO/GLD dual_momentum 126/7`
@@ -24,6 +24,12 @@ Last updated: `2026-03-08`
   - `CRM/NOW/ORCL software3 pre1 hold3 earnings basket` as the hostile-window cloud-only alias
 - `AAPL/MSFT/NFLX/CRM/ADBE/NOW/ORCL platform7 pre1 hold3 earnings basket` as the broader event-aware control
 - `AAPL/MSFT/CRM/NOW/ORCL platform5 pre1 intraday BSL` as the current cloud-only event-aware intraday shadow control
+  - current QuantConnect-only event metadata is exhausted on this lane:
+    - `after_close` filtering is behaviorally inert
+    - `estimate required` is harmful
+    - simple exit/risk overlays are also exhausted:
+      - shorter holds and lower targets reduce drawdown but also reduce return
+    - future work should move to downstream integration or richer external metadata
 - Conservative sleeve candidates:
   - `NVDA/TSLA high-beta BSL aggressive risk 1.00%`
 - Demoted from paper track:
@@ -256,6 +262,23 @@ The `iter_087` repaired passive-baseline recheck refines the cloud-branch claim:
 - `platform5` did not beat same-basket passive in `2024` alone
 - `platform7` failed the repaired earlier-window passive checks and should be treated as demoted
 - the cloud lane should now be described as a useful two-year event-edge reference, not as a clear hostile-window passive-beater
+
+The `iter_088` to `iter_091` cloud intraday integration campaign now has a stable stopping point:
+
+- `platform5 pre1 intraday BSL` is a real but sparse cloud-only intraday shadow branch
+- removing the inherited recent-weakness assumption was the only material improvement
+- increasing watchlist breadth was inert
+- dropping the minute context gate was mixed and not promotion-worthy
+- `after_close` filtering is inert and `estimate required` is harmful
+- therefore the current QuantConnect event metadata is exhausted for this intraday lane
+- the next productive step is no longer metadata slicing inside QC; it is either downstream integration, richer external metadata, or risk/exit work on the canonical branch
+
+The `iter_092` follow-up narrows that further:
+
+- the canonical cloud intraday branch is not being obviously held back by a too-slow hold or too-high target
+- `hold120`, `rr1.5`, and `rr1.5 + hold120` all compressed drawdown but also reduced return in both windows
+- that means simple risk/exit micro-tuning is exhausted too
+- the cloud intraday lane should now be treated as mapped enough for its current evidence level; future progress should come from broader integration or richer external metadata, not more internal knob turning
 
 The `2026-03-08` deployment-hardening pass adds three practical conclusions:
 
