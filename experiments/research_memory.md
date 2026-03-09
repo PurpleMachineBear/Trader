@@ -4,6 +4,7 @@ This file is the persistent memory for LEAN strategy research in this repository
 
 ## Effective Findings
 
+- `iter_096`: Coarse positive-event regime proxies are now exhausted. `event_sleeve_core_state_filter=offensive_only` improved hostile `2024` (`15.614% -> 17.791%`, `Sharpe 0.602 -> 0.780`) but materially damaged `2025` (`39.573% -> 31.964%`) and weakened `2026 YTD` plus the aggregate `2024_2025` window. `event_sleeve_min_active_events=2` was worse in every tested window. Keep `platform5 sleeve 10%` as the canonical cloud event-sleeve control and stop spending budget on coarse count-based or simple offensive-core regime proxies.
 - `iter_092`: Simple exit and risk overlays are now exhausted for the cloud intraday lane. Shortening `max_holding_minutes` from `240` to `120` or lowering `risk_reward` from `2.0` to `1.5` reduced drawdown, but every tested row also reduced return in both the recent broad and `2024_2025` windows. The canonical no-weakness `platform5 pre1 intraday BSL` control with `rr2.0 hold240` stays in front.
 - `iter_091`: The current QuantConnect event metadata is exhausted for the cloud intraday lane. `report_time_filter=after_close` was behaviorally identical to `any` in both windows, while `estimate_mode=required` materially damaged the canonical no-weakness `platform5 pre1 intraday BSL` control in both the recent broad and `2024_2025` windows. The combined `after_close + required` rows collapsed to the same weaker path. Future work on this lane should move to downstream integration, richer external metadata, or risk/exit overlays rather than more report-time or estimate slicing.
 - `iter_090`: After the cloud event intraday lane stopped requiring recent weakness, `selection_pool_size = 3` was completely inert and should not get more budget. Removing the `QQQ/XLK` minute context gate was mixed: it was slightly worse on the recent broad window and slightly better on `2024_2025`. Keep the no-weakness `pool2 ctx+1` row as the canonical cloud intraday control and stop tuning watchlist breadth.
@@ -235,6 +236,7 @@ This file is the persistent memory for LEAN strategy research in this repository
 
 ## Process Improvements
 
+- `iter_096`: When a regime proxy improves only the hostile split while harming the positive split and the aggregate validation window, classify it as a hostile-window cleaner or risk compressor, not as a positive-regime detector.
 - `iter_076`: Hard gates can move a branch when soft score bonuses are inert, but a tiny headline improvement is not enough to justify ongoing micro-tuning. Compare the uplift to the best curated reference before spending more budget.
 - `iter_075`: If a whole family of additive ranking tweaks leaves both metrics and trade paths unchanged, treat the selector as behaviorally inert and move on instead of refining weights.
 - `iter_074`: QuantConnect `Upcoming Earnings.report_time` is not a plain string in LEAN Python. Convert it explicitly before string operations, and treat type mismatches here as process bugs rather than strategy evidence.

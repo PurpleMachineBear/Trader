@@ -650,6 +650,8 @@ class CloudEventSwingSleeve:
         )
         self.report_time_filter = (algo.get_parameter("event_sleeve_report_time_filter") or "any").strip().lower()
         self.estimate_mode = (algo.get_parameter("event_sleeve_estimate_mode") or "any").strip().lower()
+        self.core_state_filter = (algo.get_parameter("event_sleeve_core_state_filter") or "any").strip().lower()
+        self.min_active_events = _parse_int(algo.get_parameter("event_sleeve_min_active_events"), 1)
         self.max_daily_history = max(self.lookback_days + 10, 40)
         self.selection_log_count = 0
         self.last_rebalance_day = None
@@ -761,6 +763,19 @@ class CloudEventSwingSleeve:
             self.active_tickers.pop(ticker, None)
             self.algo.log(f"[EVENT_SLEEVE] expired={ticker} day={today.isoformat()}")
 
+    def _core_state_allows_entries(self):
+        if self.core_state_filter == "any":
+            return True
+
+        current_target = self.master.core.current_target
+        if current_target is None:
+            return False
+        if self.core_state_filter == "offensive_only":
+            return current_target in {self.master.core.qqq, self.master.core.voo}
+        if self.core_state_filter == "qqq_only":
+            return current_target == self.master.core.qqq
+        return True
+
     def _select_candidates(self, today):
         candidates = []
         for ticker in self.tickers:
@@ -812,6 +827,10 @@ class CloudEventSwingSleeve:
             return
 
         selected = self._select_candidates(today)
+        if len(selected) < self.min_active_events:
+            selected = []
+        if not self._core_state_allows_entries():
+            selected = []
         for _, ticker, _ in selected:
             if ticker not in self.days_remaining:
                 self.days_remaining[ticker] = self.hold_days
@@ -842,7 +861,8 @@ class CloudEventSwingSleeve:
             active_tickers = ",".join(desired_tickers) or "none"
             self.algo.log(
                 f"[EVENT_SLEEVE] day={today.isoformat()} bucket={self.bucket} mode={self.event_mode} "
-                f"alloc={self.allocation:.2f} selected={selected_tickers} active={active_tickers}"
+                f"alloc={self.allocation:.2f} core_filter={self.core_state_filter} "
+                f"min_active={self.min_active_events} selected={selected_tickers} active={active_tickers}"
             )
 
     def on_data(self, data: Slice):

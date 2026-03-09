@@ -75,6 +75,20 @@ These knobs are meant for:
 - comparing `platform5` and `enterprise4` event baskets as additive overlays
 - validating whether the sleeve is broad enough to help outside a single favorable year
 
+It now also supports simple regime-detection proxies for the event sleeve:
+
+- `event_sleeve_core_state_filter`
+  - `any`
+  - `offensive_only`
+- `event_sleeve_min_active_events`
+
+Current verdict:
+
+- these coarse proxies are not a usable positive-event regime detector
+- `offensive_only` can clean up hostile `2024`, but it damages `2025` and aggregate windows
+- `min_active_events >= 2` is broadly harmful
+- keep `platform5 sleeve 10%` as the canonical cloud event-sleeve control
+
 ## Current Event-State Knobs
 
 The cloud lane now supports simple pre-event state gating through backtest parameters:
