@@ -482,3 +482,8 @@ This file is the persistent memory for LEAN strategy research in this repository
     - keep the production `IB` paper master unchanged
     - reclassify the cloud event sleeve as a `positive-window shadow sleeve`
     - do not treat it as an all-weather master upgrade
+- Multi-agent workflow hardening:
+  - keep one global monotonic `iter_XXX` namespace instead of inventing per-agent prefixes
+  - handle concurrent round creation through atomic reservation plus `reservation.json`, not by guessing the next iteration id
+  - prefer one `codex/<agent>/<topic>` branch per active workstream and merge coherent milestones back deliberately
+  - preserve abandoned or invalid concurrent rounds as evidence instead of deleting half-written directories

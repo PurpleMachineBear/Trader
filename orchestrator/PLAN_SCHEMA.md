@@ -7,6 +7,10 @@ Codex writes a `plan.json` for each round. The executor consumes it without addi
 ```json
 {
   "iteration": "iter_001",
+  "agent_id": "alpha",
+  "lane": "local",
+  "topic_slug": "event-sleeve",
+  "parent_iteration": "iter_000",
   "thesis": "Cross-family ETF and stock research should compare against a fixed passive benchmark and a stable active control.",
   "benchmark": {
     "symbol": "VOO",
@@ -50,6 +54,17 @@ Codex writes a `plan.json` for each round. The executor consumes it without addi
   ]
 }
 ```
+
+## Multi-Agent Metadata
+
+The top-level fields below are optional but recommended when multiple agents may research concurrently in the same repo:
+
+- `agent_id`: stable short identifier for the agent or workstream owner
+- `lane`: research lane such as `local`, `cloud`, `paper`, or `deployment`
+- `topic_slug`: short workstream label such as `event-sleeve` or `macro-shock`
+- `parent_iteration`: prior round this branch directly extends, when lineage matters
+
+These fields do not replace the global `iteration` name. Keep one shared monotonic `iter_XXX` namespace and encode concurrent ownership in metadata plus `reservation.json`.
 
 ## Supported Families
 

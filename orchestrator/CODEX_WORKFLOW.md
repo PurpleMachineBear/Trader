@@ -20,6 +20,10 @@ Codex writes `plan.json` for the round.
 The plan should usually contain:
 
 - `iteration`
+- optional `agent_id`
+- optional `lane`
+- optional `topic_slug`
+- optional `parent_iteration`
 - `thesis`
 - `benchmark`
 - `universe`
@@ -55,6 +59,29 @@ Each candidate should include:
 - `cash`
 - `notes`
 
+### Concurrent Round Claiming
+
+When more than one agent may research in the same repository at the same time:
+
+- Keep the global `iter_XXX` namespace. Do not fork iteration names by agent or lane.
+- Before writing a new round, claim the next iteration atomically:
+
+```bash
+python orchestrator/claim_round.py --agent-id alpha --lane local --topic event-sleeve
+```
+
+- The claim creates:
+  - the next `experiments/iter_XXX/`
+  - `reservation.json` with agent, lane, topic, branch suggestion, timestamp, and host metadata
+- Write `plan.json`, `analysis.md`, `executive_report.md`, and result artifacts only inside the claimed directory.
+- Never let two agents share the same iteration directory.
+- If a claim is abandoned, keep the directory and mark the round or reservation status as `abandoned` rather than deleting the artifact trail.
+- Prefer one git branch per active workstream using the required `codex/` prefix, for example:
+  - `codex/alpha/macro-shock`
+  - `codex/cloud/event-sleeve`
+  - `codex/intraday/router`
+- Merge coherent milestones back to `main`; do not use `main` as the live scratch branch for several agents at once.
+
 ### 2. Execution
 
 Run:
@@ -70,6 +97,8 @@ This produces:
 - LEAN backtest artifacts under each candidate folder
 
 The executor should reject plans whose candidate symbols violate the plan `blocklist` or fall outside the declared allowed universe.
+
+For concurrent runs, each agent should execute from its own claimed iteration directory. Do not point two executors at the same `--iteration-dir`.
 
 ### 3. Analysis
 
@@ -155,6 +184,10 @@ For serious rounds, add an `analysis.md` that explicitly states:
 
 ## Guardrails
 
+- Do not allocate iteration ids by inspection or guesswork when concurrent agents are active. Always use the claim tool or another atomic reservation mechanism.
+- Do not rename the iteration scheme to lane-specific prefixes. Preserve one chronological `iter_XXX` history and use metadata for concurrent ownership.
+- Do not resolve agent race conditions by deleting another agent's half-written round. Preserve evidence and mark abandoned or invalid states explicitly.
+- If two active branches touch the same workflow or schema files, merge them back deliberately instead of allowing silent mainline drift.
 - Do not treat low-trade results as strong evidence.
 - Do not treat high-return, high-drawdown results as automatic winners.
 - Keep one control candidate in serious comparison rounds.

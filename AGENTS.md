@@ -45,6 +45,7 @@ Read [`orchestrator/CODEX_WORKFLOW.md`](/Users/chenchien/lean/orchestrator/CODEX
 
 Each iteration lives under `experiments/iter_XXX/` and contains:
 
+- optional `reservation.json`: atomic claim metadata for concurrent research agents
 - `plan.json`: planner output
 - `candidate_YY/spec.json`: candidate specification
 - `candidate_YY/main.py`: generated LEAN strategy
@@ -55,6 +56,27 @@ Each iteration lives under `experiments/iter_XXX/` and contains:
 - optional `analysis.md`: Codex-written technical assessment with explicit "useful / not useful / next" sections
 
 A persistent cross-round memory file should live at `experiments/research_memory.md` and be updated by Codex after each serious research round.
+
+## Multi-Agent Concurrency
+
+- Keep the global monotonic `experiments/iter_XXX/` namespace. Do not invent per-agent iteration prefixes such as `cloud_iter_001` or `alpha_iter_001`.
+- Encode concurrent ownership in metadata instead of the directory name:
+  - git branch
+  - `reservation.json`
+  - optional top-level plan metadata such as `agent_id`, `lane`, `topic_slug`, and `parent_iteration`
+- Before any agent writes a new round directory, atomically reserve the next iteration with:
+
+```bash
+python orchestrator/claim_round.py --agent-id alpha --lane local --topic event-sleeve
+```
+
+- The claim tool creates the next `iter_XXX/` directory and writes `reservation.json`. This is the default race-condition control for concurrent agents on the same shared filesystem.
+- A claimed round belongs to one agent at a time. Do not let multiple agents write into the same `iter_XXX/`.
+- If an agent abandons a reserved round, keep the directory and mark the reservation or round status as `abandoned` instead of deleting evidence.
+- When concurrent workstreams are active, prefer one git branch per agent/topic using the required `codex/` prefix, for example:
+  - `codex/alpha/macro-shock`
+  - `codex/cloud/event-sleeve`
+  - `codex/intraday/router`
 
 ## Default Round Outputs
 
@@ -110,6 +132,7 @@ Codex is expected to own planning, analysis, and reporting in this repo. The scr
 ## Git Ownership
 
 - Codex owns routine git hygiene for this repository unless the user explicitly overrides it.
+- For concurrent research, Codex should prefer one workstream branch per agent/topic using the `codex/` prefix instead of mixing multiple active investigations directly on `main`.
 - Codex should decide when to create a checkpoint commit after a coherent milestone such as:
   - a workflow or tooling improvement
   - a completed serious research batch with updated memory and reports
