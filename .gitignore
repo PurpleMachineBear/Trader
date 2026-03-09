@@ -32,7 +32,7 @@ experiments_smoke/
 experiments_exec_loop/
 experiments_docker_check/
 experiments_docker_check_escalated/
-experiments/.round_claim.lock
+experiments/.registry/
 
 # Misc logs
 *.log

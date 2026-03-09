@@ -63,16 +63,25 @@ Each candidate should include:
 
 When more than one agent may research in the same repository at the same time:
 
-- Keep the global `iter_XXX` namespace. Do not fork iteration names by agent or lane.
-- Before writing a new round, claim the next iteration atomically:
+- Use one git worktree per active agent/workstream instead of sharing one checkout across multiple branches.
+- Create worktrees with:
+
+```bash
+python orchestrator/provision_agent_worktree.py --agent-id alpha --topic event-sleeve
+```
+
+- Store artifacts under agent-scoped roots such as `experiments/alpha/iter_001`.
+- Keep plain `iter_XXX` inside each agent scope. Do not fork to names such as `cloud_iter_001`.
+- Before writing a new round, claim the next agent-scoped iteration atomically:
 
 ```bash
 python orchestrator/claim_round.py --agent-id alpha --lane local --topic event-sleeve
 ```
 
 - The claim creates:
-  - the next `experiments/iter_XXX/`
+  - the next `experiments/<agent>/iter_XXX/`
   - `reservation.json` with agent, lane, topic, branch suggestion, timestamp, and host metadata
+- Claims are coordinated through the shared registry under `experiments/.registry/`.
 - Write `plan.json`, `analysis.md`, `executive_report.md`, and result artifacts only inside the claimed directory.
 - Never let two agents share the same iteration directory.
 - If a claim is abandoned, keep the directory and mark the round or reservation status as `abandoned` rather than deleting the artifact trail.
@@ -185,7 +194,8 @@ For serious rounds, add an `analysis.md` that explicitly states:
 ## Guardrails
 
 - Do not allocate iteration ids by inspection or guesswork when concurrent agents are active. Always use the claim tool or another atomic reservation mechanism.
-- Do not rename the iteration scheme to lane-specific prefixes. Preserve one chronological `iter_XXX` history and use metadata for concurrent ownership.
+- Do not try to run several research branches from one shared git checkout. Use worktrees or separate clones.
+- Do not rename the iteration scheme to lane-specific prefixes such as `cloud_iter_001`. Keep `iter_XXX` inside the agent-scoped directory and use metadata for concurrent ownership.
 - Do not resolve agent race conditions by deleting another agent's half-written round. Preserve evidence and mark abandoned or invalid states explicitly.
 - If two active branches touch the same workflow or schema files, merge them back deliberately instead of allowing silent mainline drift.
 - Do not treat low-trade results as strong evidence.

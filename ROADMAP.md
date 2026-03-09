@@ -520,7 +520,9 @@ IB prerequisites when we choose to pursue it:
    - we switch to QuantConnect Cloud for IB, or
    - we provision an `x86_64` host for local IB Gateway.
 9. Harden the repo for concurrent multi-agent research:
-   - global `iter_XXX` claim/reservation workflow
+   - git worktree per active agent/workstream
+   - agent-scoped artifact roots such as `experiments/cloud/iter_001`
+   - shared registry-backed claim/reservation workflow
    - branch-per-workstream discipline using `codex/<agent>/<topic>`
    - preserved artifact trail for abandoned or invalid concurrent rounds
 

@@ -64,7 +64,8 @@ The top-level fields below are optional but recommended when multiple agents may
 - `topic_slug`: short workstream label such as `event-sleeve` or `macro-shock`
 - `parent_iteration`: prior round this branch directly extends, when lineage matters
 
-These fields do not replace the global `iteration` name. Keep one shared monotonic `iter_XXX` namespace and encode concurrent ownership in metadata plus `reservation.json`.
+These fields do not replace the `iteration` name itself. In the v2 concurrent workflow, keep plain `iter_XXX` inside the agent-scoped artifact path and encode concurrent ownership in metadata plus `reservation.json`.
+Artifact paths are normally agent-scoped, for example `experiments/cloud/iter_001/plan.json`.
 
 ## Supported Families
 

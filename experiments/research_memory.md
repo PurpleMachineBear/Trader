@@ -483,7 +483,8 @@ This file is the persistent memory for LEAN strategy research in this repository
     - reclassify the cloud event sleeve as a `positive-window shadow sleeve`
     - do not treat it as an all-weather master upgrade
 - Multi-agent workflow hardening:
-  - keep one global monotonic `iter_XXX` namespace instead of inventing per-agent prefixes
-  - handle concurrent round creation through atomic reservation plus `reservation.json`, not by guessing the next iteration id
+  - v2 should use one git worktree per active agent/topic instead of several branches sharing one checkout
+  - store concurrent artifacts under `experiments/<agent>/iter_XXX` rather than one shared `experiments/iter_XXX` root
+  - handle concurrent round creation through atomic reservation plus `reservation.json` and a shared registry, not by guessing the next iteration id
   - prefer one `codex/<agent>/<topic>` branch per active workstream and merge coherent milestones back deliberately
   - preserve abandoned or invalid concurrent rounds as evidence instead of deleting half-written directories
