@@ -632,6 +632,228 @@ class CloudEventAwareFixedAggressiveBSLSleeve:
                 return
 
 
+class CloudEventSwingSleeve:
+    def __init__(self, algo: QCAlgorithm, master):
+        self.algo = algo
+        self.master = master
+        self.enabled = _parse_bool(algo.get_parameter("event_sleeve_enabled"), False)
+        self.bucket = (algo.get_parameter("event_sleeve_bucket") or "platform5").strip()
+        self.event_mode = (algo.get_parameter("event_sleeve_event_mode") or "pre1").strip().lower()
+        self.allocation = _parse_float(algo.get_parameter("event_sleeve_allocation"), 0.0)
+        self.max_names = _parse_int(algo.get_parameter("event_sleeve_max_names"), 3)
+        self.hold_days = _parse_int(algo.get_parameter("event_sleeve_hold_days"), 3)
+        self.lookback_days = _parse_int(algo.get_parameter("event_sleeve_lookback_days"), 15)
+        self.min_price = _parse_float(algo.get_parameter("event_sleeve_min_price"), 20.0)
+        self.min_avg_dollar_volume = _parse_float(
+            algo.get_parameter("event_sleeve_min_avg_dollar_volume"),
+            150000000.0,
+        )
+        self.report_time_filter = (algo.get_parameter("event_sleeve_report_time_filter") or "any").strip().lower()
+        self.estimate_mode = (algo.get_parameter("event_sleeve_estimate_mode") or "any").strip().lower()
+        self.max_daily_history = max(self.lookback_days + 10, 40)
+        self.selection_log_count = 0
+        self.last_rebalance_day = None
+        self.rebalance_requested = False
+        self.days_remaining = {}
+        self.active_tickers = {}
+        self.symbol_by_ticker = {}
+        self.symbols = []
+
+        if not self.enabled or self.allocation <= 0:
+            self.enabled = False
+            self.tickers = []
+            return
+
+        self.tickers = master.event_bucket_map.get(
+            self.bucket,
+            master.event_bucket_map["platform5"],
+        )
+        for ticker in self.tickers:
+            security = algo.add_equity(
+                ticker,
+                Resolution.DAILY,
+                data_normalization_mode=DataNormalizationMode.RAW,
+            )
+            security.set_slippage_model(ConstantSlippageModel(0.0001))
+            self.symbol_by_ticker[ticker] = security.symbol
+        self.symbols = list(self.symbol_by_ticker.values())
+
+        anchor_symbol = self.symbols[0]
+        algo.schedule.on(
+            algo.date_rules.every_day(anchor_symbol),
+            algo.time_rules.before_market_close(anchor_symbol, 3),
+            self.request_rebalance,
+        )
+
+    def request_rebalance(self):
+        self.rebalance_requested = True
+
+    def _event_matches(self, today, report_date):
+        delta = (report_date - today).days
+        if self.event_mode == "pre1":
+            return delta == 1
+        if self.event_mode == "pre2":
+            return delta == 2
+        if self.event_mode == "pre3":
+            return 1 <= delta <= 3
+        if self.event_mode == "day0":
+            return delta == 0
+        if self.event_mode == "post1":
+            return (today - report_date).days == 1
+        if self.event_mode == "post2":
+            return (today - report_date).days == 2
+        return False
+
+    def _report_time_matches(self, report_time: str) -> bool:
+        if self.report_time_filter == "any":
+            return True
+        value = (report_time or "").strip().lower()
+        if self.report_time_filter == "before_open":
+            return "before" in value or "bmo" in value or "open" in value
+        if self.report_time_filter == "after_close":
+            return "after" in value or "amc" in value or "close" in value
+        if self.report_time_filter == "unknown":
+            return value == ""
+        return True
+
+    def _daily_rows(self, symbol: Symbol):
+        try:
+            history = list(self.algo.history[TradeBar](symbol, self.max_daily_history, Resolution.DAILY))
+        except Exception:
+            history = []
+        rows = []
+        for bar in history:
+            rows.append(
+                {
+                    "close": float(bar.close),
+                    "dollar_volume": float(bar.close * bar.volume),
+                }
+            )
+        return rows
+
+    def _avg_dollar_volume(self, rows, lookback_days: int):
+        if len(rows) < lookback_days:
+            return 0.0
+        sample = rows[-lookback_days:]
+        return sum(item["dollar_volume"] for item in sample) / float(lookback_days)
+
+    def _recent_return(self, rows, lookback_days: int):
+        if len(rows) < lookback_days + 1:
+            return None
+        start_close = rows[-(lookback_days + 1)]["close"]
+        end_close = rows[-1]["close"]
+        if start_close <= 0:
+            return None
+        return (end_close / start_close) - 1.0
+
+    def _liquidate_expired(self, today):
+        expired = []
+        for ticker in list(self.days_remaining):
+            self.days_remaining[ticker] -= 1
+            if self.days_remaining[ticker] <= 0:
+                expired.append(ticker)
+
+        for ticker in expired:
+            symbol = self.symbol_by_ticker[ticker]
+            if self.algo.portfolio[symbol].invested:
+                self.algo.liquidate(symbol, tag="event_sleeve_expired")
+            self.days_remaining.pop(ticker, None)
+            self.active_tickers.pop(ticker, None)
+            self.algo.log(f"[EVENT_SLEEVE] expired={ticker} day={today.isoformat()}")
+
+    def _select_candidates(self, today):
+        candidates = []
+        for ticker in self.tickers:
+            symbol = self.symbol_by_ticker[ticker]
+            security = self.algo.securities[symbol]
+            if not security.has_data or float(security.price) < self.min_price:
+                continue
+
+            report_date = self.master.known_report_dates.get(ticker)
+            if report_date is None or not self._event_matches(today, report_date):
+                continue
+
+            report_time = self.master.known_report_times.get(ticker, "")
+            if not self._report_time_matches(report_time):
+                continue
+
+            estimate = self.master.known_estimates.get(ticker)
+            if self.estimate_mode == "required" and estimate is None:
+                continue
+            if self.estimate_mode == "missing" and estimate is not None:
+                continue
+
+            rows = self._daily_rows(symbol)
+            avg_dollar_volume = self._avg_dollar_volume(rows, 20)
+            if avg_dollar_volume < self.min_avg_dollar_volume:
+                continue
+
+            recent_return = self._recent_return(rows, self.lookback_days)
+            if recent_return is None:
+                continue
+
+            score = -recent_return
+            candidates.append((score, ticker, symbol))
+
+        candidates.sort(key=lambda item: (-item[0], item[1]))
+        return candidates[: self.max_names]
+
+    def _rebalance(self):
+        if not self.enabled or self.allocation <= 0:
+            return
+
+        today = self.algo.time.date()
+        if self.last_rebalance_day == today:
+            return
+        self.last_rebalance_day = today
+
+        self._liquidate_expired(today)
+        if self.algo.master_trading_disabled():
+            return
+
+        selected = self._select_candidates(today)
+        for _, ticker, _ in selected:
+            if ticker not in self.days_remaining:
+                self.days_remaining[ticker] = self.hold_days
+                self.active_tickers[ticker] = str(today)
+
+        desired_tickers = sorted(self.days_remaining.keys())
+        desired_symbols = [self.symbol_by_ticker[ticker] for ticker in desired_tickers]
+
+        for symbol in self.symbols:
+            if self.algo.portfolio[symbol].invested and symbol not in desired_symbols:
+                self.algo.liquidate(symbol, tag="event_sleeve_not_in_basket")
+
+        if desired_symbols:
+            requested_per_symbol = self.allocation / float(len(desired_symbols))
+            for symbol in desired_symbols:
+                target_allocation = self.algo.cap_target_allocation(symbol, requested_per_symbol, "event_sleeve")
+                if target_allocation <= 0:
+                    self.algo.log(
+                        f"[EVENT_SLEEVE] skipped target={symbol.value} requested_alloc={requested_per_symbol:.2f} "
+                        "reason=exposure_cap"
+                    )
+                    continue
+                self.algo.set_holdings(symbol, target_allocation, False, tag="event_sleeve")
+
+        self.selection_log_count += 1
+        if self.selection_log_count <= 10:
+            selected_tickers = ",".join(ticker for _, ticker, _ in selected) or "none"
+            active_tickers = ",".join(desired_tickers) or "none"
+            self.algo.log(
+                f"[EVENT_SLEEVE] day={today.isoformat()} bucket={self.bucket} mode={self.event_mode} "
+                f"alloc={self.allocation:.2f} selected={selected_tickers} active={active_tickers}"
+            )
+
+    def on_data(self, data: Slice):
+        if not self.enabled:
+            return
+        if not self.rebalance_requested:
+            return
+        self.rebalance_requested = False
+        self._rebalance()
+
+
 class CloudMasterEventIntegration:
     def __init__(self, algo: QCAlgorithm):
         self.algo = algo
@@ -652,6 +874,7 @@ class CloudMasterEventIntegration:
             "platform5": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
             "platform7": ["AAPL", "MSFT", "NFLX", "CRM", "ADBE", "NOW", "ORCL"],
             "enterprise4": ["MSFT", "CRM", "NOW", "ORCL"],
+            "software3": ["CRM", "NOW", "ORCL"],
         }
         self.event_state_bucket = (algo.get_parameter("event_state_bucket") or "platform5").strip()
         self.event_state_tickers = self.event_bucket_map.get(
@@ -664,6 +887,8 @@ class CloudMasterEventIntegration:
         self.intraday_alloc_on = _parse_float(algo.get_parameter("intraday_event_alloc_on"), 0.20)
         self.intraday_alloc_off = _parse_float(algo.get_parameter("intraday_event_alloc_off"), 0.0)
         self.known_report_dates = {}
+        self.known_report_times = {}
+        self.known_estimates = {}
         self.event_state_count = 0
         self.event_state_active_tickers = []
         self.event_state_log_day = None
@@ -675,11 +900,14 @@ class CloudMasterEventIntegration:
 
         self.core = CloudDualMomentumCoreSleeve(algo)
         self.intraday = CloudEventAwareFixedAggressiveBSLSleeve(algo, self.core, self)
-        self.tracked_symbols = list(dict.fromkeys(self.core.core_symbols + self.intraday.symbols))
+        self.event_sleeve = CloudEventSwingSleeve(algo, self)
+        self.tracked_symbols = list(
+            dict.fromkeys(self.core.core_symbols + self.intraday.symbols + self.event_sleeve.symbols)
+        )
 
         warmup_days = max(self.core.lookback, self.intraday.volume_lookback_days + 5)
         algo.set_warm_up(warmup_days, Resolution.DAILY)
-        algo.add_universe(EODHDUpcomingEarnings, self._select_event_state_universe)
+        algo.add_universe(EODHDUpcomingEarnings, self._select_event_universe)
 
         algo.log(
             "[CLOUD_MASTER] initialized "
@@ -687,16 +915,23 @@ class CloudMasterEventIntegration:
             f"event_bucket={self.event_state_bucket} "
             f"event_min_count={self.event_state_min_count} "
             f"intraday_on={self.intraday_alloc_on:.2f} "
-            f"intraday_off={self.intraday_alloc_off:.2f}"
+            f"intraday_off={self.intraday_alloc_off:.2f} "
+            f"event_sleeve_enabled={self.event_sleeve.enabled} "
+            f"event_sleeve_bucket={self.event_sleeve.bucket if self.event_sleeve.enabled else '-'} "
+            f"event_sleeve_alloc={self.event_sleeve.allocation if self.event_sleeve.enabled else 0.0:.2f}"
         )
 
-    def _select_event_state_universe(self, earnings):
+    def _select_event_universe(self, earnings):
+        tracked_tickers = set(self.event_state_tickers)
+        tracked_tickers.update(self.event_sleeve.tickers)
         symbols = []
         for datum in earnings:
             ticker = datum.symbol.value
-            if ticker not in self.event_state_tickers or datum.report_date is None:
+            if ticker not in tracked_tickers or datum.report_date is None:
                 continue
             self.known_report_dates[ticker] = datum.report_date.date()
+            self.known_report_times[ticker] = str(datum.report_time).strip() if datum.report_time is not None else ""
+            self.known_estimates[ticker] = datum.estimate
             symbols.append(datum.symbol)
         return symbols
 
@@ -823,6 +1058,7 @@ class CloudMasterEventIntegration:
 
         self.core.on_data()
         self.intraday.on_data(data)
+        self.event_sleeve.on_data(data)
 
     def on_order_event(self, order_event: OrderEvent):
         if order_event.status != OrderStatus.FILLED:
@@ -845,5 +1081,6 @@ class CloudMasterEventIntegration:
             f"cash={self.algo.portfolio.cash:.2f} "
             f"master_kill_reason={self.master_kill_reason or '-'} "
             f"event_count={self.event_state_count} "
-            f"event_tickers={','.join(self.event_state_active_tickers) or 'none'}"
+            f"event_tickers={','.join(self.event_state_active_tickers) or 'none'} "
+            f"event_sleeve_active={','.join(sorted(self.event_sleeve.days_remaining.keys())) or 'none'}"
         )

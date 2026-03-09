@@ -1,0 +1,190 @@
+{
+  "iteration": "iter_094",
+  "project": "Cloud_Earnings_Research",
+  "status": "completed",
+  "thesis": "Treat the cloud earnings branch as a small independent event sleeve inside the master portfolio instead of using it as a hard activation or allocation gate for the NVDA/TSLA intraday sleeve.",
+  "canary": {
+    "status": "completed",
+    "name": "broad master control invariance check",
+    "backtest_id": "cb879b1145d0e7717ab4a594a0843e30",
+    "net_profit_pct": "59.176%",
+    "sharpe_ratio": "1.836",
+    "max_drawdown_pct": "10.900%",
+    "total_orders": "55",
+    "reference_round": "iter_093 candidate_01",
+    "reference_net_profit_pct": "59.176%",
+    "reference_sharpe_ratio": "1.836",
+    "reference_max_drawdown_pct": "10.900%",
+    "reference_total_orders": "55"
+  },
+  "references": {
+    "broad": {
+      "cloud_master_control": {
+        "candidate_id": "candidate_01",
+        "backtest_id": "cb879b1145d0e7717ab4a594a0843e30",
+        "net_profit_pct": "59.176%",
+        "sharpe_ratio": "1.836",
+        "max_drawdown_pct": "10.900%",
+        "total_orders": "55"
+      },
+      "local_master": {
+        "path": "/Users/chenchien/lean/experiments/iter_093/local_master_broad/1288155254-summary.json",
+        "net_profit_pct": "59.146%",
+        "sharpe_ratio": "1.835",
+        "max_drawdown_pct": "10.900%",
+        "total_orders": "55"
+      },
+      "benchmark_voo": {
+        "path": "/Users/chenchien/lean/experiments/iter_093/voo_broad/1488277325-summary.json",
+        "net_profit_pct": "14.463%",
+        "sharpe_ratio": "0.269",
+        "max_drawdown_pct": "19.000%",
+        "total_orders": "1"
+      }
+    },
+    "2024_2025": {
+      "cloud_master_control": {
+        "candidate_id": "candidate_05",
+        "backtest_id": "cc84bb7a816fafd63816b46c4011605a",
+        "net_profit_pct": "60.255%",
+        "sharpe_ratio": "1.224",
+        "max_drawdown_pct": "6.300%",
+        "total_orders": "341"
+      },
+      "local_master": {
+        "path": "/Users/chenchien/lean/experiments/iter_093/local_master_2425/1297847083-summary.json",
+        "net_profit_pct": "62.038%",
+        "sharpe_ratio": "1.274",
+        "max_drawdown_pct": "6.200%",
+        "total_orders": "331"
+      },
+      "benchmark_voo": {
+        "path": "/Users/chenchien/lean/experiments/iter_093/voo_2425/1427258884-summary.json",
+        "net_profit_pct": "44.600%",
+        "sharpe_ratio": "0.696",
+        "max_drawdown_pct": "18.800%",
+        "total_orders": "1"
+      }
+    }
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "cloud_master_event_sleeve",
+      "role": "control",
+      "sample_window": "broad",
+      "event_sleeve_enabled": false,
+      "status": "completed",
+      "backtest_id": "cb879b1145d0e7717ab4a594a0843e30",
+      "net_profit_pct": "59.176%",
+      "sharpe_ratio": "1.836",
+      "max_drawdown_pct": "10.900%",
+      "total_orders": "55",
+      "end_equity": "159175.98"
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "cloud_master_event_sleeve",
+      "role": "explore",
+      "sample_window": "broad",
+      "event_sleeve_bucket": "platform5",
+      "event_sleeve_allocation": 0.1,
+      "status": "completed",
+      "backtest_id": "e358e5b7a9cb86ae45af8fb251528146",
+      "net_profit_pct": "60.602%",
+      "sharpe_ratio": "2.068",
+      "max_drawdown_pct": "9.900%",
+      "total_orders": "124",
+      "end_equity": "160601.55"
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "cloud_master_event_sleeve",
+      "role": "explore",
+      "sample_window": "broad",
+      "event_sleeve_bucket": "platform5",
+      "event_sleeve_allocation": 0.15,
+      "status": "completed",
+      "backtest_id": "ef9cde694fef35ecb2c8ba2d39430e2b",
+      "net_profit_pct": "60.797%",
+      "sharpe_ratio": "2.139",
+      "max_drawdown_pct": "9.500%",
+      "total_orders": "127",
+      "end_equity": "160796.94"
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "cloud_master_event_sleeve",
+      "role": "explore",
+      "sample_window": "broad",
+      "event_sleeve_bucket": "enterprise4",
+      "event_sleeve_allocation": 0.1,
+      "status": "completed",
+      "backtest_id": "aa1c70bcabfd23ba541a98395286b957",
+      "net_profit_pct": "61.024%",
+      "sharpe_ratio": "2.077",
+      "max_drawdown_pct": "10.500%",
+      "total_orders": "102",
+      "end_equity": "161023.74"
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "cloud_master_event_sleeve",
+      "role": "control",
+      "sample_window": "2024_2025",
+      "event_sleeve_enabled": false,
+      "status": "completed",
+      "backtest_id": "cc84bb7a816fafd63816b46c4011605a",
+      "net_profit_pct": "60.255%",
+      "sharpe_ratio": "1.224",
+      "max_drawdown_pct": "6.300%",
+      "total_orders": "341",
+      "end_equity": "160255.05"
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "cloud_master_event_sleeve",
+      "role": "validation",
+      "sample_window": "2024_2025",
+      "event_sleeve_bucket": "platform5",
+      "event_sleeve_allocation": 0.1,
+      "status": "completed",
+      "backtest_id": "4279cb986f28f61017ad0c9c5eada7ee",
+      "net_profit_pct": "62.646%",
+      "sharpe_ratio": "1.362",
+      "max_drawdown_pct": "5.400%",
+      "total_orders": "442",
+      "end_equity": "162645.59"
+    },
+    {
+      "candidate_id": "candidate_07",
+      "family": "cloud_master_event_sleeve",
+      "role": "validation",
+      "sample_window": "2024_2025",
+      "event_sleeve_bucket": "platform5",
+      "event_sleeve_allocation": 0.15,
+      "status": "completed",
+      "backtest_id": "2d8ff01460fdcf90f6bcb659ef18c072",
+      "net_profit_pct": "63.993%",
+      "sharpe_ratio": "1.39",
+      "max_drawdown_pct": "6.100%",
+      "total_orders": "446",
+      "end_equity": "163992.91"
+    },
+    {
+      "candidate_id": "candidate_08",
+      "family": "cloud_master_event_sleeve",
+      "role": "validation",
+      "sample_window": "2024_2025",
+      "event_sleeve_bucket": "enterprise4",
+      "event_sleeve_allocation": 0.1,
+      "status": "completed",
+      "backtest_id": "70647bf2468cda583babddd476389155",
+      "net_profit_pct": "62.688%",
+      "sharpe_ratio": "1.369",
+      "max_drawdown_pct": "5.400%",
+      "total_orders": "407",
+      "end_equity": "162688.16"
+    }
+  ]
+}

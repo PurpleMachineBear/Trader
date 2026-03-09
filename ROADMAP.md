@@ -4,7 +4,7 @@ Last updated: `2026-03-08`
 
 ## Current Position
 
-- Official completed experiments: `2117`
+- Official completed experiments: `2137`
 - Daily track leaders:
   - `GLD 18/110 + 189d time stop`
   - `QQQ/VOO/GLD dual_momentum 126/7`
@@ -34,6 +34,10 @@ Last updated: `2026-03-08`
   - `platform5 pre1` event state is now validated as a shadow input for a master-style portfolio
   - hard count gates and the tested simple allocation tilt do not improve the current master
   - keep the production `IB` paper master unchanged
+  - a separate cloud event sleeve does improve the master on aggregate windows, but split-window validation shows it is a `positive-window shadow sleeve`, not an all-weather production upgrade
+  - current best classification:
+    - `platform5` / `enterprise4` event sleeves may be revisited as regime-specific overlays
+    - they should not replace or unconditionally augment the frozen master
 - Conservative sleeve candidates:
   - `NVDA/TSLA high-beta BSL aggressive risk 1.00%`
 - Demoted from paper track:
@@ -66,6 +70,8 @@ What still needs to be hardened:
   - Do not treat a cloud batch as valid if the required `lean cloud push` timed out or failed before code-dependent candidates were launched; rerun the affected batch after a confirmed successful push.
   - The next bottleneck in that lane is richer event metadata, not more basket permutation, hard trailing-return state slicing, simple `QQQ/XLK` tape gating, binary `estimate required/missing` filters, report-time-conditioned hold schedules, or hard rolling quality floors.
   - For the production master specifically, simple count-based event-state gating and simple count-based event-state tilts are now exhausted.
+  - The next question for this lane is no longer “how to force the sleeve into all windows”.
+    - It is “how to detect the positive event regime that makes the sleeve worth turning on”.
 - `Data integrity`
   - A reusable local audit now exists at `/Users/chenchien/lean/orchestrator/data_audit.py`.
   - Active daily-factor mismatches have been repaired for the main daily, master, and intraday reference symbols.

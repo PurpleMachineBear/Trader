@@ -38,6 +38,7 @@ Workaround:
 - The swing lane already produced a real cloud-only event branch around `platform5 pre1 hold3`.
 - The new intraday lane has also passed smoke and first formal rounds.
 - The project now also supports a cloud-backed `master_portfolio` integration lane.
+- The project now also supports an independent cloud event sleeve inside `master_portfolio`.
 - The current cloud intraday control is:
   - `platform5 pre1 intraday BSL`
   - no recent-weakness requirement
@@ -50,6 +51,29 @@ This branch is still a shadow/reference lane, not a frozen paper promotion candi
   - `platform5 pre1` event state can be wired into the master safely
   - but the tested count-based activation gates and the simple `0.30 / 0.10` tilt do not improve the ungated master
   - event state therefore remains a shadow reference, not a production master switch
+  - a separate `event_sleeve_enabled=true` branch does improve the master on aggregate windows
+  - split-window validation shows that sleeve is a `positive-window shadow sleeve`, not an all-weather production upgrade
+
+## Current Master Event-Sleeve Knobs
+
+The `master_portfolio` style now supports an optional cloud event swing sleeve through:
+
+- `event_sleeve_enabled`
+- `event_sleeve_bucket`
+- `event_sleeve_event_mode`
+- `event_sleeve_allocation`
+- `event_sleeve_max_names`
+- `event_sleeve_hold_days`
+- `event_sleeve_lookback_days`
+- `event_sleeve_min_avg_dollar_volume`
+- `event_sleeve_report_time_filter`
+- `event_sleeve_estimate_mode`
+
+These knobs are meant for:
+
+- testing a small event sleeve alongside the daily core and fixed `NVDA/TSLA` intraday sleeve
+- comparing `platform5` and `enterprise4` event baskets as additive overlays
+- validating whether the sleeve is broad enough to help outside a single favorable year
 
 ## Current Event-State Knobs
 

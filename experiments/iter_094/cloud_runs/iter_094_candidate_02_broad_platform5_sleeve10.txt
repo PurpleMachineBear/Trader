@@ -1,0 +1,57 @@
+Started compiling project 'Cloud_Earnings_Research'
+Build Request Successful for Project ID: 28794465, with CompileID: 
+0c9273120c7cbe6a7f17fc0b42b39f9e-6457988ef51738bddd543037c267ef0c, Lean Version:
+2.5.0.0.17558
+Warning master_integration.py Line: 78 Column: 29 - "QCAlgorithm" has no 
+attribute "cap_target_allocation"
+Warning master_integration.py Line: 415 Column: 12 - "QCAlgorithm" has no 
+attribute "master_trading_disabled"
+Warning master_integration.py Line: 433 Column: 29 - "QCAlgorithm" has no 
+attribute "cap_target_allocation"
+Warning master_integration.py Line: 811 Column: 12 - "QCAlgorithm" has no 
+attribute "master_trading_disabled"
+Warning master_integration.py Line: 830 Column: 37 - "QCAlgorithm" has no 
+attribute "cap_target_allocation"
+Warning master_integration.py Line: 898 Column: 9 - "QCAlgorithm" has no 
+attribute "cap_target_allocation"
+Warning master_integration.py Line: 899 Column: 9 - "QCAlgorithm" has no 
+attribute "master_trading_disabled"
+Successfully compiled project 'Cloud_Earnings_Research'
+Started backtest named 'iter_094_candidate_02_broad_platform5_sleeve10' for 
+project 'Cloud_Earnings_Research'
+Backtest url: 
+https://www.quantconnect.com/project/28794465/e358e5b7a9cb86ae45af8fb251528146
+ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100%
+┌─────────────────────┬──────────────────┬─────────────────────┬───────────────┐
+│ Statistic           │ Value            │ Statistic           │ Value         │
+├─────────────────────┼──────────────────┼─────────────────────┼───────────────┤
+│ Equity              │ $160,601.55      │ Fees                │ -$125.35      │
+│ Holdings            │ $108,907.30      │ Net Profit          │ $38,730.35    │
+│ Probabilistic       │ 91.053%          │ Return              │ 60.60 %       │
+│ Sharpe Ratio        │                  │                     │               │
+│ Unrealized          │ $21,870.05       │ Volume              │ $2,330,942.02 │
+├─────────────────────┼──────────────────┼─────────────────────┼───────────────┤
+│ Total Orders        │ 124              │ Average Win         │ 0.99%         │
+│ Average Loss        │ -0.24%           │ Compounding Annual  │ 49.666%       │
+│                     │                  │ Return              │               │
+│ Drawdown            │ 9.900%           │ Expectancy          │ 2.270         │
+│ Start Equity        │ 100000           │ End Equity          │ 160601.55     │
+│ Net Profit          │ 60.602%          │ Sharpe Ratio        │ 2.068         │
+│ Sortino Ratio       │ 2.033            │ Probabilistic       │ 91.053%       │
+│                     │                  │ Sharpe Ratio        │               │
+│ Loss Rate           │ 37%              │ Win Rate            │ 63%           │
+│ Profit-Loss Ratio   │ 4.15             │ Alpha               │ 0.273         │
+│ Beta                │ 0.113            │ Annual Standard     │ 0.135         │
+│                     │                  │ Deviation           │               │
+│ Annual Variance     │ 0.018            │ Information Ratio   │ 1.222         │
+│ Tracking Error      │ 0.187            │ Treynor Ratio       │ 2.478         │
+│ Total Fees          │ $125.35          │ Estimated Strategy  │ $38000.00     │
+│                     │                  │ Capacity            │               │
+│ Lowest Capacity     │ GLD T3SKPOF94JFP │ Portfolio Turnover  │ 4.45%         │
+│ Asset               │                  │                     │               │
+│ Drawdown Recovery   │ 37               │                     │               │
+└─────────────────────┴──────────────────┴─────────────────────┴───────────────┘
+Backtest id: e358e5b7a9cb86ae45af8fb251528146
+Backtest name: iter_094_candidate_02_broad_platform5_sleeve10
+Backtest url: 
+https://www.quantconnect.com/project/28794465/e358e5b7a9cb86ae45af8fb251528146

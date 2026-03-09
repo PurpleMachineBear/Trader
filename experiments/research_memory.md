@@ -458,3 +458,22 @@ This file is the persistent memory for LEAN strategy research in this repository
   - earlier `gate >= 2`: `59.029%`, `33` orders
   - earlier `tilt 0.30/0.10`: `59.775%`, still below control
 - Keep cloud event state as a `shadow state reference`, not as a direct activation or allocation rule for the production master.
+- `iter_094` replaced the failed count-gate idea with an independent cloud event sleeve inside the master.
+  - This was the first downstream integration that actually helped:
+    - broad control: `59.176%`, `DD 10.9%`
+    - broad `platform5 sleeve 10%`: `60.602%`, `DD 9.9%`
+    - broad `platform5 sleeve 15%`: `60.797%`, `DD 9.5%`
+    - broad `enterprise4 sleeve 10%`: `61.024%`, `DD 10.5%`
+    - `2024_2025` control: `60.255%`, `DD 6.3%`
+    - `2024_2025 platform5 sleeve 10%`: `62.646%`, `DD 5.4%`
+    - `2024_2025 platform5 sleeve 15%`: `63.993%`, `DD 6.1%`
+    - `2024_2025 enterprise4 sleeve 10%`: `62.688%`, `DD 5.4%`
+  - That aggregate improvement was real, but not enough for promotion without split-window validation.
+- `iter_095` resolved the event sleeve story:
+  - `2024`: sleeve rows were neutral to slightly worse on return and only modestly cleaner on drawdown.
+  - `2025`: sleeve rows were clearly additive; best was `enterprise4 sleeve 10%` at `40.771%`, `DD 4.7%` versus control `37.045%`, `DD 5.4%`.
+  - `2026 YTD`: sleeve rows all trailed the control on return, even when drawdown improved.
+  - Final classification:
+    - keep the production `IB` paper master unchanged
+    - reclassify the cloud event sleeve as a `positive-window shadow sleeve`
+    - do not treat it as an all-weather master upgrade
