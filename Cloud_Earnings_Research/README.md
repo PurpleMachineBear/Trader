@@ -53,6 +53,9 @@ This branch is still a shadow/reference lane, not a frozen paper promotion candi
   - event state therefore remains a shadow reference, not a production master switch
   - a separate `event_sleeve_enabled=true` branch does improve the master on aggregate windows
   - split-window validation shows that sleeve is a `positive-window shadow sleeve`, not an all-weather production upgrade
+  - `enterprise4 after_close` is now the cleanest positive-window static alias inside the master
+  - `platform5 any 10%` remains the canonical all-window cloud event-sleeve control
+  - lowering `enterprise4 after_close` to `5%` or `7.5%` does not fix the regime sensitivity, so sleeve-size micro-tuning is exhausted for now
 
 ## Current Master Event-Sleeve Knobs
 

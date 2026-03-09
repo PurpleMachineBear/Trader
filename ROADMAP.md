@@ -4,7 +4,7 @@ Last updated: `2026-03-08`
 
 ## Current Position
 
-- Official completed experiments: `2149`
+- Official completed experiments: `2183`
 - Daily track leaders:
   - `GLD 18/110 + 189d time stop`
   - `QQQ/VOO/GLD dual_momentum 126/7`
@@ -35,9 +35,15 @@ Last updated: `2026-03-08`
   - hard count gates and the tested simple allocation tilt do not improve the current master
   - keep the production `IB` paper master unchanged
   - a separate cloud event sleeve does improve the master on aggregate windows, but split-window validation shows it is a `positive-window shadow sleeve`, not an all-weather production upgrade
+  - static aliasing inside the master is real:
+    - `enterprise4 after_close` is the cleanest positive-window static alias
+    - `platform5 any 10%` remains the canonical all-window control
   - coarse positive-regime proxies are now also exhausted:
     - `offensive_only` improves hostile `2024` but weakens `2025`, `2026 YTD`, and `2024_2025`
     - `min_active_events=2` is broadly harmful
+  - reduced `enterprise4 after_close` allocations are also exhausted:
+    - `7.5%` is the best small-size compromise, but still loses to `platform5 any 10%` in hostile/current windows
+    - `5%` gives up too much positive-window edge without producing cleaner risk
   - current best classification:
     - `platform5` / `enterprise4` event sleeves may be revisited as regime-specific overlays
     - they should not replace or unconditionally augment the frozen master
@@ -74,7 +80,7 @@ What still needs to be hardened:
   - The next bottleneck in that lane is richer event metadata, not more basket permutation, hard trailing-return state slicing, simple `QQQ/XLK` tape gating, binary `estimate required/missing` filters, report-time-conditioned hold schedules, or hard rolling quality floors.
   - For the production master specifically, simple count-based event-state gating and simple count-based event-state tilts are now exhausted.
   - For the cloud event sleeve itself, coarse `offensive_only` and same-day `min_active_events` proxies are also exhausted.
-  - The next question for this lane is no longer “how to force the sleeve into all windows”.
+  - The next question for this lane is no longer “how to force the sleeve into all windows” or “what is the right static sleeve size”.
     - It is “how to detect the positive event regime that makes the sleeve worth turning on”.
 - `Data integrity`
   - A reusable local audit now exists at `/Users/chenchien/lean/orchestrator/data_audit.py`.
