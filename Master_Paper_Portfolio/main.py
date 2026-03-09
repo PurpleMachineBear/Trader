@@ -84,6 +84,42 @@ class DualMomentumCoreSleeve:
             f"gld={defensive_score:.3f}"
         )
 
+    def _theoretical_target(self) -> tuple[Symbol | None, Symbol, float, float]:
+        scores = [
+            (self.qqq, self.roc_qqq.current.value),
+            (self.voo, self.roc_voo.current.value),
+        ]
+        best_offensive, best_offensive_score = max(scores, key=lambda item: item[1])
+        defensive_score = self.roc_gld.current.value
+
+        if best_offensive_score > 0 and best_offensive_score >= defensive_score:
+            target = best_offensive
+        elif defensive_score > 0:
+            target = self.gld
+        else:
+            target = None
+        return target, best_offensive, best_offensive_score, defensive_score
+
+    def log_snapshot(self, tag: str):
+        if not (self.roc_qqq.is_ready and self.roc_voo.is_ready and self.roc_gld.is_ready):
+            self.algo.log(f"[CORE] snapshot={tag} indicators_not_ready")
+            return
+
+        target, best_offensive, best_offensive_score, defensive_score = self._theoretical_target()
+        target_value = target.value if target is not None else "CASH"
+        decision_reason = self._decision_reason(
+            target=target,
+            best_offensive=best_offensive,
+            best_offensive_score=best_offensive_score,
+            defensive_score=defensive_score,
+        )
+        self.algo.log(
+            f"[CORE] snapshot={tag} target={target_value} reason={decision_reason} "
+            f"roc_qqq={self.roc_qqq.current.value:.3f} "
+            f"roc_voo={self.roc_voo.current.value:.3f} "
+            f"roc_gld={self.roc_gld.current.value:.3f}"
+        )
+
     def request_rebalance(self):
         self.rebalance_requested = True
 
@@ -134,19 +170,7 @@ class DualMomentumCoreSleeve:
         if self.next_rebalance_date is not None and self.algo.time.date() < self.next_rebalance_date:
             return
 
-        scores = [
-            (self.qqq, self.roc_qqq.current.value),
-            (self.voo, self.roc_voo.current.value),
-        ]
-        best_offensive, best_offensive_score = max(scores, key=lambda item: item[1])
-        defensive_score = self.roc_gld.current.value
-
-        if best_offensive_score > 0 and best_offensive_score >= defensive_score:
-            target = best_offensive
-        elif defensive_score > 0:
-            target = self.gld
-        else:
-            target = None
+        target, best_offensive, best_offensive_score, defensive_score = self._theoretical_target()
 
         decision_reason = self._decision_reason(
             target=target,
@@ -694,6 +718,7 @@ class MasterPaperPortfolio(QCAlgorithm):
         self.master_kill_reason = None
         self.risk_day = None
         self.day_start_total_equity = float(starting_cash)
+        self.warmup_snapshot_logged = False
 
         self.core = DualMomentumCoreSleeve(self)
         self.intraday = FixedAggressiveBSLSleeve(self, self.core)
@@ -787,6 +812,9 @@ class MasterPaperPortfolio(QCAlgorithm):
 
     def on_data(self, data: Slice):
         self._roll_risk_day()
+        if not self.is_warming_up and not self.warmup_snapshot_logged:
+            self.core.log_snapshot("post_warmup")
+            self.warmup_snapshot_logged = True
         if self._portfolio_daily_loss_breached():
             self._activate_master_kill_switch("master_daily_loss_kill")
         if self.master_trading_disabled():
