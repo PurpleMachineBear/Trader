@@ -1,6 +1,6 @@
 # LEAN Strategy Roadmap
 
-Last updated: `2026-03-08`
+Last updated: `2026-03-09`
 
 ## Current Position
 
@@ -68,6 +68,19 @@ The research is no longer blocked by idea generation. It is now blocked by evide
 
 What still needs to be hardened:
 
+- `Macro shock regime`
+  - The current environment can no longer be treated as a generic high-volatility tape.
+  - The active hypothesis is an `oil shock + growth scare + Fed constraint` regime:
+    - war / geopolitical escalation pushes energy higher
+    - growth data weakens at the same time
+    - policy flexibility becomes worse, not better
+  - This matters because:
+    - `daily core` may need explicit risk-budget logic when `GLD` / defensive legs are already active
+    - `intraday` should prefer failed-breakdown / reclaim behavior over breakout assumptions in this regime
+    - event sleeves should not be promoted off aggregate results if the macro tape is overriding event quality
+  - The next macro question is not only `which strategy wins`.
+    - It is `which top-level regime variables explain when beta, gold-defense, intraday reversal, and event sleeves should be emphasized or de-emphasized`.
+
 - `Premarket planning`
   - We still lack a formal stage that turns overnight news, earnings, macro events, and key levels into a daily watchlist and scenario map.
   - A first manual helper now exists at `orchestrator/premarket_planner.py`, but it is still a standalone tool rather than an integrated daily research stage.
@@ -86,6 +99,20 @@ What still needs to be hardened:
   - A reusable local audit now exists at `/Users/chenchien/lean/orchestrator/data_audit.py`.
   - Active daily-factor mismatches have been repaired for the main daily, master, and intraday reference symbols.
   - A known local rename-history caveat remains for `META` daily data because the series contains a large internal gap.
+- `Macro / cross-asset data`
+  - Current local research is strong on equities, equity ETFs, minute bars, and cloud earnings events.
+  - It is still weak on explicit macro-state inputs such as:
+    - oil / energy shock proxies
+    - rates / duration shock proxies
+    - volatility / credit-stress proxies
+    - macro event calendar tags
+  - This does not block the current paper master.
+    - It does block serious regime-aware research on whether the master should de-risk or reweight in war / inflation shock environments.
+  - The first implementation path should prefer locally obtainable proxies before buying new feeds:
+    - `USO`, `XLE`, `GLD`, `TLT`, `IEF`, `HYG`, `LQD`, `UUP`, `VIXY`-style ETF proxies where available
+    - QuantConnect cloud datasets for economic events
+    - existing Polygon minute / news where already entitled
+  - Only buy richer metadata if the proxy-based regime work proves directionally useful first.
 - `Execution realism`
   - A first slippage audit now exists for the fixed `NVDA/TSLA` aggressive BSL paper candidate.
   - Intraday results still need paper/live fill-drift logging, quote-aware checks, and latency assumptions before live interpretation is strong enough.
