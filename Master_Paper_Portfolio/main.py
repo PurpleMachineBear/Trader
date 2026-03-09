@@ -23,7 +23,7 @@ def _parse_int(value: str | None, default: int) -> int:
 
 
 class DualMomentumCoreSleeve:
-    def __init__(self, algo: QCAlgorithm):
+    def __init__(self, algo: "MasterPaperPortfolio"):
         self.algo = algo
         self.allocation = _parse_float(algo.get_parameter("core_allocation"), 0.75)
         self.lookback = _parse_int(algo.get_parameter("core_lookback"), 126)
@@ -211,7 +211,7 @@ class DualMomentumCoreSleeve:
 
 
 class FixedAggressiveBSLSleeve:
-    def __init__(self, algo: QCAlgorithm, core_sleeve: DualMomentumCoreSleeve):
+    def __init__(self, algo: "MasterPaperPortfolio", core_sleeve: DualMomentumCoreSleeve):
         self.algo = algo
         self.core_sleeve = core_sleeve
         self.allocation = _parse_float(algo.get_parameter("intraday_allocation"), 0.20)
