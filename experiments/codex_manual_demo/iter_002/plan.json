@@ -1,0 +1,96 @@
+{
+  "iteration": "iter_002",
+  "thesis": "Probe whether the AAPL 20/100 edge is robust enough to survive nearby parameter changes and whether the same family transfers to SPY.",
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "sma_crossover",
+      "hypothesis": "15/100 may preserve the responsiveness of the lead while changing entry timing enough to improve drawdown.",
+      "parameters": {
+        "fast": 15,
+        "slow": 100
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Exploit candidate authored by Codex."
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "sma_crossover",
+      "hypothesis": "20/120 may keep the faster entry logic but reduce whipsaw versus 20/100.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Exploit candidate authored by Codex."
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "sma_crossover",
+      "hypothesis": "25/100 checks whether a slightly slower fast leg improves the trade-off between return and drawdown.",
+      "parameters": {
+        "fast": 25,
+        "slow": 100
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Exploit candidate authored by Codex."
+      ]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "sma_crossover",
+      "hypothesis": "20/100 on SPY tests whether the observed edge is AAPL-specific or family-level.",
+      "parameters": {
+        "fast": 20,
+        "slow": 100
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Explore candidate authored by Codex."
+      ]
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "sma_crossover",
+      "hypothesis": "50/200 on AAPL remains the control baseline for the second round.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Control baseline authored by Codex."
+      ]
+    }
+  ]
+}

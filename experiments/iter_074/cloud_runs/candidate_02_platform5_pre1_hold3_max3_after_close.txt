@@ -1,0 +1,44 @@
+Started compiling project 'Cloud_Earnings_Research'
+Build Request Successful for Project ID: 28794465, with CompileID: 
+2db00b20be29cc577e34aca03b5e842b-d80c8e5bd745c605db855722d44729ae, Lean Version:
+2.5.0.0.17558
+Successfully compiled project 'Cloud_Earnings_Research'
+Started backtest named 
+'iter_074_candidate_02_platform5_pre1_hold3_max3_after_close' for project 
+'Cloud_Earnings_Research'
+Backtest url: 
+https://www.quantconnect.com/project/28794465/ef1237313ec20f912ce6f7cc075552b2
+ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100%
+┌─────────────────────┬──────────────────┬─────────────────────┬───────────────┐
+│ Statistic           │ Value            │ Statistic           │ Value         │
+├─────────────────────┼──────────────────┼─────────────────────┼───────────────┤
+│ Equity              │ $182,585.33      │ Fees                │ -$106.44      │
+│ Holdings            │ $0.00            │ Net Profit          │ $82,585.33    │
+│ Probabilistic       │ 64.810%          │ Return              │ 82.59 %       │
+│ Sharpe Ratio        │                  │                     │               │
+│ Unrealized          │ $0.00            │ Volume              │ $4,745,868.32 │
+├─────────────────────┼──────────────────┼─────────────────────┼───────────────┤
+│ Total Orders        │ 80               │ Average Win         │ 5.72%         │
+│ Average Loss        │ -1.65%           │ Compounding Annual  │ 66.968%       │
+│                     │                  │ Return              │               │
+│ Drawdown            │ 10.100%          │ Expectancy          │ 1.303         │
+│ Start Equity        │ 100000           │ End Equity          │ 182585.33     │
+│ Net Profit          │ 82.585%          │ Sharpe Ratio        │ 1.299         │
+│ Sortino Ratio       │ 1.314            │ Probabilistic       │ 64.810%       │
+│                     │                  │ Sharpe Ratio        │               │
+│ Loss Rate           │ 48%              │ Win Rate            │ 52%           │
+│ Profit-Loss Ratio   │ 3.46             │ Alpha               │ 0.442         │
+│ Beta                │ 0.046            │ Annual Standard     │ 0.342         │
+│                     │                  │ Deviation           │               │
+│ Annual Variance     │ 0.117            │ Information Ratio   │ 1.057         │
+│ Tracking Error      │ 0.372            │ Treynor Ratio       │ 9.597         │
+│ Total Fees          │ $106.44          │ Estimated Strategy  │ $320000000.00 │
+│                     │                  │ Capacity            │               │
+│ Lowest Capacity     │ CRM SZQUJUA9SVOL │ Portfolio Turnover  │ 7.76%         │
+│ Asset               │                  │                     │               │
+│ Drawdown Recovery   │ 88               │                     │               │
+└─────────────────────┴──────────────────┴─────────────────────┴───────────────┘
+Backtest id: ef1237313ec20f912ce6f7cc075552b2
+Backtest name: iter_074_candidate_02_platform5_pre1_hold3_max3_after_close
+Backtest url: 
+https://www.quantconnect.com/project/28794465/ef1237313ec20f912ce6f7cc075552b2

@@ -1,0 +1,6974 @@
+{
+  "iteration": "iter_006",
+  "thesis": "Batch 1 expands the research to a broader ETF macro universe, a longer 2022-01-01 to 2026-03-06 sample, and a new breakout family so the campaign can rank family quality before deeper exploitation.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Primary passive benchmark for all campaign batches"
+  },
+  "universe": {
+    "name": "core_us_macro_v2",
+    "selection_rule": "Fixed liquid US beta ETFs, defensive ETFs, approved leveraged ETF exposure, and compliance-safe references",
+    "allowed_symbols": [
+      "SPY",
+      "VOO",
+      "QQQ",
+      "TQQQ",
+      "IWM",
+      "DIA",
+      "TLT",
+      "IEF",
+      "GLD",
+      "XLK",
+      "AAPL",
+      "MSFT"
+    ],
+    "validation_symbols": [
+      "SPY",
+      "VOO",
+      "QQQ",
+      "TQQQ",
+      "DIA",
+      "TLT",
+      "IEF",
+      "GLD",
+      "XLK"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "QQQ 40/180 + 252-day time stop is the best observed trend score so far.",
+      "Dual momentum on QQQ/VOO/TLT is the first non-trend family worth continuing.",
+      "Trailing stops were inactive on SPY but may still matter on more volatile symbols such as TQQQ.",
+      "Low-trade winners still require more structural evidence, not just better in-sample scores."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_001",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "VOO remains the passive benchmark for the full campaign.",
+      "parameters": {},
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO"
+      ],
+      "tags": [
+        "benchmark",
+        "passive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Campaign benchmark."
+      ]
+    },
+    {
+      "candidate_id": "candidate_002",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "QQQ buy-and-hold measures passive growth beta over the same window.",
+      "parameters": {},
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ"
+      ],
+      "tags": [
+        "reference",
+        "passive",
+        "growth"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Passive reference."
+      ]
+    },
+    {
+      "candidate_id": "candidate_003",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "TQQQ buy-and-hold measures the raw leveraged upside and drawdown envelope.",
+      "parameters": {},
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "reference",
+        "passive",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Passive reference."
+      ]
+    },
+    {
+      "candidate_id": "candidate_004",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "GLD buy-and-hold measures defensive commodity exposure over the window.",
+      "parameters": {},
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD"
+      ],
+      "tags": [
+        "reference",
+        "passive",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Passive reference."
+      ]
+    },
+    {
+      "candidate_id": "candidate_005",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "TLT buy-and-hold measures long-duration defense over the same sample.",
+      "parameters": {},
+      "symbols": [
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TLT"
+      ],
+      "tags": [
+        "reference",
+        "passive",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Passive reference."
+      ]
+    },
+    {
+      "candidate_id": "candidate_006",
+      "family": "sma_regime",
+      "role": "control",
+      "hypothesis": "SPY 40/180 with 252-day time stop remains the conservative trend control.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "DIA"
+      ],
+      "tags": [
+        "control",
+        "trend"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Stable active control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_007",
+      "family": "sma_regime",
+      "role": "control",
+      "hypothesis": "QQQ 40/180 with 252-day time stop remains the aggressive trend control.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "TQQQ"
+      ],
+      "tags": [
+        "control",
+        "trend",
+        "growth"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Stable active control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_008",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "QQQ/VOO/TLT dual momentum stays the cross-family rotation control.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "IEF"
+      ],
+      "tags": [
+        "control",
+        "rotation",
+        "momentum"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Stable cross-family control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_009",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "SPY trend quality may improve with 40/180 + 315-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 315
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_010",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "SPY trend quality may improve with 50/200 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_011",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "SPY trend quality may improve with 30/150 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_012",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "SPY trend quality may improve with 40/180 + 252-day time stop + 1% entry buffer on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "entry_buffer_pct": 0.01
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_013",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "SPY trend quality may improve with 40/180 + 252-day time stop + 12% trailing stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_014",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "VOO trend quality may improve with 40/180 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_015",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "VOO trend quality may improve with 40/180 + 315-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 315
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_016",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "VOO trend quality may improve with 50/200 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_017",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "VOO trend quality may improve with 30/150 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_018",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "VOO trend quality may improve with 40/180 + 252-day time stop + 1% entry buffer on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "entry_buffer_pct": 0.01
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_019",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "VOO trend quality may improve with 40/180 + 252-day time stop + 12% trailing stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_020",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "QQQ trend quality may improve with 40/180 + 315-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 315
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_021",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "QQQ trend quality may improve with 50/200 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_022",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "QQQ trend quality may improve with 30/150 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_023",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "QQQ trend quality may improve with 40/180 + 252-day time stop + 1% entry buffer on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "entry_buffer_pct": 0.01
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_024",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "QQQ trend quality may improve with 40/180 + 252-day time stop + 12% trailing stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_025",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "TQQQ trend quality may improve with 40/180 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_026",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "TQQQ trend quality may improve with 40/180 + 315-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 315
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_027",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "TQQQ trend quality may improve with 50/200 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_028",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "TQQQ trend quality may improve with 30/150 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_029",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "TQQQ trend quality may improve with 40/180 + 252-day time stop + 1% entry buffer on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "entry_buffer_pct": 0.01
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_030",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "TQQQ trend quality may improve with 40/180 + 252-day time stop + 12% trailing stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_031",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "DIA trend quality may improve with 40/180 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "DIA"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "DIA",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_032",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "DIA trend quality may improve with 40/180 + 315-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 315
+      },
+      "symbols": [
+        "DIA"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "DIA",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_033",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "DIA trend quality may improve with 50/200 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "DIA"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "DIA",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_034",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "DIA trend quality may improve with 30/150 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "DIA"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "DIA",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_035",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "DIA trend quality may improve with 40/180 + 252-day time stop + 1% entry buffer on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "entry_buffer_pct": 0.01
+      },
+      "symbols": [
+        "DIA"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "DIA",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_036",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "DIA trend quality may improve with 40/180 + 252-day time stop + 12% trailing stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "DIA"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "DIA",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_037",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "XLK trend quality may improve with 40/180 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_038",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "XLK trend quality may improve with 40/180 + 315-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 315
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_039",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "XLK trend quality may improve with 50/200 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_040",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "XLK trend quality may improve with 30/150 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_041",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "XLK trend quality may improve with 40/180 + 252-day time stop + 1% entry buffer on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "entry_buffer_pct": 0.01
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_042",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "XLK trend quality may improve with 40/180 + 252-day time stop + 12% trailing stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_043",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "GLD trend quality may improve with 40/180 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_044",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "GLD trend quality may improve with 40/180 + 315-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 315
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_045",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "GLD trend quality may improve with 50/200 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_046",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "GLD trend quality may improve with 30/150 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_047",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "GLD trend quality may improve with 40/180 + 252-day time stop + 1% entry buffer on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "entry_buffer_pct": 0.01
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_048",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "GLD trend quality may improve with 40/180 + 252-day time stop + 12% trailing stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_049",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "IEF trend quality may improve with 40/180 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "IEF",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_050",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "IEF trend quality may improve with 40/180 + 315-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 315
+      },
+      "symbols": [
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "IEF",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_051",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "IEF trend quality may improve with 50/200 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "IEF",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_052",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "IEF trend quality may improve with 30/150 + 252-day time stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "IEF",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_053",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "IEF trend quality may improve with 40/180 + 252-day time stop + 1% entry buffer on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "entry_buffer_pct": 0.01
+      },
+      "symbols": [
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "IEF",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_054",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "IEF trend quality may improve with 40/180 + 252-day time stop + 12% trailing stop on the extended 2022-2026 sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "IEF",
+        "VOO",
+        "SPY",
+        "QQQ"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 ETF trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_055",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "SPY breakout behavior may be captured better with 55/20 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_056",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "SPY breakout behavior may be captured better with 100/40 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 40,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_057",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "SPY breakout behavior may be captured better with 20/10 channel + 126-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 20,
+        "exit_lookback": 10,
+        "max_holding_days": 126
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_058",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "SPY breakout behavior may be captured better with 55/20 channel + 12% trailing stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_059",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "SPY breakout behavior may be captured better with 100/20 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_060",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "SPY breakout behavior may be captured better with 50/25 channel + 189-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 50,
+        "exit_lookback": 25,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_061",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "QQQ breakout behavior may be captured better with 55/20 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_062",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "QQQ breakout behavior may be captured better with 100/40 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 40,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_063",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "QQQ breakout behavior may be captured better with 20/10 channel + 126-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 20,
+        "exit_lookback": 10,
+        "max_holding_days": 126
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_064",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "QQQ breakout behavior may be captured better with 55/20 channel + 12% trailing stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_065",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "QQQ breakout behavior may be captured better with 100/20 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_066",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "QQQ breakout behavior may be captured better with 50/25 channel + 189-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 50,
+        "exit_lookback": 25,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_067",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "TQQQ breakout behavior may be captured better with 55/20 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_068",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "TQQQ breakout behavior may be captured better with 100/40 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 40,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_069",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "TQQQ breakout behavior may be captured better with 20/10 channel + 126-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 20,
+        "exit_lookback": 10,
+        "max_holding_days": 126
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_070",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "TQQQ breakout behavior may be captured better with 55/20 channel + 12% trailing stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_071",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "TQQQ breakout behavior may be captured better with 100/20 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_072",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "TQQQ breakout behavior may be captured better with 50/25 channel + 189-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 50,
+        "exit_lookback": 25,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_073",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "DIA breakout behavior may be captured better with 55/20 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "DIA"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "DIA",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_074",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "DIA breakout behavior may be captured better with 100/40 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 40,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "DIA"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "DIA",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_075",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "DIA breakout behavior may be captured better with 20/10 channel + 126-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 20,
+        "exit_lookback": 10,
+        "max_holding_days": 126
+      },
+      "symbols": [
+        "DIA"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "DIA",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_076",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "DIA breakout behavior may be captured better with 55/20 channel + 12% trailing stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "DIA"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "DIA",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_077",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "DIA breakout behavior may be captured better with 100/20 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "DIA"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "DIA",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_078",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "DIA breakout behavior may be captured better with 50/25 channel + 189-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 50,
+        "exit_lookback": 25,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "DIA"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "DIA",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_079",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "XLK breakout behavior may be captured better with 55/20 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_080",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "XLK breakout behavior may be captured better with 100/40 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 40,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_081",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "XLK breakout behavior may be captured better with 20/10 channel + 126-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 20,
+        "exit_lookback": 10,
+        "max_holding_days": 126
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_082",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "XLK breakout behavior may be captured better with 55/20 channel + 12% trailing stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_083",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "XLK breakout behavior may be captured better with 100/20 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_084",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "XLK breakout behavior may be captured better with 50/25 channel + 189-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 50,
+        "exit_lookback": 25,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_085",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "GLD breakout behavior may be captured better with 55/20 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_086",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "GLD breakout behavior may be captured better with 100/40 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 40,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_087",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "GLD breakout behavior may be captured better with 20/10 channel + 126-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 20,
+        "exit_lookback": 10,
+        "max_holding_days": 126
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_088",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "GLD breakout behavior may be captured better with 55/20 channel + 12% trailing stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_089",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "GLD breakout behavior may be captured better with 100/20 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_090",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "GLD breakout behavior may be captured better with 50/25 channel + 189-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 50,
+        "exit_lookback": 25,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_091",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "IEF breakout behavior may be captured better with 55/20 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "IEF",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_092",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "IEF breakout behavior may be captured better with 100/40 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 40,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "IEF",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_093",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "IEF breakout behavior may be captured better with 20/10 channel + 126-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 20,
+        "exit_lookback": 10,
+        "max_holding_days": 126
+      },
+      "symbols": [
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "IEF",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_094",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "IEF breakout behavior may be captured better with 55/20 channel + 12% trailing stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "IEF",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_095",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "IEF breakout behavior may be captured better with 100/20 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "IEF",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_096",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "IEF breakout behavior may be captured better with 50/25 channel + 189-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 50,
+        "exit_lookback": 25,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "IEF",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_097",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "VOO breakout behavior may be captured better with 55/20 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_098",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "VOO breakout behavior may be captured better with 100/40 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 40,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_099",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "VOO breakout behavior may be captured better with 20/10 channel + 126-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 20,
+        "exit_lookback": 10,
+        "max_holding_days": 126
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_100",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "VOO breakout behavior may be captured better with 55/20 channel + 12% trailing stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_101",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "VOO breakout behavior may be captured better with 100/20 channel + 252-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_102",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "VOO breakout behavior may be captured better with 50/25 channel + 189-day time stop than with SMA-based trend rules.",
+      "parameters": {
+        "entry_lookback": 50,
+        "exit_lookback": 25,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "VOO",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "trend",
+        "breakout",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_103",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on QQQ/VOO/TLT may improve allocation timing using 63-day momentum and 5-day rebalances on growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_104",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on QQQ/VOO/TLT may improve allocation timing using 63-day momentum and 10-day rebalances on growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_105",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on QQQ/VOO/TLT may improve allocation timing using 63-day momentum and 21-day rebalances on growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_106",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on QQQ/VOO/TLT may improve allocation timing using 63-day momentum and 42-day rebalances on growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_107",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/VOO/TLT may improve allocation timing using 84-day momentum and 5-day rebalances on growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_108",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/VOO/TLT may improve allocation timing using 84-day momentum and 10-day rebalances on growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_109",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/VOO/TLT may improve allocation timing using 84-day momentum and 21-day rebalances on growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_110",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/VOO/TLT may improve allocation timing using 84-day momentum and 42-day rebalances on growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_111",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/VOO/TLT may improve allocation timing using 126-day momentum and 5-day rebalances on growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_112",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/VOO/TLT may improve allocation timing using 126-day momentum and 10-day rebalances on growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_113",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/VOO/TLT may improve allocation timing using 126-day momentum and 42-day rebalances on growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_114",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on QQQ/SPY/TLT may improve allocation timing using 63-day momentum and 5-day rebalances on growth vs broad market with alternative broad-market proxy.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_115",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on QQQ/SPY/TLT may improve allocation timing using 63-day momentum and 10-day rebalances on growth vs broad market with alternative broad-market proxy.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_116",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on QQQ/SPY/TLT may improve allocation timing using 63-day momentum and 21-day rebalances on growth vs broad market with alternative broad-market proxy.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_117",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on QQQ/SPY/TLT may improve allocation timing using 63-day momentum and 42-day rebalances on growth vs broad market with alternative broad-market proxy.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_118",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/SPY/TLT may improve allocation timing using 84-day momentum and 5-day rebalances on growth vs broad market with alternative broad-market proxy.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_119",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/SPY/TLT may improve allocation timing using 84-day momentum and 10-day rebalances on growth vs broad market with alternative broad-market proxy.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_120",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/SPY/TLT may improve allocation timing using 84-day momentum and 21-day rebalances on growth vs broad market with alternative broad-market proxy.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_121",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/SPY/TLT may improve allocation timing using 84-day momentum and 42-day rebalances on growth vs broad market with alternative broad-market proxy.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_122",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/SPY/TLT may improve allocation timing using 126-day momentum and 5-day rebalances on growth vs broad market with alternative broad-market proxy.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_123",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/SPY/TLT may improve allocation timing using 126-day momentum and 10-day rebalances on growth vs broad market with alternative broad-market proxy.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_124",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/SPY/TLT may improve allocation timing using 126-day momentum and 21-day rebalances on growth vs broad market with alternative broad-market proxy.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_125",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/SPY/TLT may improve allocation timing using 126-day momentum and 42-day rebalances on growth vs broad market with alternative broad-market proxy.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_126",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on QQQ/XLK/TLT may improve allocation timing using 63-day momentum and 5-day rebalances on growth ETF vs tech sector with long-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_127",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on QQQ/XLK/TLT may improve allocation timing using 63-day momentum and 10-day rebalances on growth ETF vs tech sector with long-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_128",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on QQQ/XLK/TLT may improve allocation timing using 63-day momentum and 21-day rebalances on growth ETF vs tech sector with long-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_129",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on QQQ/XLK/TLT may improve allocation timing using 63-day momentum and 42-day rebalances on growth ETF vs tech sector with long-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_130",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/XLK/TLT may improve allocation timing using 84-day momentum and 5-day rebalances on growth ETF vs tech sector with long-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_131",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/XLK/TLT may improve allocation timing using 84-day momentum and 10-day rebalances on growth ETF vs tech sector with long-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_132",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/XLK/TLT may improve allocation timing using 84-day momentum and 21-day rebalances on growth ETF vs tech sector with long-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_133",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/XLK/TLT may improve allocation timing using 84-day momentum and 42-day rebalances on growth ETF vs tech sector with long-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_134",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/XLK/TLT may improve allocation timing using 126-day momentum and 5-day rebalances on growth ETF vs tech sector with long-duration defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_135",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/XLK/TLT may improve allocation timing using 126-day momentum and 10-day rebalances on growth ETF vs tech sector with long-duration defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_136",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/XLK/TLT may improve allocation timing using 126-day momentum and 21-day rebalances on growth ETF vs tech sector with long-duration defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_137",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/XLK/TLT may improve allocation timing using 126-day momentum and 42-day rebalances on growth ETF vs tech sector with long-duration defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_138",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/QQQ/TLT may improve allocation timing using 63-day momentum and 5-day rebalances on leveraged growth vs unleveraged growth with long-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_139",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/QQQ/TLT may improve allocation timing using 63-day momentum and 10-day rebalances on leveraged growth vs unleveraged growth with long-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_140",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/QQQ/TLT may improve allocation timing using 63-day momentum and 21-day rebalances on leveraged growth vs unleveraged growth with long-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_141",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/QQQ/TLT may improve allocation timing using 63-day momentum and 42-day rebalances on leveraged growth vs unleveraged growth with long-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_142",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/QQQ/TLT may improve allocation timing using 84-day momentum and 5-day rebalances on leveraged growth vs unleveraged growth with long-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_143",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/QQQ/TLT may improve allocation timing using 84-day momentum and 10-day rebalances on leveraged growth vs unleveraged growth with long-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_144",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/QQQ/TLT may improve allocation timing using 84-day momentum and 21-day rebalances on leveraged growth vs unleveraged growth with long-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_145",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/QQQ/TLT may improve allocation timing using 84-day momentum and 42-day rebalances on leveraged growth vs unleveraged growth with long-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_146",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/QQQ/TLT may improve allocation timing using 126-day momentum and 5-day rebalances on leveraged growth vs unleveraged growth with long-duration defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_147",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/QQQ/TLT may improve allocation timing using 126-day momentum and 10-day rebalances on leveraged growth vs unleveraged growth with long-duration defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_148",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/QQQ/TLT may improve allocation timing using 126-day momentum and 21-day rebalances on leveraged growth vs unleveraged growth with long-duration defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_149",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/QQQ/TLT may improve allocation timing using 126-day momentum and 42-day rebalances on leveraged growth vs unleveraged growth with long-duration defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "TLT",
+        "VOO",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_150",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/VOO/TLT may improve allocation timing using 63-day momentum and 5-day rebalances on leveraged growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT",
+        "QQQ",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_151",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/VOO/TLT may improve allocation timing using 63-day momentum and 10-day rebalances on leveraged growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT",
+        "QQQ",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_152",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/VOO/TLT may improve allocation timing using 63-day momentum and 21-day rebalances on leveraged growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT",
+        "QQQ",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_153",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/VOO/TLT may improve allocation timing using 63-day momentum and 42-day rebalances on leveraged growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT",
+        "QQQ",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_154",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/VOO/TLT may improve allocation timing using 84-day momentum and 5-day rebalances on leveraged growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT",
+        "QQQ",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_155",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/VOO/TLT may improve allocation timing using 84-day momentum and 10-day rebalances on leveraged growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT",
+        "QQQ",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_156",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/VOO/TLT may improve allocation timing using 84-day momentum and 21-day rebalances on leveraged growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT",
+        "QQQ",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_157",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/VOO/TLT may improve allocation timing using 84-day momentum and 42-day rebalances on leveraged growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT",
+        "QQQ",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_158",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/VOO/TLT may improve allocation timing using 126-day momentum and 5-day rebalances on leveraged growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT",
+        "QQQ",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_159",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/VOO/TLT may improve allocation timing using 126-day momentum and 10-day rebalances on leveraged growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT",
+        "QQQ",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_160",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/VOO/TLT may improve allocation timing using 126-day momentum and 21-day rebalances on leveraged growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT",
+        "QQQ",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_161",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on TQQQ/VOO/TLT may improve allocation timing using 126-day momentum and 42-day rebalances on leveraged growth vs broad market with long-duration defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "TLT",
+        "QQQ",
+        "IEF",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_162",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on QQQ/VOO/GLD may improve allocation timing using 63-day momentum and 5-day rebalances on growth vs broad market with commodity defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TLT",
+        "IEF"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_163",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on QQQ/VOO/GLD may improve allocation timing using 63-day momentum and 10-day rebalances on growth vs broad market with commodity defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TLT",
+        "IEF"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_164",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on QQQ/VOO/GLD may improve allocation timing using 63-day momentum and 21-day rebalances on growth vs broad market with commodity defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TLT",
+        "IEF"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_165",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on QQQ/VOO/GLD may improve allocation timing using 63-day momentum and 42-day rebalances on growth vs broad market with commodity defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TLT",
+        "IEF"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_166",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/VOO/GLD may improve allocation timing using 84-day momentum and 5-day rebalances on growth vs broad market with commodity defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TLT",
+        "IEF"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_167",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/VOO/GLD may improve allocation timing using 84-day momentum and 10-day rebalances on growth vs broad market with commodity defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TLT",
+        "IEF"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_168",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/VOO/GLD may improve allocation timing using 84-day momentum and 21-day rebalances on growth vs broad market with commodity defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TLT",
+        "IEF"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_169",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/VOO/GLD may improve allocation timing using 84-day momentum and 42-day rebalances on growth vs broad market with commodity defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TLT",
+        "IEF"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_170",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/VOO/GLD may improve allocation timing using 126-day momentum and 5-day rebalances on growth vs broad market with commodity defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TLT",
+        "IEF"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_171",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/VOO/GLD may improve allocation timing using 126-day momentum and 10-day rebalances on growth vs broad market with commodity defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TLT",
+        "IEF"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_172",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/VOO/GLD may improve allocation timing using 126-day momentum and 21-day rebalances on growth vs broad market with commodity defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TLT",
+        "IEF"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_173",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Dual momentum on QQQ/VOO/GLD may improve allocation timing using 126-day momentum and 42-day rebalances on growth vs broad market with commodity defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TLT",
+        "IEF"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_174",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on SPY/DIA/IEF may improve allocation timing using 63-day momentum and 5-day rebalances on broad market vs value-tilt industrials with intermediate-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "IEF",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_175",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on SPY/DIA/IEF may improve allocation timing using 63-day momentum and 10-day rebalances on broad market vs value-tilt industrials with intermediate-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "IEF",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_176",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on SPY/DIA/IEF may improve allocation timing using 63-day momentum and 21-day rebalances on broad market vs value-tilt industrials with intermediate-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "IEF",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_177",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on SPY/DIA/IEF may improve allocation timing using 63-day momentum and 42-day rebalances on broad market vs value-tilt industrials with intermediate-duration defense.",
+      "parameters": {
+        "lookback": 63,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "IEF",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_178",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on SPY/DIA/IEF may improve allocation timing using 84-day momentum and 5-day rebalances on broad market vs value-tilt industrials with intermediate-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "IEF",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_179",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on SPY/DIA/IEF may improve allocation timing using 84-day momentum and 10-day rebalances on broad market vs value-tilt industrials with intermediate-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "IEF",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_180",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on SPY/DIA/IEF may improve allocation timing using 84-day momentum and 21-day rebalances on broad market vs value-tilt industrials with intermediate-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "IEF",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_181",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on SPY/DIA/IEF may improve allocation timing using 84-day momentum and 42-day rebalances on broad market vs value-tilt industrials with intermediate-duration defense.",
+      "parameters": {
+        "lookback": 84,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "IEF",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_182",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on SPY/DIA/IEF may improve allocation timing using 126-day momentum and 5-day rebalances on broad market vs value-tilt industrials with intermediate-duration defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "IEF",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_183",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on SPY/DIA/IEF may improve allocation timing using 126-day momentum and 10-day rebalances on broad market vs value-tilt industrials with intermediate-duration defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "IEF",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_184",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on SPY/DIA/IEF may improve allocation timing using 126-day momentum and 21-day rebalances on broad market vs value-tilt industrials with intermediate-duration defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "IEF",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_185",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum on SPY/DIA/IEF may improve allocation timing using 126-day momentum and 42-day rebalances on broad market vs value-tilt industrials with intermediate-duration defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 42
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "IEF",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "etf"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 rotation sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_186",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "RSI-driven growth-to-broad-market rotation may only justify itself if 65/40 baseline reduces the turnover seen in earlier rotation tests.",
+      "parameters": {
+        "high_rsi": 65,
+        "low_rsi": 40
+      },
+      "symbols": [
+        "QQQ",
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 confirmatory high-turnover test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_187",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "RSI-driven growth-to-broad-market rotation may only justify itself if 70/35 wider band reduces the turnover seen in earlier rotation tests.",
+      "parameters": {
+        "high_rsi": 70,
+        "low_rsi": 35
+      },
+      "symbols": [
+        "QQQ",
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 confirmatory high-turnover test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_188",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "RSI-driven growth-to-broad-market rotation may only justify itself if 60/45 tighter band reduces the turnover seen in earlier rotation tests.",
+      "parameters": {
+        "high_rsi": 60,
+        "low_rsi": 45
+      },
+      "symbols": [
+        "QQQ",
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 confirmatory high-turnover test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_189",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "RSI-driven growth-to-broad-market rotation may only justify itself if 75/30 extreme band reduces the turnover seen in earlier rotation tests.",
+      "parameters": {
+        "high_rsi": 75,
+        "low_rsi": 30
+      },
+      "symbols": [
+        "QQQ",
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 confirmatory high-turnover test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_190",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "RSI-driven leveraged-to-unleveraged growth rotation may only justify itself if 65/40 baseline reduces the turnover seen in earlier rotation tests.",
+      "parameters": {
+        "high_rsi": 65,
+        "low_rsi": 40
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "VOO",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 confirmatory high-turnover test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_191",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "RSI-driven leveraged-to-unleveraged growth rotation may only justify itself if 70/35 wider band reduces the turnover seen in earlier rotation tests.",
+      "parameters": {
+        "high_rsi": 70,
+        "low_rsi": 35
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "VOO",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 confirmatory high-turnover test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_192",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "RSI-driven leveraged-to-unleveraged growth rotation may only justify itself if 60/45 tighter band reduces the turnover seen in earlier rotation tests.",
+      "parameters": {
+        "high_rsi": 60,
+        "low_rsi": 45
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "VOO",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 confirmatory high-turnover test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_193",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "RSI-driven leveraged-to-unleveraged growth rotation may only justify itself if 75/30 extreme band reduces the turnover seen in earlier rotation tests.",
+      "parameters": {
+        "high_rsi": 75,
+        "low_rsi": 30
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "VOO",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 confirmatory high-turnover test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_194",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "RSI-driven tech-sector-to-growth rotation may only justify itself if 65/40 baseline reduces the turnover seen in earlier rotation tests.",
+      "parameters": {
+        "high_rsi": 65,
+        "low_rsi": 40
+      },
+      "symbols": [
+        "XLK",
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "QQQ",
+        "VOO",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 confirmatory high-turnover test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_195",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "RSI-driven tech-sector-to-growth rotation may only justify itself if 70/35 wider band reduces the turnover seen in earlier rotation tests.",
+      "parameters": {
+        "high_rsi": 70,
+        "low_rsi": 35
+      },
+      "symbols": [
+        "XLK",
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "QQQ",
+        "VOO",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 confirmatory high-turnover test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_196",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "RSI-driven tech-sector-to-growth rotation may only justify itself if 60/45 tighter band reduces the turnover seen in earlier rotation tests.",
+      "parameters": {
+        "high_rsi": 60,
+        "low_rsi": 45
+      },
+      "symbols": [
+        "XLK",
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "QQQ",
+        "VOO",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 confirmatory high-turnover test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_197",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "RSI-driven tech-sector-to-growth rotation may only justify itself if 75/30 extreme band reduces the turnover seen in earlier rotation tests.",
+      "parameters": {
+        "high_rsi": 75,
+        "low_rsi": 30
+      },
+      "symbols": [
+        "XLK",
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "QQQ",
+        "VOO",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 confirmatory high-turnover test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_198",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "RSI-driven broad-market-to-industrials rotation may only justify itself if 65/40 baseline reduces the turnover seen in earlier rotation tests.",
+      "parameters": {
+        "high_rsi": 65,
+        "low_rsi": 40
+      },
+      "symbols": [
+        "SPY",
+        "DIA"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 confirmatory high-turnover test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_199",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "RSI-driven broad-market-to-industrials rotation may only justify itself if 70/35 wider band reduces the turnover seen in earlier rotation tests.",
+      "parameters": {
+        "high_rsi": 70,
+        "low_rsi": 35
+      },
+      "symbols": [
+        "SPY",
+        "DIA"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 confirmatory high-turnover test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_200",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "RSI-driven broad-market-to-industrials rotation may only justify itself if 60/45 tighter band reduces the turnover seen in earlier rotation tests.",
+      "parameters": {
+        "high_rsi": 60,
+        "low_rsi": 45
+      },
+      "symbols": [
+        "SPY",
+        "DIA"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 confirmatory high-turnover test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_201",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "RSI-driven broad-market-to-industrials rotation may only justify itself if 75/30 extreme band reduces the turnover seen in earlier rotation tests.",
+      "parameters": {
+        "high_rsi": 75,
+        "low_rsi": 30
+      },
+      "symbols": [
+        "SPY",
+        "DIA"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 1 confirmatory high-turnover test."
+      ]
+    }
+  ]
+}

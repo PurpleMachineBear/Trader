@@ -1,0 +1,6969 @@
+{
+  "iteration": "iter_007",
+  "thesis": "Batch 2 exploits the GLD defensive regime, adds native passive references for the focused symbols, and keeps one legacy TLT control so the campaign can distinguish a real defensive-asset shift from a one-batch artifact.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Primary passive benchmark for all campaign batches"
+  },
+  "universe": {
+    "name": "core_us_macro_v2",
+    "selection_rule": "Focused exploit universe around approved US beta ETFs, leveraged growth, and defensive GLD/TLT/IEF references",
+    "allowed_symbols": [
+      "SPY",
+      "VOO",
+      "QQQ",
+      "TQQQ",
+      "IWM",
+      "DIA",
+      "TLT",
+      "IEF",
+      "GLD",
+      "XLK",
+      "AAPL",
+      "MSFT"
+    ],
+    "validation_symbols": [
+      "SPY",
+      "VOO",
+      "QQQ",
+      "TQQQ",
+      "IWM",
+      "DIA",
+      "TLT",
+      "IEF",
+      "GLD",
+      "XLK"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "QQQ/VOO/GLD dual_momentum with 126-day lookback is the current best family cluster.",
+      "GLD is a first-class asset in the current sample and must not be treated as a minor add-on.",
+      "TLT and IEF are currently lower-priority defensive legs unless new evidence emerges.",
+      "Native passive references are required for heterogeneous universes."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_001",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "VOO buy-and-hold is needed as a native passive baseline for the focused batch.",
+      "parameters": {},
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO"
+      ],
+      "tags": [
+        "passive",
+        "reference",
+        "benchmark"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 native passive reference."
+      ]
+    },
+    {
+      "candidate_id": "candidate_002",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "SPY buy-and-hold is needed as a native passive baseline for the focused batch.",
+      "parameters": {},
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY"
+      ],
+      "tags": [
+        "passive",
+        "reference"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 native passive reference."
+      ]
+    },
+    {
+      "candidate_id": "candidate_003",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "QQQ buy-and-hold is needed as a native passive baseline for the focused batch.",
+      "parameters": {},
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ"
+      ],
+      "tags": [
+        "passive",
+        "reference"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 native passive reference."
+      ]
+    },
+    {
+      "candidate_id": "candidate_004",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "TQQQ buy-and-hold is needed as a native passive baseline for the focused batch.",
+      "parameters": {},
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "passive",
+        "reference"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 native passive reference."
+      ]
+    },
+    {
+      "candidate_id": "candidate_005",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "IWM buy-and-hold is needed as a native passive baseline for the focused batch.",
+      "parameters": {},
+      "symbols": [
+        "IWM"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "IWM"
+      ],
+      "tags": [
+        "passive",
+        "reference"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 native passive reference."
+      ]
+    },
+    {
+      "candidate_id": "candidate_006",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "DIA buy-and-hold is needed as a native passive baseline for the focused batch.",
+      "parameters": {},
+      "symbols": [
+        "DIA"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "DIA"
+      ],
+      "tags": [
+        "passive",
+        "reference"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 native passive reference."
+      ]
+    },
+    {
+      "candidate_id": "candidate_007",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "XLK buy-and-hold is needed as a native passive baseline for the focused batch.",
+      "parameters": {},
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK"
+      ],
+      "tags": [
+        "passive",
+        "reference"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 native passive reference."
+      ]
+    },
+    {
+      "candidate_id": "candidate_008",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "GLD buy-and-hold is needed as a native passive baseline for the focused batch.",
+      "parameters": {},
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD"
+      ],
+      "tags": [
+        "passive",
+        "reference"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 native passive reference."
+      ]
+    },
+    {
+      "candidate_id": "candidate_009",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "TLT buy-and-hold is needed as a native passive baseline for the focused batch.",
+      "parameters": {},
+      "symbols": [
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TLT"
+      ],
+      "tags": [
+        "passive",
+        "reference"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 native passive reference."
+      ]
+    },
+    {
+      "candidate_id": "candidate_010",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "IEF buy-and-hold is needed as a native passive baseline for the focused batch.",
+      "parameters": {},
+      "symbols": [
+        "IEF"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "IEF"
+      ],
+      "tags": [
+        "passive",
+        "reference"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 native passive reference."
+      ]
+    },
+    {
+      "candidate_id": "candidate_011",
+      "family": "sma_regime",
+      "role": "control",
+      "hypothesis": "QQQ 40/180 + 252-day time stop remains the aggressive trend control.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "VOO"
+      ],
+      "tags": [
+        "control",
+        "trend"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Carry-forward control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_012",
+      "family": "sma_regime",
+      "role": "control",
+      "hypothesis": "GLD 30/150 + 252-day time stop remains the leading single-asset active GLD control.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD"
+      ],
+      "tags": [
+        "control",
+        "trend",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Carry-forward control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_013",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "QQQ/VOO/GLD 126-day lookback with 10-day rebalance is the new rotation control.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "control",
+        "rotation",
+        "defensive"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Carry-forward control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_014",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "QQQ/VOO/TLT 126-day lookback with 21-day rebalance stays as the legacy defensive control.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "tags": [
+        "control",
+        "rotation",
+        "legacy"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Legacy control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_015",
+      "family": "sma_regime",
+      "role": "control",
+      "hypothesis": "SPY 40/180 + 252-day time stop + 12% trailing stop stays as the improved broad-market stop control.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "DIA"
+      ],
+      "tags": [
+        "control",
+        "trend"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Carry-forward control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_016",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 5-day rebalance on growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_017",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 7-day rebalance on growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_018",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 10-day rebalance on growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_019",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 14-day rebalance on growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_020",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 21-day rebalance on growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_021",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 5-day rebalance on growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_022",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 7-day rebalance on growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_023",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 14-day rebalance on growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_024",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 21-day rebalance on growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_025",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 5-day rebalance on growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_026",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 7-day rebalance on growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_027",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 10-day rebalance on growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_028",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 14-day rebalance on growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_029",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 21-day rebalance on growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_030",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 5-day rebalance on growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_031",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 7-day rebalance on growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_032",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 10-day rebalance on growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_033",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 14-day rebalance on growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_034",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 21-day rebalance on growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_035",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 5-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_036",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 7-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_037",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 10-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_038",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 14-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_039",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 21-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_040",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 5-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_041",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 7-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_042",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 10-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_043",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 14-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_044",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 21-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_045",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 5-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_046",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 7-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_047",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 10-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_048",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 14-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_049",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 21-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_050",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 5-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_051",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 7-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_052",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 10-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_053",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 14-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_054",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 21-day rebalance on growth vs broad market proxy with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_055",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 5-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_056",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 7-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_057",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 10-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_058",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 14-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_059",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 21-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_060",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 5-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_061",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 7-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_062",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 10-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_063",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 14-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_064",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 21-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_065",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 5-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_066",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 7-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_067",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 10-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_068",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 14-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_069",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 21-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_070",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 5-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_071",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 7-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_072",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 10-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_073",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 14-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_074",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 21-day rebalance on growth vs tech sector with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_075",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 5-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_076",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 7-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_077",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 10-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_078",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 14-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_079",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 21-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_080",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 5-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_081",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 7-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_082",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 10-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_083",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 14-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_084",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 21-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_085",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 5-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_086",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 7-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_087",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 10-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_088",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 14-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_089",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 21-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_090",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 5-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_091",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 7-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_092",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 10-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_093",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 14-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_094",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 21-day rebalance on leveraged growth vs unleveraged growth with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_095",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 5-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_096",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 7-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_097",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 10-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_098",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 14-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_099",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 21-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_100",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 5-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_101",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 7-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_102",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 10-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_103",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 14-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_104",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 21-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_105",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 5-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_106",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 7-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_107",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 10-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_108",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 14-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_109",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 21-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_110",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 5-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_111",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 7-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_112",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 10-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_113",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 14-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_114",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 21-day rebalance on leveraged growth vs broad market with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_115",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 5-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_116",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 7-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_117",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 10-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_118",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 14-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_119",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 105-day momentum and 21-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 105,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_120",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 5-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_121",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 7-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_122",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 10-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_123",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 14-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_124",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 126-day momentum and 21-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_125",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 5-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_126",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 7-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_127",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 10-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_128",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 14-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_129",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 147-day momentum and 21-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_130",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 5-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_131",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 7-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_132",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 10-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_133",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 14-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_134",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Focused GLD-defensive rotation may improve on the leading cluster using 168-day momentum and 21-day rebalance on broad market vs industrial value with gold defense.",
+      "parameters": {
+        "lookback": 168,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "momentum",
+        "gld_defense"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 exploit sweep around GLD defensive leg."
+      ]
+    },
+    {
+      "candidate_id": "candidate_135",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "GLD may respond better to 20/120 + 189-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_136",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "GLD may respond better to 35/160 + 252-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 35,
+        "slow": 160,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_137",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "GLD may respond better to 40/180 + 252-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_138",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "GLD may respond better to 50/200 + 315-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200,
+        "max_holding_days": 315
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_139",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "GLD may respond better to 30/150 + 252-day time stop + 12% trailing stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_140",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "QQQ may respond better to 20/120 + 189-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_141",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "QQQ may respond better to 30/150 + 252-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_142",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "QQQ may respond better to 35/160 + 252-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 35,
+        "slow": 160,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_143",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "QQQ may respond better to 40/180 + 252-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_144",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "QQQ may respond better to 50/200 + 315-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200,
+        "max_holding_days": 315
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_145",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "QQQ may respond better to 30/150 + 252-day time stop + 12% trailing stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_146",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "TQQQ may respond better to 20/120 + 189-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_147",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "TQQQ may respond better to 30/150 + 252-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_148",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "TQQQ may respond better to 35/160 + 252-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 35,
+        "slow": 160,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_149",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "TQQQ may respond better to 40/180 + 252-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_150",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "TQQQ may respond better to 50/200 + 315-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200,
+        "max_holding_days": 315
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_151",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "TQQQ may respond better to 30/150 + 252-day time stop + 12% trailing stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_152",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "SPY may respond better to 20/120 + 189-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_153",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "SPY may respond better to 30/150 + 252-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_154",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "SPY may respond better to 35/160 + 252-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 35,
+        "slow": 160,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_155",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "SPY may respond better to 40/180 + 252-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_156",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "SPY may respond better to 50/200 + 315-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200,
+        "max_holding_days": 315
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_157",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "SPY may respond better to 30/150 + 252-day time stop + 12% trailing stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_158",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "VOO may respond better to 20/120 + 189-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_159",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "VOO may respond better to 30/150 + 252-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_160",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "VOO may respond better to 35/160 + 252-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 35,
+        "slow": 160,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_161",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "VOO may respond better to 40/180 + 252-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_162",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "VOO may respond better to 50/200 + 315-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200,
+        "max_holding_days": 315
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_163",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "VOO may respond better to 30/150 + 252-day time stop + 12% trailing stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_164",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "XLK may respond better to 20/120 + 189-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_165",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "XLK may respond better to 30/150 + 252-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_166",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "XLK may respond better to 35/160 + 252-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 35,
+        "slow": 160,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_167",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "XLK may respond better to 40/180 + 252-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_168",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "XLK may respond better to 50/200 + 315-day time stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200,
+        "max_holding_days": 315
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_169",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "XLK may respond better to 30/150 + 252-day time stop + 12% trailing stop in the extended sample than to the prior broad batch defaults.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "sma",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused trend sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_170",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "GLD breakout structure may improve with 40/20 channel + 189-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 40,
+        "exit_lookback": 20,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_171",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "GLD breakout structure may improve with 50/25 channel + 189-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 50,
+        "exit_lookback": 25,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_172",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "GLD breakout structure may improve with 55/20 channel + 252-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_173",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "GLD breakout structure may improve with 80/20 channel + 252-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 80,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_174",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "GLD breakout structure may improve with 100/40 channel + 252-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 40,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_175",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "TQQQ breakout structure may improve with 40/20 channel + 189-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 40,
+        "exit_lookback": 20,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_176",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "TQQQ breakout structure may improve with 50/25 channel + 189-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 50,
+        "exit_lookback": 25,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_177",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "TQQQ breakout structure may improve with 55/20 channel + 252-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_178",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "TQQQ breakout structure may improve with 80/20 channel + 252-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 80,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_179",
+      "family": "donchian_regime",
+      "role": "exploit",
+      "hypothesis": "TQQQ breakout structure may improve with 100/40 channel + 252-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 40,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_180",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "QQQ breakout structure may improve with 40/20 channel + 189-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 40,
+        "exit_lookback": 20,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_181",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "QQQ breakout structure may improve with 50/25 channel + 189-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 50,
+        "exit_lookback": 25,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_182",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "QQQ breakout structure may improve with 55/20 channel + 252-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_183",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "QQQ breakout structure may improve with 80/20 channel + 252-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 80,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_184",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "QQQ breakout structure may improve with 100/40 channel + 252-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 40,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_185",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "XLK breakout structure may improve with 40/20 channel + 189-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 40,
+        "exit_lookback": 20,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_186",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "XLK breakout structure may improve with 50/25 channel + 189-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 50,
+        "exit_lookback": 25,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_187",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "XLK breakout structure may improve with 55/20 channel + 252-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 55,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_188",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "XLK breakout structure may improve with 80/20 channel + 252-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 80,
+        "exit_lookback": 20,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_189",
+      "family": "donchian_regime",
+      "role": "explore",
+      "hypothesis": "XLK breakout structure may improve with 100/40 channel + 252-day time stop after the broad batch identified the best asset clusters.",
+      "parameters": {
+        "entry_lookback": 100,
+        "exit_lookback": 40,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "QQQ",
+        "GLD",
+        "VOO"
+      ],
+      "tags": [
+        "trend",
+        "donchian",
+        "focused"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 focused breakout sweep."
+      ]
+    },
+    {
+      "candidate_id": "candidate_190",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "Leveraged to unleveraged growth rotation remains a confirmatory family only if 68/38 reduces drawdown enough to justify the turnover.",
+      "parameters": {
+        "high_rsi": 68,
+        "low_rsi": 38
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 confirmatory rotation test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_191",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "Leveraged to unleveraged growth rotation remains a confirmatory family only if 70/35 reduces drawdown enough to justify the turnover.",
+      "parameters": {
+        "high_rsi": 70,
+        "low_rsi": 35
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 confirmatory rotation test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_192",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "Leveraged to unleveraged growth rotation remains a confirmatory family only if 72/33 reduces drawdown enough to justify the turnover.",
+      "parameters": {
+        "high_rsi": 72,
+        "low_rsi": 33
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 confirmatory rotation test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_193",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "Leveraged to unleveraged growth rotation remains a confirmatory family only if 75/30 reduces drawdown enough to justify the turnover.",
+      "parameters": {
+        "high_rsi": 75,
+        "low_rsi": 30
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 confirmatory rotation test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_194",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "Tech sector to growth rotation remains a confirmatory family only if 68/38 reduces drawdown enough to justify the turnover.",
+      "parameters": {
+        "high_rsi": 68,
+        "low_rsi": 38
+      },
+      "symbols": [
+        "XLK",
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 confirmatory rotation test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_195",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "Tech sector to growth rotation remains a confirmatory family only if 70/35 reduces drawdown enough to justify the turnover.",
+      "parameters": {
+        "high_rsi": 70,
+        "low_rsi": 35
+      },
+      "symbols": [
+        "XLK",
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 confirmatory rotation test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_196",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "Tech sector to growth rotation remains a confirmatory family only if 72/33 reduces drawdown enough to justify the turnover.",
+      "parameters": {
+        "high_rsi": 72,
+        "low_rsi": 33
+      },
+      "symbols": [
+        "XLK",
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 confirmatory rotation test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_197",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "Tech sector to growth rotation remains a confirmatory family only if 75/30 reduces drawdown enough to justify the turnover.",
+      "parameters": {
+        "high_rsi": 75,
+        "low_rsi": 30
+      },
+      "symbols": [
+        "XLK",
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 confirmatory rotation test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_198",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "Growth to broad-market rotation remains a confirmatory family only if 68/38 reduces drawdown enough to justify the turnover.",
+      "parameters": {
+        "high_rsi": 68,
+        "low_rsi": 38
+      },
+      "symbols": [
+        "QQQ",
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 confirmatory rotation test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_199",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "Growth to broad-market rotation remains a confirmatory family only if 70/35 reduces drawdown enough to justify the turnover.",
+      "parameters": {
+        "high_rsi": 70,
+        "low_rsi": 35
+      },
+      "symbols": [
+        "QQQ",
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 confirmatory rotation test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_200",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "Growth to broad-market rotation remains a confirmatory family only if 72/33 reduces drawdown enough to justify the turnover.",
+      "parameters": {
+        "high_rsi": 72,
+        "low_rsi": 33
+      },
+      "symbols": [
+        "QQQ",
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 confirmatory rotation test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_201",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "Growth to broad-market rotation remains a confirmatory family only if 75/30 reduces drawdown enough to justify the turnover.",
+      "parameters": {
+        "high_rsi": 75,
+        "low_rsi": 30
+      },
+      "symbols": [
+        "QQQ",
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "rsi",
+        "confirmatory"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Batch 2 confirmatory rotation test."
+      ]
+    }
+  ]
+}

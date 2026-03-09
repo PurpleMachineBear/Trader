@@ -1,0 +1,175 @@
+{
+  "iteration": "iter_077",
+  "project": "Cloud_Earnings_Research",
+  "project_id": 28794465,
+  "results": [
+    {
+      "candidate_id": "candidate_01",
+      "status": "completed",
+      "backtest_id": "744180db3afd85105b81646d6c5bb534",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2024",
+        "net_profit_pct": -23.061,
+        "sharpe_ratio": -0.459,
+        "max_drawdown_pct": 33.9,
+        "total_orders": 88.0,
+        "trade_count": 44.0,
+        "ending_equity": 76938.76
+      },
+      "symbol_pnl": {
+        "ORCL": 9700.21,
+        "NOW": 8099.19,
+        "CRM": 855.23,
+        "AAPL": -1424.74,
+        "NFLX": -3123.37,
+        "MSFT": -7053.49,
+        "ADBE": -30032.31
+      }
+    },
+    {
+      "candidate_id": "candidate_02",
+      "status": "completed",
+      "backtest_id": "2ec273d30c351aa123c4660fb7dc5d9f",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2024",
+        "net_profit_pct": 10.449,
+        "sharpe_ratio": 0.212,
+        "max_drawdown_pct": 19.5,
+        "total_orders": 64.0,
+        "trade_count": 34.0,
+        "ending_equity": 110448.74
+      },
+      "symbol_pnl": {
+        "ORCL": 11650.59,
+        "NOW": 9641.3,
+        "CRM": -300.63,
+        "AAPL": -1851.03,
+        "MSFT": -8618.54
+      }
+    },
+    {
+      "candidate_id": "candidate_03",
+      "status": "completed",
+      "backtest_id": "e259fa9b124664dd5a43048bd50ebe28",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2024_2025",
+        "net_profit_pct": 7.756,
+        "sharpe_ratio": 0.115,
+        "max_drawdown_pct": 47.4,
+        "total_orders": 204.0,
+        "trade_count": 106.0,
+        "ending_equity": 107756.08
+      },
+      "symbol_pnl": {
+        "ORCL": 46852.78,
+        "NOW": 14985.47,
+        "CRM": 3111.45,
+        "MSFT": 1930.01,
+        "AAPL": -8181.52,
+        "NFLX": -14283.78,
+        "ADBE": -36476.17
+      }
+    },
+    {
+      "candidate_id": "candidate_04",
+      "status": "completed",
+      "backtest_id": "bd39a402e48a83f464293bec14eabd56",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2024_2025",
+        "net_profit_pct": 93.491,
+        "sharpe_ratio": 0.806,
+        "max_drawdown_pct": 21.7,
+        "total_orders": 153.0,
+        "trade_count": 83.0,
+        "ending_equity": 193491.06
+      },
+      "symbol_pnl": {
+        "ORCL": 73151.67,
+        "NOW": 21026.89,
+        "CRM": 6438.46,
+        "MSFT": 5620.79,
+        "AAPL": -12571.16
+      }
+    },
+    {
+      "candidate_id": "candidate_05",
+      "status": "completed",
+      "backtest_id": "bca26be8d0d3a434c6b7bd82e388208b",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "after_close",
+        "sample_window": "2024",
+        "net_profit_pct": -23.061,
+        "sharpe_ratio": -0.459,
+        "max_drawdown_pct": 33.9,
+        "total_orders": 88.0,
+        "trade_count": 44.0,
+        "ending_equity": 76938.76
+      },
+      "symbol_pnl": {
+        "ORCL": 9700.21,
+        "NOW": 8099.19,
+        "CRM": 855.23,
+        "AAPL": -1424.74,
+        "NFLX": -3123.37,
+        "MSFT": -7053.49,
+        "ADBE": -30032.31
+      }
+    },
+    {
+      "candidate_id": "candidate_06",
+      "status": "completed",
+      "backtest_id": "443a7143ec31c2ea9f6b26d5bad2d6aa",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "after_close",
+        "sample_window": "2024",
+        "net_profit_pct": 10.449,
+        "sharpe_ratio": 0.212,
+        "max_drawdown_pct": 19.5,
+        "total_orders": 64.0,
+        "trade_count": 34.0,
+        "ending_equity": 110448.74
+      },
+      "symbol_pnl": {
+        "ORCL": 11650.59,
+        "NOW": 9641.3,
+        "CRM": -300.63,
+        "AAPL": -1851.03,
+        "MSFT": -8618.54
+      }
+    }
+  ]
+}

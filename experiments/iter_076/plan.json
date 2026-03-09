@@ -1,0 +1,231 @@
+{
+  "iteration": "iter_076",
+  "thesis": "Test whether a rolling symbol-specific quality floor can improve the broader platform event branch by excluding symbols with persistently negative realized event edge.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Reference benchmark from the same broad sample via local results"
+  },
+  "universe": {
+    "name": "cloud_platform_quality_floor_v1",
+    "selection_rule": "Cloud-only Upcoming Earnings dataset on platform event baskets with a rolling negative-edge exclusion filter",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "platform5 pre1 hold3 remains the current cloud event-aware lead.",
+      "A soft rolling quality bonus did not change the broader platform7 branch at all.",
+      "The next plausible upgrade is a hard quality floor rather than another additive ranking tweak."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "The original platform7 pre1 hold3 any branch remains the baseline.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "quality_weight": 0,
+        "quality_filter_min_events": 0,
+        "quality_min_avg_return": -999
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "Dropping symbols after just one negative completed event may be too reactive, but it tests the upper bound of the filter idea.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "quality_weight": 0,
+        "quality_filter_min_events": 1,
+        "quality_min_avg_return": 0.0
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "Requiring two completed negative events before exclusion may be a safer version of the rolling quality floor.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "quality_weight": 0,
+        "quality_filter_min_events": 2,
+        "quality_min_avg_return": 0.0
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "The same rolling floor may work better inside the structurally stronger after-close subset.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "after_close",
+        "quality_weight": 0,
+        "quality_filter_min_events": 1,
+        "quality_min_avg_return": 0.0
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "The after-close floor should be less noisy when it waits for two negative events instead of one.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "after_close",
+        "quality_weight": 0,
+        "quality_filter_min_events": 2,
+        "quality_min_avg_return": 0.0
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "cloud_earnings_event_basket",
+      "role": "reference",
+      "hypothesis": "The hand-curated platform5 branch remains the quality upper-bound reference.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "quality_weight": 0,
+        "quality_filter_min_events": 0,
+        "quality_min_avg_return": -999
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    }
+  ]
+}

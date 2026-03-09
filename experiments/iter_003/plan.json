@@ -1,0 +1,96 @@
+{
+  "iteration": "iter_003",
+  "thesis": "The current winner is profitable but under-traded. Probe shorter SPY windows around 40/180 to increase signal density, while using AAPL as the only confirmed cross-symbol validation set in the 2022-01-01 to 2024-12-31 local data window.",
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "sma_crossover",
+      "hypothesis": "SPY 40/180 should remain the strongest benchmark until a shorter configuration improves activity without breaking risk-adjusted return.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Control candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "sma_crossover",
+      "hypothesis": "SPY 35/160 may add a bit more responsiveness than 40/180 without pushing turnover as hard as 30/150.",
+      "parameters": {
+        "fast": 35,
+        "slow": 160
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Exploit around the current winner."
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "sma_crossover",
+      "hypothesis": "SPY 25/125 may produce a meaningfully higher trade count while still anchoring on medium-term trend direction.",
+      "parameters": {
+        "fast": 25,
+        "slow": 125
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "More aggressive signal-density test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "sma_crossover",
+      "hypothesis": "AAPL 40/180 checks whether the current SPY winner transfers to a liquid single-name equity with confirmed local history.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Cross-symbol validation on confirmed local data."
+      ]
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "sma_crossover",
+      "hypothesis": "AAPL 25/125 checks whether the faster trend window produces better evidence on a more active single-name instrument.",
+      "parameters": {
+        "fast": 25,
+        "slow": 125
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Cross-symbol aggressive validation."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,246 @@
+{
+  "iteration": "iter_005",
+  "thesis": "Professionalize the research loop by evaluating the current best trend structure against a real VOO benchmark, across a declared allowed universe with a compliance blocklist, while introducing cross-family comparisons through dual momentum and RSI rotation.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Primary passive benchmark for market-level comparison"
+  },
+  "universe": {
+    "name": "core_us_trend_v1",
+    "selection_rule": "Fixed liquid US ETFs and one approved mega-cap stock with full local daily coverage from 2022-01-01 to 2024-12-31.",
+    "allowed_symbols": ["SPY", "VOO", "QQQ", "IWM", "TLT", "AAPL", "MSFT"],
+    "validation_symbols": ["SPY", "VOO", "QQQ", "IWM", "MSFT"],
+    "blocklist": ["GOOG", "GOOGL"]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "Pure SMA window search had diminishing returns by iter_003.",
+      "SPY 40/180 with a 252-day time stop beat the prior baseline in iter_004.",
+      "AAPL transfer can produce high raw return but drawdown rises quickly."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "VOO buy-and-hold should be the passive baseline that every active strategy must beat on a risk-adjusted basis.",
+      "parameters": {
+        "position_size": 1.0
+      },
+      "symbols": ["VOO"],
+      "universe_name": "core_us_trend_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": ["SPY", "QQQ", "IWM", "MSFT"],
+      "tags": ["benchmark", "passive"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Primary benchmark candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "sma_regime",
+      "role": "control",
+      "hypothesis": "SPY 40/180 with a 252-day time stop is the current best active control after iter_004.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": ["SPY"],
+      "universe_name": "core_us_trend_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": ["VOO", "QQQ", "IWM", "MSFT"],
+      "tags": ["trend", "control", "time_stop"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Carry-forward control from iter_004."
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "A shorter 189-day time stop may keep the same SPY trend edge while increasing evidence through more resets.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 189
+      },
+      "symbols": ["SPY"],
+      "universe_name": "core_us_trend_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": ["VOO", "QQQ", "IWM", "MSFT"],
+      "tags": ["trend", "exploit", "time_stop"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Exploit around the current winner."
+      ]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "Adding a 10% trailing stop to the winning SPY structure may improve downside control while preserving enough trend exposure.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.10
+      },
+      "symbols": ["SPY"],
+      "universe_name": "core_us_trend_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": ["VOO", "QQQ", "IWM", "MSFT"],
+      "tags": ["trend", "explore", "time_stop", "trailing_stop"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Combined overlay test."
+      ]
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "VOO 40/180 with the same 252-day reset checks whether the winning structure generalizes to the benchmark index ETF itself.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": ["VOO"],
+      "universe_name": "core_us_trend_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": ["SPY", "QQQ", "IWM", "MSFT"],
+      "tags": ["trend", "validation", "etf"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Benchmark-symbol transfer check."
+      ]
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "QQQ 40/180 with a 252-day reset tests whether the same structure works on a higher-beta growth ETF.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": ["QQQ"],
+      "universe_name": "core_us_trend_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": ["SPY", "VOO", "IWM", "MSFT"],
+      "tags": ["trend", "validation", "growth_etf"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Higher-beta ETF transfer check."
+      ]
+    },
+    {
+      "candidate_id": "candidate_07",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "IWM 40/180 with a 252-day reset tests whether the structure degrades on a more volatile small-cap ETF.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": ["IWM"],
+      "universe_name": "core_us_trend_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": ["SPY", "VOO", "QQQ", "MSFT"],
+      "tags": ["trend", "validation", "small_cap_etf"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Small-cap ETF transfer check."
+      ]
+    },
+    {
+      "candidate_id": "candidate_08",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "MSFT 40/180 with a 252-day reset tests the winning structure on an approved mega-cap stock without using AAPL again.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": ["MSFT"],
+      "universe_name": "core_us_trend_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": ["SPY", "VOO", "QQQ", "IWM"],
+      "tags": ["trend", "validation", "mega_cap"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Single-name transfer check under blocklist constraints."
+      ]
+    },
+    {
+      "candidate_id": "candidate_09",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Dual momentum across QQQ and VOO with TLT as defense may offer a structurally different source of edge than single-symbol trend following.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21,
+        "position_size": 1.0
+      },
+      "symbols": ["QQQ", "VOO", "TLT"],
+      "universe_name": "core_us_trend_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": ["SPY", "IWM", "MSFT"],
+      "tags": ["dual_momentum", "rotation", "multi_asset"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Cross-family comparison candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_10",
+      "family": "rotation_rsi",
+      "role": "explore",
+      "hypothesis": "QQQ/VOO RSI rotation should be re-tested on the full 2022-2024 sample now that the ETF data gap has been repaired.",
+      "parameters": {
+        "high_rsi": 65,
+        "low_rsi": 40,
+        "neutral_qqq_weight": 0.5,
+        "neutral_voo_weight": 0.5
+      },
+      "symbols": ["QQQ", "VOO"],
+      "universe_name": "core_us_trend_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": ["SPY", "IWM", "MSFT"],
+      "tags": ["rotation", "rsi", "cross_family"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Re-test of a previously data-limited family."
+      ]
+    }
+  ]
+}

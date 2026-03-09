@@ -1,0 +1,85 @@
+{
+  "iteration": "iter_080",
+  "project": "Cloud_Earnings_Research",
+  "project_id": 28794465,
+  "results": [
+    {
+      "candidate_id": "candidate_01",
+      "status": "completed",
+      "backtest_id": "4a298a2d9b2b3eef9f98f409520056c9",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2025",
+        "net_profit_pct": 97.99,
+        "sharpe_ratio": 1.757,
+        "max_drawdown_pct": 10.0,
+        "total_orders": 70.0,
+        "trade_count": 38.0,
+        "ending_equity": 197989.86
+      },
+      "symbol_pnl": {
+        "ORCL": 62957.73,
+        "MSFT": 18625.81,
+        "NOW": 18171.38,
+        "CRM": 6882.0,
+        "AAPL": -8559.63
+      }
+    },
+    {
+      "candidate_id": "candidate_02",
+      "status": "completed",
+      "backtest_id": "49cc16c458b5d960bdbbdbad378367a9",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "enterprise4",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2025",
+        "net_profit_pct": 105.047,
+        "sharpe_ratio": 1.889,
+        "max_drawdown_pct": 9.9,
+        "total_orders": 54.0,
+        "trade_count": 28.0,
+        "ending_equity": 205047.01
+      },
+      "symbol_pnl": {
+        "ORCL": 65069.93,
+        "NOW": 18181.92,
+        "MSFT": 14621.73,
+        "CRM": 7239.16
+      }
+    },
+    {
+      "candidate_id": "candidate_03",
+      "status": "completed",
+      "backtest_id": "fbd4b398b8f537199f1551134fac38d8",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "software3",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2025",
+        "net_profit_pct": 91.32,
+        "sharpe_ratio": 1.642,
+        "max_drawdown_pct": 9.1,
+        "total_orders": 33.0,
+        "trade_count": 15.0,
+        "ending_equity": 191319.76
+      },
+      "symbol_pnl": {
+        "ORCL": 60273.71,
+        "NOW": 24568.35,
+        "CRM": 6522.03
+      }
+    }
+  ]
+}

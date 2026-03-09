@@ -1,0 +1,199 @@
+{
+  "iteration": "iter_079",
+  "thesis": "Resolve whether the narrower enterprise4 cloud event basket improves both the hostile early window and the current sparse window, or whether platform5 should remain the canonical cloud control.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Reference benchmark from the same windows via local results where available"
+  },
+  "universe": {
+    "name": "cloud_platform_split_window_validation_v1",
+    "selection_rule": "Cloud-only Upcoming Earnings dataset on platform and enterprise-software event baskets split into hostile and current windows",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "CRM",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "CRM",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "platform5 pre1 hold3 is the canonical cloud control.",
+      "enterprise4 pre1 hold3 improved the longer 2024_2025 window but not the recent broad sample.",
+      "software3 is likely too narrow unless it clearly wins the split-window test."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "Keep platform5 as the hostile-window reference.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2024"
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If enterprise4 is the true habitat, it should beat platform5 even in the hostile 2024 window.",
+      "parameters": {
+        "bucket": "enterprise4",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2024"
+      },
+      "symbols": [
+        "MSFT",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "Software3 should only survive if the edge is fully concentrated in CRM/NOW/ORCL even in 2024.",
+      "parameters": {
+        "bucket": "software3",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2024"
+      },
+      "symbols": [
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "Keep platform5 as the sparse current-window reference.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2026_ytd"
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If enterprise4 is not merely a historical cleanup, it should also stay competitive in the sparse current window.",
+      "parameters": {
+        "bucket": "enterprise4",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2026_ytd"
+      },
+      "symbols": [
+        "MSFT",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "Software3 should only stay alive if the current sparse branch is also fully concentrated in CRM/NOW/ORCL.",
+      "parameters": {
+        "bucket": "software3",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2026_ytd"
+      },
+      "symbols": [
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    }
+  ]
+}

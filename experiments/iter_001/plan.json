@@ -1,0 +1,101 @@
+{
+  "iteration": "iter_001",
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "sma_crossover",
+      "hypothesis": "Shorter trend windows may react faster than the baseline 50/200 crossover.",
+      "parameters": {
+        "fast": 20,
+        "slow": 100
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Uses locally available AAPL daily data."
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "sma_crossover",
+      "hypothesis": "The original 50/200 crossover on AAPL provides a stable baseline.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Baseline candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "sma_crossover",
+      "hypothesis": "SPY trend-following may be smoother than single-name AAPL exposure.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Uses locally available SPY daily data."
+      ]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "rotation_rsi",
+      "hypothesis": "A wider RSI band may reduce churn while preserving QQQ/VOO rotation gains.",
+      "parameters": {
+        "high_rsi": 70,
+        "low_rsi": 35,
+        "neutral_qqq_weight": 0.5,
+        "neutral_voo_weight": 0.5
+      },
+      "symbols": [
+        "QQQ",
+        "VOO"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-04",
+      "cash": 100000,
+      "notes": [
+        "Uses locally available QQQ/VOO daily data."
+      ]
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "rotation_rsi",
+      "hypothesis": "The existing 65/40 RSI band is the reference rotation baseline.",
+      "parameters": {
+        "high_rsi": 65,
+        "low_rsi": 40,
+        "neutral_qqq_weight": 0.5,
+        "neutral_voo_weight": 0.5
+      },
+      "symbols": [
+        "QQQ",
+        "VOO"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-04",
+      "cash": 100000,
+      "notes": [
+        "Baseline candidate."
+      ]
+    }
+  ]
+}

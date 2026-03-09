@@ -1,0 +1,215 @@
+{
+  "iteration": "iter_077",
+  "thesis": "Validate whether the cloud platform event branch survives earlier windows, especially 2024, before treating platform5 as anything more than a recent-regime shadow lead.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Reference benchmark from the same windows via local results where available"
+  },
+  "universe": {
+    "name": "cloud_platform_early_window_validation_v1",
+    "selection_rule": "Cloud-only Upcoming Earnings dataset on platform event baskets split into earlier validation windows",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "platform5 pre1 hold3 is the current cloud event-aware lead.",
+      "Selector micro-tuning has mostly saturated; earlier-window validation is now higher value.",
+      "The branch appears mostly after-close but not purely after-close."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "The broader platform7 branch should reveal whether the event lane existed at all in the hostile 2024 window.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2024"
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If the narrower platform5 basket is a true structural improvement, it should still beat platform7 in 2024.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2024"
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "The broader platform7 branch on 2024_2025 should show whether the event lane is only a 2025 story or a wider two-year branch.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2024_2025"
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "The narrower platform5 branch on 2024_2025 should reveal whether the 2025 outperformance survives one extra earlier year.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2024_2025"
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If after-close is the structural driver, platform7 after-close may be cleaner than platform7 any in 2024.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "after_close",
+        "sample_window": "2024"
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If after-close is really the stable structural clue, platform5 after-close should still stay competitive even in 2024.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "after_close",
+        "sample_window": "2024"
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    }
+  ]
+}

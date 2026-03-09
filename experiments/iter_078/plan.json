@@ -1,0 +1,199 @@
+{
+  "iteration": "iter_078",
+  "thesis": "Test whether the validated cloud platform5 event edge is really a narrower enterprise-software habitat by removing the weaker consumer/platform names while keeping the same pre1 hold3 event logic.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Reference benchmark from the same windows via local results where available"
+  },
+  "universe": {
+    "name": "cloud_platform_enterprise_refinement_v1",
+    "selection_rule": "Cloud-only Upcoming Earnings dataset on platform and enterprise-software event baskets",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "CRM",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "CRM",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "platform5 pre1 hold3 cleared the hostile 2024 test and is now the canonical cloud control.",
+      "Report-time filtering was inert in 2024, so the next hypothesis should focus on basket habitat rather than after-close tuning.",
+      "ORCL and NOW are the clearest recurring winners inside the cloud platform branch."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "Keep the validated platform5 branch as the canonical two-year cloud control.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2024_2025"
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If AAPL is the main structural drag, enterprise4 should beat platform5 across the two-year window.",
+      "parameters": {
+        "bucket": "enterprise4",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2024_2025"
+      },
+      "symbols": [
+        "MSFT",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If the true habitat is pure enterprise software, software3 should outperform both platform5 and enterprise4 on the two-year window.",
+      "parameters": {
+        "bucket": "software3",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "2024_2025"
+      },
+      "symbols": [
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "Keep the same platform5 branch as the current broad cloud control for comparison against narrower baskets.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "broad"
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "Enterprise4 should stay competitive in the recent broad sample if removing AAPL is a genuine structural cleanup.",
+      "parameters": {
+        "bucket": "enterprise4",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "broad"
+      },
+      "symbols": [
+        "MSFT",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "Software3 should only win if the edge is truly concentrated in CRM/NOW/ORCL and not dependent on a broader platform basket.",
+      "parameters": {
+        "bucket": "software3",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "sample_window": "broad"
+      },
+      "symbols": [
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    }
+  ]
+}

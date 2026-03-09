@@ -1,0 +1,43 @@
+{
+  "iteration": "iter_001",
+  "thesis": "Test whether a faster AAPL trend-following configuration outperforms the classic baseline during the locally available 2022-2024 sample.",
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "sma_crossover",
+      "hypothesis": "20/100 may capture AAPL trends earlier than 50/200.",
+      "parameters": {
+        "fast": 20,
+        "slow": 100
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Exploit candidate authored by Codex.",
+        "Use as lead candidate if drawdown is tolerable."
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "sma_crossover",
+      "hypothesis": "50/200 remains the control baseline for the same sample.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Control baseline authored by Codex."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "iteration": "iter_073",
+  "thesis": "Validate whether the stronger cloud event-aware branch survives a simple year split before treating the narrowed platform5 basket as anything more than an in-sample refinement.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Reference benchmark from the same windows via local results where available"
+  },
+  "universe": {
+    "name": "cloud_platform_event_window_validation_v1",
+    "selection_rule": "Cloud-only Upcoming Earnings dataset on platform-style event baskets split by sample window",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "platform7 pre1 hold3 became the best timing-aware cloud event row.",
+      "platform5 pre1 hold3 materially outperformed the broader platform7 basket after removing NFLX and ADBE.",
+      "That refinement still needs split-window validation before it can be trusted as more than an in-sample cleanup."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "The broader platform7 pre1 hold3 branch should remain positive in 2025 even if it is not as clean as platform5.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2025"
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "The broader platform7 pre1 hold3 branch should still be at least directionally positive in 2026 YTD if the edge is recent-regime aligned.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2026_ytd"
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If platform5 is a real event-basket improvement, it should remain stronger than platform7 in 2025.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2025"
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If platform5 only worked because of 2025 in-sample fit, it should weaken materially in 2026 YTD.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2026_ytd"
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    }
+  ]
+}

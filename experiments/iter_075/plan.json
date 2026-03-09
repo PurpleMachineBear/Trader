@@ -1,0 +1,231 @@
+{
+  "iteration": "iter_075",
+  "thesis": "Test whether a rolling symbol-specific event-quality score can improve the broader platform event basket without hand-curated symbol exclusions.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Reference benchmark from the same broad sample via local results"
+  },
+  "universe": {
+    "name": "cloud_platform_quality_score_v1",
+    "selection_rule": "Cloud-only Upcoming Earnings dataset on platform event baskets with rolling symbol-specific quality adjustments",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "platform5 pre1 hold3 is the current cloud event-aware large-cap lead.",
+      "The branch is mostly after-close, but not purely after-close.",
+      "The next improvement should come from symbol-specific event quality rather than another basket-only sweep."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "The original broader platform7 branch remains the baseline for quality-score tests.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "quality_weight": 0,
+        "quality_min_events": 1,
+        "quality_shrinkage_events": 2
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "A moderate rolling quality bonus should demote persistent drag symbols without overreacting to early noise.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "quality_weight": 0.5,
+        "quality_min_events": 1,
+        "quality_shrinkage_events": 2
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "A stronger quality bonus with one-event activation may close more of the gap to the curated platform5 basket.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "quality_weight": 1.0,
+        "quality_min_events": 1,
+        "quality_shrinkage_events": 2
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "Requiring two completed events before applying the quality bonus may reduce overreaction to the first lucky winner.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "quality_weight": 1.0,
+        "quality_min_events": 2,
+        "quality_shrinkage_events": 2
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "Quality scoring may work even better when combined with the stronger after-close structural clue on the broader basket.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "after_close",
+        "quality_weight": 1.0,
+        "quality_min_events": 1,
+        "quality_shrinkage_events": 2
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "cloud_earnings_event_basket",
+      "role": "reference",
+      "hypothesis": "The hand-curated platform5 branch remains the current upper-bound reference for this cloud lane.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "quality_weight": 0,
+        "quality_min_events": 1,
+        "quality_shrinkage_events": 2
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    }
+  ]
+}

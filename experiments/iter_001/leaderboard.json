@@ -1,0 +1,97 @@
+[
+  {
+    "candidate_id": "candidate_03",
+    "status": "completed",
+    "score": 76.402,
+    "metrics": {
+      "family": "sma_crossover",
+      "net_profit_pct": 41.702,
+      "sharpe_ratio": 0.549,
+      "sortino_ratio": 0.523,
+      "max_drawdown_pct": 10.1,
+      "win_rate_pct": 0.0,
+      "loss_rate_pct": 0.0,
+      "total_orders": 1.0,
+      "portfolio_turnover_pct": 0.09,
+      "trade_count": 0.0,
+      "ending_equity": 141701.915
+    },
+    "errors": []
+  },
+  {
+    "candidate_id": "candidate_04",
+    "status": "completed",
+    "score": 20.182,
+    "metrics": {
+      "family": "rotation_rsi",
+      "net_profit_pct": 19.182,
+      "sharpe_ratio": 0.416,
+      "sortino_ratio": 0.44,
+      "max_drawdown_pct": 20.3,
+      "win_rate_pct": 66.0,
+      "loss_rate_pct": 34.0,
+      "total_orders": 66.0,
+      "portfolio_turnover_pct": 7.72,
+      "trade_count": 44.0,
+      "ending_equity": 119181.555
+    },
+    "errors": []
+  },
+  {
+    "candidate_id": "candidate_01",
+    "status": "completed",
+    "score": 19.560000000000006,
+    "metrics": {
+      "family": "sma_crossover",
+      "net_profit_pct": 34.06,
+      "sharpe_ratio": 0.279,
+      "sortino_ratio": 0.245,
+      "max_drawdown_pct": 21.2,
+      "win_rate_pct": 33.0,
+      "loss_rate_pct": 67.0,
+      "total_orders": 7.0,
+      "portfolio_turnover_pct": 0.64,
+      "trade_count": 3.0,
+      "ending_equity": 134059.975
+    },
+    "errors": []
+  },
+  {
+    "candidate_id": "candidate_02",
+    "status": "completed",
+    "score": 15.805,
+    "metrics": {
+      "family": "sma_crossover",
+      "net_profit_pct": 27.305,
+      "sharpe_ratio": 0.193,
+      "sortino_ratio": 0.163,
+      "max_drawdown_pct": 15.4,
+      "win_rate_pct": 100.0,
+      "loss_rate_pct": 0.0,
+      "total_orders": 3.0,
+      "portfolio_turnover_pct": 0.27,
+      "trade_count": 1.0,
+      "ending_equity": 127304.97
+    },
+    "errors": []
+  },
+  {
+    "candidate_id": "candidate_05",
+    "status": "completed",
+    "score": 13.098999999999997,
+    "metrics": {
+      "family": "rotation_rsi",
+      "net_profit_pct": 17.799,
+      "sharpe_ratio": 0.369,
+      "sortino_ratio": 0.385,
+      "max_drawdown_pct": 20.8,
+      "win_rate_pct": 65.0,
+      "loss_rate_pct": 35.0,
+      "total_orders": 98.0,
+      "portfolio_turnover_pct": 11.44,
+      "trade_count": 68.0,
+      "ending_equity": 117798.725
+    },
+    "errors": []
+  }
+]

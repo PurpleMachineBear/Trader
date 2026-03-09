@@ -1,0 +1,481 @@
+{
+  "daily": [
+    {
+      "symbol": "QQQ",
+      "daily_exists": true,
+      "daily_first": "20220103",
+      "daily_last": "20260306",
+      "daily_count": 1047,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20220102",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "VOO",
+      "daily_exists": true,
+      "daily_first": "20220103",
+      "daily_last": "20260306",
+      "daily_count": 1047,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20220102",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "GLD",
+      "daily_exists": true,
+      "daily_first": "20220103",
+      "daily_last": "20260306",
+      "daily_count": 1047,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20220102",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "TQQQ",
+      "daily_exists": true,
+      "daily_first": "20220103",
+      "daily_last": "20260306",
+      "daily_count": 1047,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20220102",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "QLD",
+      "daily_exists": true,
+      "daily_first": "20220103",
+      "daily_last": "20260306",
+      "daily_count": 1047,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20220102",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "SSO",
+      "daily_exists": true,
+      "daily_first": "20220103",
+      "daily_last": "20260306",
+      "daily_count": 1047,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20220102",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "SPY",
+      "daily_exists": true,
+      "daily_first": "20220103",
+      "daily_last": "20260306",
+      "daily_count": 1047,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20220102",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "NVDA",
+      "daily_exists": true,
+      "daily_first": "20220103",
+      "daily_last": "20260306",
+      "daily_count": 1047,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20220102",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "TSLA",
+      "daily_exists": true,
+      "daily_first": "20220103",
+      "daily_last": "20260306",
+      "daily_count": 1047,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20220102",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "AMD",
+      "daily_exists": true,
+      "daily_first": "20220103",
+      "daily_last": "20260306",
+      "daily_count": 1047,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20220102",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "MU",
+      "daily_exists": true,
+      "daily_first": "20220103",
+      "daily_last": "20260306",
+      "daily_count": 1047,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20220102",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "TSM",
+      "daily_exists": true,
+      "daily_first": "20220103",
+      "daily_last": "20260306",
+      "daily_count": 1047,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20220102",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "MRVL",
+      "daily_exists": true,
+      "daily_first": "20220103",
+      "daily_last": "20260306",
+      "daily_count": 1047,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20220102",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "AVGO",
+      "daily_exists": true,
+      "daily_first": "20220103",
+      "daily_last": "20260306",
+      "daily_count": 1047,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20220102",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "AMZN",
+      "daily_exists": true,
+      "daily_first": "20220103",
+      "daily_last": "20260306",
+      "daily_count": 1047,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20220102",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "META",
+      "daily_exists": true,
+      "daily_first": "20220103",
+      "daily_last": "20260306",
+      "daily_count": 957,
+      "max_gap_days": 132,
+      "factor_exists": true,
+      "factor_first": "20220102",
+      "factor_mismatch": false,
+      "large_gap": true
+    },
+    {
+      "symbol": "AAPL",
+      "daily_exists": true,
+      "daily_first": "20220103",
+      "daily_last": "20260306",
+      "daily_count": 1047,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20220102",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "MSFT",
+      "daily_exists": true,
+      "daily_first": "20220103",
+      "daily_last": "20260306",
+      "daily_count": 1047,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20220102",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "CRM",
+      "daily_exists": true,
+      "daily_first": "20240102",
+      "daily_last": "20260306",
+      "daily_count": 546,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20240101",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "NOW",
+      "daily_exists": true,
+      "daily_first": "20240102",
+      "daily_last": "20260306",
+      "daily_count": 546,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20240101",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "ORCL",
+      "daily_exists": true,
+      "daily_first": "20240102",
+      "daily_last": "20260306",
+      "daily_count": 546,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20240101",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "NFLX",
+      "daily_exists": true,
+      "daily_first": "20240102",
+      "daily_last": "20260306",
+      "daily_count": 546,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20240101",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "ADBE",
+      "daily_exists": true,
+      "daily_first": "20240102",
+      "daily_last": "20260306",
+      "daily_count": 546,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20240101",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "XLK",
+      "daily_exists": true,
+      "daily_first": "20220103",
+      "daily_last": "20260306",
+      "daily_count": 1047,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20220102",
+      "factor_mismatch": false,
+      "large_gap": false
+    },
+    {
+      "symbol": "SMH",
+      "daily_exists": true,
+      "daily_first": "20250102",
+      "daily_last": "20260306",
+      "daily_count": 294,
+      "max_gap_days": 4,
+      "factor_exists": true,
+      "factor_first": "20240101",
+      "factor_mismatch": false,
+      "large_gap": false
+    }
+  ],
+  "minute": [
+    {
+      "symbol": "QQQ",
+      "minute_exists": true,
+      "minute_first": "20240102",
+      "minute_last": "20260306",
+      "minute_count": 546
+    },
+    {
+      "symbol": "VOO",
+      "minute_exists": false,
+      "minute_first": null,
+      "minute_last": null,
+      "minute_count": 0
+    },
+    {
+      "symbol": "GLD",
+      "minute_exists": false,
+      "minute_first": null,
+      "minute_last": null,
+      "minute_count": 0
+    },
+    {
+      "symbol": "TQQQ",
+      "minute_exists": true,
+      "minute_first": "20250602",
+      "minute_last": "20260306",
+      "minute_count": 192
+    },
+    {
+      "symbol": "QLD",
+      "minute_exists": false,
+      "minute_first": null,
+      "minute_last": null,
+      "minute_count": 0
+    },
+    {
+      "symbol": "SSO",
+      "minute_exists": false,
+      "minute_first": null,
+      "minute_last": null,
+      "minute_count": 0
+    },
+    {
+      "symbol": "SPY",
+      "minute_exists": true,
+      "minute_first": "20240102",
+      "minute_last": "20260306",
+      "minute_count": 546
+    },
+    {
+      "symbol": "NVDA",
+      "minute_exists": true,
+      "minute_first": "20240102",
+      "minute_last": "20260306",
+      "minute_count": 546
+    },
+    {
+      "symbol": "TSLA",
+      "minute_exists": true,
+      "minute_first": "20240102",
+      "minute_last": "20260306",
+      "minute_count": 546
+    },
+    {
+      "symbol": "AMD",
+      "minute_exists": true,
+      "minute_first": "20240102",
+      "minute_last": "20260306",
+      "minute_count": 546
+    },
+    {
+      "symbol": "MU",
+      "minute_exists": true,
+      "minute_first": "20240102",
+      "minute_last": "20260306",
+      "minute_count": 546
+    },
+    {
+      "symbol": "TSM",
+      "minute_exists": true,
+      "minute_first": "20240102",
+      "minute_last": "20260306",
+      "minute_count": 546
+    },
+    {
+      "symbol": "MRVL",
+      "minute_exists": true,
+      "minute_first": "20240102",
+      "minute_last": "20260306",
+      "minute_count": 546
+    },
+    {
+      "symbol": "AVGO",
+      "minute_exists": true,
+      "minute_first": "20240102",
+      "minute_last": "20260306",
+      "minute_count": 546
+    },
+    {
+      "symbol": "AMZN",
+      "minute_exists": true,
+      "minute_first": "20240102",
+      "minute_last": "20260306",
+      "minute_count": 546
+    },
+    {
+      "symbol": "META",
+      "minute_exists": true,
+      "minute_first": "20240102",
+      "minute_last": "20260306",
+      "minute_count": 546
+    },
+    {
+      "symbol": "AAPL",
+      "minute_exists": true,
+      "minute_first": "20240102",
+      "minute_last": "20260306",
+      "minute_count": 546
+    },
+    {
+      "symbol": "MSFT",
+      "minute_exists": true,
+      "minute_first": "20240102",
+      "minute_last": "20260306",
+      "minute_count": 546
+    },
+    {
+      "symbol": "CRM",
+      "minute_exists": true,
+      "minute_first": "20250102",
+      "minute_last": "20260306",
+      "minute_count": 294
+    },
+    {
+      "symbol": "NOW",
+      "minute_exists": true,
+      "minute_first": "20250102",
+      "minute_last": "20260306",
+      "minute_count": 294
+    },
+    {
+      "symbol": "ORCL",
+      "minute_exists": true,
+      "minute_first": "20250102",
+      "minute_last": "20260306",
+      "minute_count": 294
+    },
+    {
+      "symbol": "NFLX",
+      "minute_exists": true,
+      "minute_first": "20250102",
+      "minute_last": "20260306",
+      "minute_count": 294
+    },
+    {
+      "symbol": "ADBE",
+      "minute_exists": true,
+      "minute_first": "20250102",
+      "minute_last": "20260306",
+      "minute_count": 294
+    },
+    {
+      "symbol": "XLK",
+      "minute_exists": true,
+      "minute_first": "20240102",
+      "minute_last": "20260306",
+      "minute_count": 546
+    },
+    {
+      "symbol": "SMH",
+      "minute_exists": true,
+      "minute_first": "20240102",
+      "minute_last": "20260306",
+      "minute_count": 546
+    }
+  ]
+}

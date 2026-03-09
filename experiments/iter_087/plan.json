@@ -1,0 +1,102 @@
+{
+  "iteration": "iter_087",
+  "thesis": "Revalidate earlier-window same-basket passive baselines for the cloud event baskets after repairing local daily and factor coverage for CRM/NOW/ORCL/NFLX/ADBE.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Common market reference for earlier-window passive checks"
+  },
+  "universe": {
+    "name": "platform_passive_baseline_recheck_v1",
+    "selection_rule": "Local equal-weight passive baselines on repaired platform baskets",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "Earlier-window local passive baselines were previously invalid because CRM/NOW/ORCL factor coverage only started in 2025.",
+      "Those local daily and factor files have now been backfilled to 2024-01-02.",
+      "The next step is to confirm that same-basket earlier-window passive baselines are now valid and comparable to the cloud event branch."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "VOO remains the common market passive reference for 2024.",
+      "parameters": {},
+      "symbols": ["VOO"],
+      "start_date": "2024-01-02",
+      "end_date": "2024-12-31",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "equal_weight_buy_and_hold",
+      "role": "control",
+      "hypothesis": "Platform7 passive 2024 should now be a valid same-basket baseline after local data repair.",
+      "parameters": {},
+      "symbols": ["AAPL", "MSFT", "NFLX", "CRM", "ADBE", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2024-12-31",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "equal_weight_buy_and_hold",
+      "role": "control",
+      "hypothesis": "Platform5 passive 2024 should now be a valid same-basket baseline after local data repair.",
+      "parameters": {},
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2024-12-31",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "equal_weight_buy_and_hold",
+      "role": "control",
+      "hypothesis": "Platform7 passive 2024_2025 should now be a valid extended same-basket baseline after local data repair.",
+      "parameters": {},
+      "symbols": ["AAPL", "MSFT", "NFLX", "CRM", "ADBE", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "equal_weight_buy_and_hold",
+      "role": "control",
+      "hypothesis": "Platform5 passive 2024_2025 should now be a valid extended same-basket baseline after local data repair.",
+      "parameters": {},
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    }
+  ]
+}

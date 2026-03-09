@@ -1,0 +1,6965 @@
+{
+  "iteration": "iter_010",
+  "thesis": "Batch 5 is the deployment round: it keeps only validated structures, separates risk buckets explicitly, and refines around a narrow set of deployable candidates rather than continuing broad exploration.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Primary passive benchmark for all campaign batches"
+  },
+  "universe": {
+    "name": "core_us_macro_v2",
+    "selection_rule": "Final deployment shortlist around validated GLD-defensive and legacy baseline structures",
+    "allowed_symbols": [
+      "SPY",
+      "VOO",
+      "QQQ",
+      "TQQQ",
+      "IWM",
+      "DIA",
+      "TLT",
+      "IEF",
+      "GLD",
+      "XLK",
+      "AAPL",
+      "MSFT"
+    ],
+    "validation_symbols": [
+      "SPY",
+      "VOO",
+      "QQQ",
+      "TQQQ",
+      "DIA",
+      "TLT",
+      "IEF",
+      "GLD",
+      "XLK"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "Validated GLD-defensive structures have already separated into full-size leveraged, 0.75 leveraged, and non-leveraged control-grade buckets.",
+      "The final round should not reopen broad exploration.",
+      "QQQ/VOO/TLT remains only a baseline check."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_001",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "VOO buy-and-hold remains necessary in the final deployment round.",
+      "parameters": {},
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO"
+      ],
+      "tags": [
+        "passive",
+        "reference",
+        "benchmark"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final round passive reference."
+      ]
+    },
+    {
+      "candidate_id": "candidate_002",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "GLD buy-and-hold remains necessary in the final deployment round.",
+      "parameters": {},
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD"
+      ],
+      "tags": [
+        "passive",
+        "reference"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final round passive reference."
+      ]
+    },
+    {
+      "candidate_id": "candidate_003",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "QQQ buy-and-hold remains necessary in the final deployment round.",
+      "parameters": {},
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ"
+      ],
+      "tags": [
+        "passive",
+        "reference"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final round passive reference."
+      ]
+    },
+    {
+      "candidate_id": "candidate_004",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "TQQQ buy-and-hold remains necessary in the final deployment round.",
+      "parameters": {},
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "passive",
+        "reference"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final round passive reference."
+      ]
+    },
+    {
+      "candidate_id": "candidate_005",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "QQQ/VOO/GLD 126/7 is the primary non-leveraged control.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "control",
+        "non_levered"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final round control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_006",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "TQQQ/VOO/GLD 126/7 at full size is the raw-return ceiling control.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "control",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final round control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_007",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "TQQQ/VOO/GLD 126/7 at 0.75 size is the deployable leveraged control.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "control",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final round control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_008",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "QQQ/SPY/GLD 126/7 is the alternate non-leveraged control.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "tags": [
+        "control",
+        "non_levered"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final round control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_009",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "QQQ/XLK/GLD 126/14 is the tech-proxy non-leveraged control.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "tags": [
+        "control",
+        "non_levered"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final round control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_010",
+      "family": "sma_regime",
+      "role": "control",
+      "hypothesis": "GLD 20/120 + 189d is the single-asset active GLD control.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD"
+      ],
+      "tags": [
+        "control",
+        "single_asset"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final round control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_011",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "QQQ/VOO/TLT 126/21 remains the final legacy baseline.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "tags": [
+        "control",
+        "legacy"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final round legacy baseline."
+      ]
+    },
+    {
+      "candidate_id": "candidate_012",
+      "family": "sma_regime",
+      "role": "control",
+      "hypothesis": "TQQQ 20/120 + 189d at 0.75 size is the leveraged single-asset control.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "control",
+        "leveraged"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final round control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_013",
+      "family": "sma_regime",
+      "role": "control",
+      "hypothesis": "QQQ 40/180 + 252d remains the aggressive trend baseline.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ"
+      ],
+      "tags": [
+        "control",
+        "trend"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final round control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_014",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 119-day momentum and 5-day rebalance.",
+      "parameters": {
+        "lookback": 119,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_015",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 119-day momentum and 7-day rebalance.",
+      "parameters": {
+        "lookback": 119,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_016",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 119-day momentum and 10-day rebalance.",
+      "parameters": {
+        "lookback": 119,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_017",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 119-day momentum and 14-day rebalance.",
+      "parameters": {
+        "lookback": 119,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_018",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 126-day momentum and 5-day rebalance.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_019",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 126-day momentum and 7-day rebalance.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_020",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 126-day momentum and 10-day rebalance.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_021",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 126-day momentum and 14-day rebalance.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_022",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 133-day momentum and 5-day rebalance.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_023",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 133-day momentum and 7-day rebalance.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_024",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 133-day momentum and 10-day rebalance.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_025",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 133-day momentum and 14-day rebalance.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_026",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 140-day momentum and 5-day rebalance.",
+      "parameters": {
+        "lookback": 140,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_027",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 140-day momentum and 7-day rebalance.",
+      "parameters": {
+        "lookback": 140,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_028",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 140-day momentum and 10-day rebalance.",
+      "parameters": {
+        "lookback": 140,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_029",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 140-day momentum and 14-day rebalance.",
+      "parameters": {
+        "lookback": 140,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_030",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 147-day momentum and 5-day rebalance.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_031",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 147-day momentum and 7-day rebalance.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_032",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 147-day momentum and 10-day rebalance.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_033",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad market with gold defense using 147-day momentum and 14-day rebalance.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_034",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 119-day momentum and 5-day rebalance.",
+      "parameters": {
+        "lookback": 119,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_035",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 119-day momentum and 7-day rebalance.",
+      "parameters": {
+        "lookback": 119,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_036",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 119-day momentum and 10-day rebalance.",
+      "parameters": {
+        "lookback": 119,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_037",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 119-day momentum and 14-day rebalance.",
+      "parameters": {
+        "lookback": 119,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_038",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 126-day momentum and 5-day rebalance.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_039",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 126-day momentum and 7-day rebalance.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_040",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 126-day momentum and 10-day rebalance.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_041",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 126-day momentum and 14-day rebalance.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_042",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 133-day momentum and 5-day rebalance.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_043",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 133-day momentum and 7-day rebalance.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_044",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 133-day momentum and 10-day rebalance.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_045",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 133-day momentum and 14-day rebalance.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_046",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 140-day momentum and 5-day rebalance.",
+      "parameters": {
+        "lookback": 140,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_047",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 140-day momentum and 7-day rebalance.",
+      "parameters": {
+        "lookback": 140,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_048",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 140-day momentum and 10-day rebalance.",
+      "parameters": {
+        "lookback": 140,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_049",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 140-day momentum and 14-day rebalance.",
+      "parameters": {
+        "lookback": 140,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_050",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 147-day momentum and 5-day rebalance.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_051",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 147-day momentum and 7-day rebalance.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_052",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 147-day momentum and 10-day rebalance.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_053",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs broad-market proxy with gold defense using 147-day momentum and 14-day rebalance.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_054",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 119-day momentum and 5-day rebalance.",
+      "parameters": {
+        "lookback": 119,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_055",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 119-day momentum and 7-day rebalance.",
+      "parameters": {
+        "lookback": 119,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_056",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 119-day momentum and 10-day rebalance.",
+      "parameters": {
+        "lookback": 119,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_057",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 119-day momentum and 14-day rebalance.",
+      "parameters": {
+        "lookback": 119,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_058",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 126-day momentum and 5-day rebalance.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_059",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 126-day momentum and 7-day rebalance.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_060",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 126-day momentum and 10-day rebalance.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_061",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 126-day momentum and 14-day rebalance.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_062",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 133-day momentum and 5-day rebalance.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_063",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 133-day momentum and 7-day rebalance.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_064",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 133-day momentum and 10-day rebalance.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_065",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 133-day momentum and 14-day rebalance.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_066",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 140-day momentum and 5-day rebalance.",
+      "parameters": {
+        "lookback": 140,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_067",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 140-day momentum and 7-day rebalance.",
+      "parameters": {
+        "lookback": 140,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_068",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 140-day momentum and 10-day rebalance.",
+      "parameters": {
+        "lookback": 140,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_069",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 140-day momentum and 14-day rebalance.",
+      "parameters": {
+        "lookback": 140,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_070",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 147-day momentum and 5-day rebalance.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 5
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_071",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 147-day momentum and 7-day rebalance.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_072",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 147-day momentum and 10-day rebalance.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_073",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final non-leveraged deployment refinement on growth vs tech sector with gold defense using 147-day momentum and 14-day rebalance.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_074",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final non-leveraged de-risking test around the validated GLD-defensive cluster.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "risk_scaled"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_075",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final non-leveraged de-risking test around the validated GLD-defensive cluster.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "SPY",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "risk_scaled"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_076",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final non-leveraged de-risking test around the validated GLD-defensive cluster.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "XLK"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "risk_scaled"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_077",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final non-leveraged de-risking test around the validated GLD-defensive cluster.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "non_levered",
+        "risk_scaled"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_078",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 126-day momentum, 5-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_079",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 126-day momentum, 5-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_080",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 126-day momentum, 5-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_081",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 126-day momentum, 7-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_082",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 126-day momentum, 7-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_083",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 126-day momentum, 7-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_084",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 126-day momentum, 10-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_085",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 126-day momentum, 10-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_086",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 126-day momentum, 10-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_087",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 126-day momentum, 14-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_088",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 126-day momentum, 14-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_089",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 126-day momentum, 14-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_090",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 133-day momentum, 5-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 5,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_091",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 133-day momentum, 5-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 5,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_092",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 133-day momentum, 5-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 5,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_093",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 133-day momentum, 7-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 7,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_094",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 133-day momentum, 7-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_095",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 133-day momentum, 7-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_096",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 133-day momentum, 10-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 10,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_097",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 133-day momentum, 10-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 10,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_098",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 133-day momentum, 10-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_099",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 133-day momentum, 14-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 14,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_100",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 133-day momentum, 14-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 14,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_101",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 133-day momentum, 14-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 14,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_102",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 147-day momentum, 5-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 5,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_103",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 147-day momentum, 5-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 5,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_104",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 147-day momentum, 5-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 5,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_105",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 147-day momentum, 7-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_106",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 147-day momentum, 7-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_107",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 147-day momentum, 7-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_108",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 147-day momentum, 10-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 10,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_109",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 147-day momentum, 10-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 10,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_110",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 147-day momentum, 10-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_111",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 147-day momentum, 14-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 14,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_112",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 147-day momentum, 14-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 14,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_113",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad market with gold defense using 147-day momentum, 14-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 14,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "SPY"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_114",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 126-day momentum, 5-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_115",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 126-day momentum, 5-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_116",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 126-day momentum, 5-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_117",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 126-day momentum, 7-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_118",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 126-day momentum, 7-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_119",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 126-day momentum, 7-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_120",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 126-day momentum, 10-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_121",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 126-day momentum, 10-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_122",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 126-day momentum, 10-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_123",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 126-day momentum, 14-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_124",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 126-day momentum, 14-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_125",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 126-day momentum, 14-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_126",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 133-day momentum, 5-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 5,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_127",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 133-day momentum, 5-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 5,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_128",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 133-day momentum, 5-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 5,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_129",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 133-day momentum, 7-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 7,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_130",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 133-day momentum, 7-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_131",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 133-day momentum, 7-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_132",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 133-day momentum, 10-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 10,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_133",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 133-day momentum, 10-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 10,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_134",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 133-day momentum, 10-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_135",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 133-day momentum, 14-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 14,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_136",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 133-day momentum, 14-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 14,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_137",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 133-day momentum, 14-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 14,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_138",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 147-day momentum, 5-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 5,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_139",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 147-day momentum, 5-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 5,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_140",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 147-day momentum, 5-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 5,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_141",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 147-day momentum, 7-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_142",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 147-day momentum, 7-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_143",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 147-day momentum, 7-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_144",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 147-day momentum, 10-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 10,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_145",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 147-day momentum, 10-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 10,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_146",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 147-day momentum, 10-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_147",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 147-day momentum, 14-day rebalance, and 0.67 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 14,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_148",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 147-day momentum, 14-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 14,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_149",
+      "family": "dual_momentum",
+      "role": "exploit",
+      "hypothesis": "Final leveraged deployment refinement on leveraged growth vs broad-market proxy with gold defense using 147-day momentum, 14-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 14,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_150",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 126-day momentum, 5-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_151",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 126-day momentum, 5-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 5,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_152",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 126-day momentum, 7-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_153",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 126-day momentum, 7-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_154",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 126-day momentum, 10-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_155",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 126-day momentum, 10-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_156",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 126-day momentum, 14-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_157",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 126-day momentum, 14-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_158",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 133-day momentum, 5-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 5,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_159",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 133-day momentum, 5-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 5,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_160",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 133-day momentum, 7-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_161",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 133-day momentum, 7-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_162",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 133-day momentum, 10-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 10,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_163",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 133-day momentum, 10-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_164",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 133-day momentum, 14-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 14,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_165",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 133-day momentum, 14-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 133,
+        "rebalance_days": 14,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_166",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 147-day momentum, 5-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 5,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_167",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 147-day momentum, 5-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 5,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_168",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 147-day momentum, 7-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_169",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 147-day momentum, 7-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_170",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 147-day momentum, 10-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 10,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_171",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 147-day momentum, 10-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_172",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 147-day momentum, 14-day rebalance, and 0.75 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 14,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_173",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final leveraged deployment refinement on TQQQ/QQQ/GLD using 147-day momentum, 14-day rebalance, and 1.00 size.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 14,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "tags": [
+        "rotation",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_174",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "Final GLD trend refinement around the validated active GLD cluster.",
+      "parameters": {
+        "fast": 18,
+        "slow": 110,
+        "max_holding_days": 189,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "single_asset",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_175",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "Final GLD trend refinement around the validated active GLD cluster.",
+      "parameters": {
+        "fast": 18,
+        "slow": 110,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "single_asset",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_176",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "Final GLD trend refinement around the validated active GLD cluster.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "single_asset",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_177",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "Final GLD trend refinement around the validated active GLD cluster.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "single_asset",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_178",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "Final GLD trend refinement around the validated active GLD cluster.",
+      "parameters": {
+        "fast": 22,
+        "slow": 130,
+        "max_holding_days": 189,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "single_asset",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_179",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "Final GLD trend refinement around the validated active GLD cluster.",
+      "parameters": {
+        "fast": 22,
+        "slow": 130,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "single_asset",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_180",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "Final GLD trend refinement around the validated active GLD cluster.",
+      "parameters": {
+        "fast": 25,
+        "slow": 140,
+        "max_holding_days": 210,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "single_asset",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_181",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "Final GLD trend refinement around the validated active GLD cluster.",
+      "parameters": {
+        "fast": 25,
+        "slow": 140,
+        "max_holding_days": 210
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "single_asset",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_182",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "Final GLD trend refinement around the validated active GLD cluster.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "single_asset",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_183",
+      "family": "sma_regime",
+      "role": "exploit",
+      "hypothesis": "Final GLD trend refinement around the validated active GLD cluster.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD"
+      ],
+      "tags": [
+        "trend",
+        "single_asset",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_184",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "Final leveraged TQQQ trend refinement around the validated timing cluster.",
+      "parameters": {
+        "fast": 18,
+        "slow": 110,
+        "max_holding_days": 189,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "trend",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_185",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "Final leveraged TQQQ trend refinement around the validated timing cluster.",
+      "parameters": {
+        "fast": 18,
+        "slow": 110,
+        "max_holding_days": 189,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "trend",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_186",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "Final leveraged TQQQ trend refinement around the validated timing cluster.",
+      "parameters": {
+        "fast": 18,
+        "slow": 110,
+        "max_holding_days": 189,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "trend",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_187",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "Final leveraged TQQQ trend refinement around the validated timing cluster.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "trend",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_188",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "Final leveraged TQQQ trend refinement around the validated timing cluster.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "trend",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_189",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "Final leveraged TQQQ trend refinement around the validated timing cluster.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "trend",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_190",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "Final leveraged TQQQ trend refinement around the validated timing cluster.",
+      "parameters": {
+        "fast": 22,
+        "slow": 130,
+        "max_holding_days": 189,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "trend",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_191",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "Final leveraged TQQQ trend refinement around the validated timing cluster.",
+      "parameters": {
+        "fast": 22,
+        "slow": 130,
+        "max_holding_days": 189,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "trend",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_192",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "Final leveraged TQQQ trend refinement around the validated timing cluster.",
+      "parameters": {
+        "fast": 22,
+        "slow": 130,
+        "max_holding_days": 189,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "trend",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_193",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "Final leveraged TQQQ trend refinement around the validated timing cluster.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "trend",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_194",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "Final leveraged TQQQ trend refinement around the validated timing cluster.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "trend",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_195",
+      "family": "sma_regime",
+      "role": "explore",
+      "hypothesis": "Final leveraged TQQQ trend refinement around the validated timing cluster.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "trend",
+        "leveraged",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_196",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final legacy TLT baseline check to verify continued inferiority after all refinements.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "tags": [
+        "rotation",
+        "legacy",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_197",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final legacy TLT baseline check to verify continued inferiority after all refinements.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "tags": [
+        "rotation",
+        "legacy",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_198",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final legacy TLT baseline check to verify continued inferiority after all refinements.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "tags": [
+        "rotation",
+        "legacy",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_199",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final legacy TLT baseline check to verify continued inferiority after all refinements.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "tags": [
+        "rotation",
+        "legacy",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_200",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final legacy TLT baseline check to verify continued inferiority after all refinements.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "tags": [
+        "rotation",
+        "legacy",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    },
+    {
+      "candidate_id": "candidate_201",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "Final legacy TLT baseline check to verify continued inferiority after all refinements.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "tags": [
+        "rotation",
+        "legacy",
+        "final_round"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Final deployment refinement."
+      ]
+    }
+  ]
+}

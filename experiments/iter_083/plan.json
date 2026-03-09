@@ -1,0 +1,209 @@
+{
+  "iteration": "iter_083",
+  "thesis": "Test whether the canonical cloud earnings branch is really a market-state conditional setup by combining platform5 pre1 hold3 with broad tech-tape gates instead of more single-name pre-event return slicing.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Reference benchmark from the same sample via local results"
+  },
+  "universe": {
+    "name": "cloud_platform5_tape_state_v1",
+    "selection_rule": "Cloud-only Upcoming Earnings dataset on platform5 with optional QQQ/XLK tape-state gates",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "CRM",
+      "NOW",
+      "ORCL",
+      "QQQ",
+      "XLK",
+      "VOO"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "CRM",
+      "NOW",
+      "ORCL",
+      "QQQ",
+      "XLK",
+      "VOO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "platform5 pre1 hold3 remains the canonical cloud event-aware large-cap control.",
+      "Hard pre-event trailing-return gates made the branch worse in both broad and earlier windows.",
+      "The next event-state pass should use richer metadata such as report-time interactions or sector tape overlays."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "The ungated platform5 pre1 hold3 row remains the broad-sample control.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "broad"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If the event edge mainly needs a strong tech tape, requiring both QQQ and XLK to be positive over 5 days should preserve or improve the control.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "broad",
+        "context_symbols": "QQQ,XLK",
+        "context_lookback_days": 5,
+        "context_return_threshold": 0.0,
+        "context_min_positive": 2
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL", "QQQ", "XLK"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If the branch behaves more like a defensive event trade, forcing both QQQ and XLK to be weak should preserve or improve the control.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "broad",
+        "context_symbols": "QQQ,XLK",
+        "context_lookback_days": 5,
+        "context_return_threshold": 0.0,
+        "context_max_positive": 0
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL", "QQQ", "XLK"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "After-close events under positive tech tape may be the cleanest recent-state subset of platform5.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "broad",
+        "report_time_filter": "after_close",
+        "context_symbols": "QQQ,XLK",
+        "context_lookback_days": 5,
+        "context_return_threshold": 0.0,
+        "context_min_positive": 2
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL", "QQQ", "XLK"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "After-close events under weak tech tape can test whether the after-close subset is actually more defensive than the full branch.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "broad",
+        "report_time_filter": "after_close",
+        "context_symbols": "QQQ,XLK",
+        "context_lookback_days": 5,
+        "context_return_threshold": 0.0,
+        "context_max_positive": 0
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL", "QQQ", "XLK"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "The ungated platform5 pre1 hold3 row remains the earlier-window control.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2024_2025"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_07",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "A positive QQQ/XLK tape may explain part of the earlier-window edge too, though likely less strongly than in recent broad.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2024_2025",
+        "context_symbols": "QQQ,XLK",
+        "context_lookback_days": 5,
+        "context_return_threshold": 0.0,
+        "context_min_positive": 2
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL", "QQQ", "XLK"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_08",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "A weak QQQ/XLK tape may explain the hostile-window resilience of the branch.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2024_2025",
+        "context_symbols": "QQQ,XLK",
+        "context_lookback_days": 5,
+        "context_return_threshold": 0.0,
+        "context_max_positive": 0
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL", "QQQ", "XLK"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "iteration": "iter_074",
+  "project": "Cloud_Earnings_Research",
+  "project_id": 28794465,
+  "results": [
+    {
+      "candidate_id": "candidate_01",
+      "status": "completed",
+      "backtest_id": "c8960377936fb48cc25a35c9daba0d75",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "any",
+        "net_profit_pct": 100.059,
+        "sharpe_ratio": 1.508,
+        "max_drawdown_pct": 10.1,
+        "total_orders": 89.0,
+        "trade_count": 49.0,
+        "ending_equity": 200059.04
+      },
+      "symbol_pnl": {
+        "ORCL": 62957.73,
+        "CRM": 16580.0,
+        "MSFT": 13617.25,
+        "NOW": 7920.93,
+        "AAPL": -895.25
+      },
+      "symbol_trade_count": {
+        "MSFT": 15,
+        "AAPL": 11,
+        "NOW": 11,
+        "CRM": 9,
+        "ORCL": 3
+      }
+    },
+    {
+      "candidate_id": "candidate_02",
+      "status": "completed",
+      "backtest_id": "ef1237313ec20f912ce6f7cc075552b2",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "after_close",
+        "net_profit_pct": 82.585,
+        "sharpe_ratio": 1.299,
+        "max_drawdown_pct": 10.1,
+        "total_orders": 80.0,
+        "trade_count": 44.0,
+        "ending_equity": 182585.33
+      },
+      "symbol_pnl": {
+        "ORCL": 57423.76,
+        "CRM": 18619.77,
+        "MSFT": 13986.11,
+        "AAPL": -815.63,
+        "NOW": -6522.24
+      },
+      "symbol_trade_count": {
+        "MSFT": 14,
+        "AAPL": 12,
+        "NOW": 8,
+        "CRM": 7,
+        "ORCL": 3
+      }
+    },
+    {
+      "candidate_id": "candidate_03",
+      "status": "completed",
+      "backtest_id": "9766ee3cf1be77067a443e16d013cdf4",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "before_open",
+        "net_profit_pct": 18.988,
+        "sharpe_ratio": 0.468,
+        "max_drawdown_pct": 5.8,
+        "total_orders": 8.0,
+        "trade_count": 4.0,
+        "ending_equity": 118987.58
+      },
+      "symbol_pnl": {
+        "NOW": 22833.24,
+        "CRM": -3838.44
+      },
+      "symbol_trade_count": {
+        "CRM": 2,
+        "NOW": 2
+      }
+    },
+    {
+      "candidate_id": "candidate_04",
+      "status": "completed",
+      "backtest_id": "57e7a0fe7e3b13fe06c8267b41277019",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "after_close",
+        "net_profit_pct": 62.278,
+        "sharpe_ratio": 1.005,
+        "max_drawdown_pct": 18.1,
+        "total_orders": 105.0,
+        "trade_count": 57.0,
+        "ending_equity": 162278.16
+      },
+      "symbol_pnl": {
+        "ORCL": 55428.61,
+        "CRM": 15145.61,
+        "MSFT": 15068.13,
+        "ADBE": 15.77,
+        "AAPL": -1394.52,
+        "NOW": -5546.37,
+        "NFLX": -16315.94
+      },
+      "symbol_trade_count": {
+        "MSFT": 14,
+        "AAPL": 12,
+        "ADBE": 8,
+        "NOW": 8,
+        "CRM": 6,
+        "ORCL": 6,
+        "NFLX": 3
+      }
+    },
+    {
+      "candidate_id": "candidate_05",
+      "status": "completed",
+      "backtest_id": "a0b8e57db3577b76e078717a779df0c7",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "report_time_filter": "before_open",
+        "net_profit_pct": 7.285,
+        "sharpe_ratio": 0.017,
+        "max_drawdown_pct": 16.8,
+        "total_orders": 12.0,
+        "trade_count": 6.0,
+        "ending_equity": 107285.36
+      },
+      "symbol_pnl": {
+        "NOW": 20646.84,
+        "CRM": -3838.44,
+        "ADBE": -9512.62
+      },
+      "symbol_trade_count": {
+        "ADBE": 2,
+        "CRM": 2,
+        "NOW": 2
+      }
+    },
+    {
+      "candidate_id": "candidate_06",
+      "status": "completed",
+      "backtest_id": "e097c42812cda676d2bd4ea23fd6b870",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 1,
+        "max_names": 3,
+        "report_time_filter": "after_close",
+        "net_profit_pct": 64.113,
+        "sharpe_ratio": 1.13,
+        "max_drawdown_pct": 10.6,
+        "total_orders": 56.0,
+        "trade_count": 19.0,
+        "ending_equity": 164113.03
+      },
+      "symbol_pnl": {
+        "ORCL": 47414.69,
+        "MSFT": 13201.13,
+        "CRM": 2400.27,
+        "AAPL": 1002.84,
+        "NOW": 178.25
+      },
+      "symbol_trade_count": {
+        "MSFT": 6,
+        "AAPL": 4,
+        "CRM": 4,
+        "NOW": 3,
+        "ORCL": 2
+      }
+    }
+  ]
+}

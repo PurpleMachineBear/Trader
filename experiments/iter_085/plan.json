@@ -1,0 +1,191 @@
+{
+  "iteration": "iter_085",
+  "thesis": "Test whether the canonical cloud event-aware branch improves when hold duration is conditioned on report time rather than fixed across before-open and after-close events.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Reference benchmark from the same sample via local results"
+  },
+  "universe": {
+    "name": "cloud_platform5_report_time_hold_state_v1",
+    "selection_rule": "Cloud-only Upcoming Earnings dataset on platform5 with report-time-conditioned holding rules",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "CRM",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "CRM",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "platform5 pre1 hold3 remains the canonical cloud control.",
+      "Hard pre-event trailing-return gates and simple QQQ/XLK tape gates did not help.",
+      "Estimate availability is a partial quality signal, but binary estimate filters still underperform the ungated control."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "The ungated platform5 pre1 hold3 row remains the recent broad control.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "broad"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If before-open events add value but decay faster, shortening only before-open holds to one day while keeping after-close at three days should improve the recent broad control.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "hold_days_before_open": 1,
+        "hold_days_after_close": 3,
+        "max_names": 3,
+        "sample_window": "broad"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If before-open events need a little more carry than one day but still less than after-close events, a two-day before-open hold can outperform the fixed three-day control.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "hold_days_before_open": 2,
+        "hold_days_after_close": 3,
+        "max_names": 3,
+        "sample_window": "broad"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If after-close events dominate but do not need the full three-day hold, shortening after-close holds to two days while leaving before-open at one day may improve return-to-drawdown.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "hold_days_before_open": 1,
+        "hold_days_after_close": 2,
+        "max_names": 3,
+        "sample_window": "broad"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "The ungated platform5 pre1 hold3 row remains the earlier 2024_2025 aggregate control.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2024_2025"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "A one-day before-open hold with a three-day after-close hold should also be the cleaner earlier-window variant if before-open decay is persistent.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "hold_days_before_open": 1,
+        "hold_days_after_close": 3,
+        "max_names": 3,
+        "sample_window": "2024_2025"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_07",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "A two-day before-open hold with a three-day after-close hold can test whether the earlier-window branch wants slightly more carry on before-open names.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "hold_days_before_open": 2,
+        "hold_days_after_close": 3,
+        "max_names": 3,
+        "sample_window": "2024_2025"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_08",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "A shorter two-day after-close hold plus one-day before-open hold can test whether the canonical branch is overholding after-close events on the earlier aggregate window.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "hold_days_before_open": 1,
+        "hold_days_after_close": 2,
+        "max_names": 3,
+        "sample_window": "2024_2025"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    }
+  ]
+}

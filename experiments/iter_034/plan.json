@@ -1,0 +1,248 @@
+{
+  "iteration": "iter_034",
+  "thesis": "Audit whether deterministic watchlist tie-breaking changes the current large-cap growth4 BSL outcome when symbol order is reversed.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Primary passive benchmark"
+  },
+  "universe": {
+    "name": "large_cap_dynamic_minute_v1",
+    "selection_rule": "Local minute-data large-cap tech, platform, and approved high-liquidity growth names with benchmark and context ETFs",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "AMZN",
+      "META",
+      "NVDA",
+      "TSLA",
+      "NFLX",
+      "ADBE",
+      "CRM",
+      "NOW",
+      "ORCL",
+      "AVGO",
+      "AMD",
+      "MU",
+      "MRVL",
+      "TSM",
+      "QQQ",
+      "XLK",
+      "SMH",
+      "SPY",
+      "VOO"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "AMZN",
+      "META",
+      "NVDA",
+      "TSLA",
+      "NFLX",
+      "ADBE",
+      "CRM",
+      "NOW",
+      "ORCL",
+      "AVGO",
+      "AMD",
+      "MU",
+      "MRVL",
+      "TSM",
+      "QQQ",
+      "XLK",
+      "SMH",
+      "SPY",
+      "VOO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "iter_033 kept growth4 BSL pool2 as the canonical large-cap current-regime reference.",
+      "iter_031 showed that a simple large-cap regime router improved the broad sample but failed split-window validation.",
+      "Scanner watchlist selection now uses deterministic tie-breaking to prevent symbol-order leakage when scores tie."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "Passive benchmark anchor.",
+      "parameters": {
+        "position_size": 1.0,
+        "slippage_bps": 1
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "large_cap_dynamic_minute_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO"
+      ],
+      "tags": [
+        "baseline",
+        "daily"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Written by Codex."
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "equal_weight_buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "Same-basket passive baseline.",
+      "parameters": {
+        "slippage_bps": 1
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_dynamic_minute_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "baseline",
+        "daily"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Written by Codex."
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "control",
+      "hypothesis": "Carry the canonical growth4 current-regime reference.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 2,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_dynamic_minute_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "large_cap"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Written by Codex."
+      ]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "If prior dynamic results were partially order-biased, reversing the symbol list will change the outcome.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 2,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1
+      },
+      "symbols": [
+        "TSLA",
+        "NVDA",
+        "META",
+        "AMZN"
+      ],
+      "universe_name": "large_cap_dynamic_minute_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TSLA",
+        "NVDA",
+        "META",
+        "AMZN"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "large_cap"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Written by Codex."
+      ]
+    }
+  ]
+}

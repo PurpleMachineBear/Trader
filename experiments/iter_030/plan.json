@@ -1,0 +1,620 @@
+{
+  "iteration": "iter_030",
+  "thesis": "Large-cap regime-awareness may require family routing instead of a hard bullish tape filter. Test a simple regime router that sends strong tapes to BSL and weak tapes to failed-breakdown, then compare it against the best single-family controls.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Broad-sample passive benchmark"
+  },
+  "universe": {
+    "name": "large_cap_router_broad_v1",
+    "selection_rule": "Growth4 large-cap dynamic selection with family routing by proxy regime breadth",
+    "allowed_symbols": [
+      "VOO",
+      "SPY",
+      "QQQ",
+      "XLK",
+      "SMH",
+      "AMZN",
+      "META",
+      "NVDA",
+      "TSLA"
+    ],
+    "validation_symbols": [
+      "AMZN",
+      "META",
+      "NVDA",
+      "TSLA"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "BSL pool2 is the best large-cap single-family branch in 2025 and 2026 YTD.",
+      "Failed-breakdown pool1 beats BSL in hostile 2024.",
+      "Hard positive regime gates on BSL were negative value; routing is the next more coherent hypothesis."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "VOO anchors the broad-sample benchmark.",
+      "parameters": {
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "large_cap_router_broad_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO"
+      ],
+      "tags": [
+        "benchmark",
+        "passive"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "broad sample benchmark"
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "equal_weight_buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "Growth4 passive basket anchors same-basket beta.",
+      "parameters": {
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_router_broad_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "baseline",
+        "passive",
+        "growth4"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "broad sample passive baseline"
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "control",
+      "hypothesis": "BSL pool2 remains the best single-family large-cap control.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 2,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_router_broad_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "growth4",
+        "bsl_reversal"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "failed_breakdown_reclaim_scanner_intraday",
+      "role": "control",
+      "hypothesis": "Failed-breakdown pool1 remains the best 2024 hostile-window counterpoint.",
+      "parameters": {
+        "weak_lookback_days": 10,
+        "weak_return_max": -0.03,
+        "gap_min": -0.015,
+        "gap_max": 0.01,
+        "premarket_vol_ratio_min": 0.004,
+        "breakdown_buffer_pct": 0.001,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 1.6,
+        "max_holding_minutes": 120,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 1,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_router_broad_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "growth4",
+        "failed_breakdown_reclaim"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "regime_router_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "20d QQQ/XLK/SMH regime router with BSL-style exits may improve all-weather behavior.",
+      "parameters": {
+        "weak_lookback_days": 10,
+        "weak_return_max": -0.03,
+        "gap_min": -0.015,
+        "gap_max": 0.01,
+        "premarket_vol_ratio_min": 0.004,
+        "bsl_morning_flush_pct": 0.003,
+        "failed_morning_flush_pct": 0.003,
+        "breakdown_buffer_pct": 0.001,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 1,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0,
+        "regime_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "regime_lookback_days": 20,
+        "regime_return_min": 0.0,
+        "regime_min_positive": -1,
+        "router_regime_min_positive": 2,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": false
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_router_broad_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "growth4",
+        "regime_router"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "regime_router_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "20d QQQ/XLK/SMH regime router with failed-breakdown-style exits may better preserve hostile-window performance.",
+      "parameters": {
+        "weak_lookback_days": 10,
+        "weak_return_max": -0.03,
+        "gap_min": -0.015,
+        "gap_max": 0.01,
+        "premarket_vol_ratio_min": 0.004,
+        "bsl_morning_flush_pct": 0.003,
+        "failed_morning_flush_pct": 0.003,
+        "breakdown_buffer_pct": 0.001,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 1,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0,
+        "regime_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "regime_lookback_days": 20,
+        "regime_return_min": 0.0,
+        "regime_min_positive": -1,
+        "router_regime_min_positive": 2,
+        "risk_reward": 1.6,
+        "max_holding_minutes": 120,
+        "use_vwap_exit": true
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_router_broad_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "growth4",
+        "regime_router"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_07",
+      "family": "regime_router_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "40d tech regime router tests slower regime classification.",
+      "parameters": {
+        "weak_lookback_days": 10,
+        "weak_return_max": -0.03,
+        "gap_min": -0.015,
+        "gap_max": 0.01,
+        "premarket_vol_ratio_min": 0.004,
+        "bsl_morning_flush_pct": 0.003,
+        "failed_morning_flush_pct": 0.003,
+        "breakdown_buffer_pct": 0.001,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 1,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0,
+        "regime_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "regime_lookback_days": 40,
+        "regime_return_min": 0.0,
+        "regime_min_positive": -1,
+        "router_regime_min_positive": 2,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": false
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_router_broad_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "growth4",
+        "regime_router"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_08",
+      "family": "regime_router_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "40d tech regime router with failed-style exits tests slower hostile-window routing.",
+      "parameters": {
+        "weak_lookback_days": 10,
+        "weak_return_max": -0.03,
+        "gap_min": -0.015,
+        "gap_max": 0.01,
+        "premarket_vol_ratio_min": 0.004,
+        "bsl_morning_flush_pct": 0.003,
+        "failed_morning_flush_pct": 0.003,
+        "breakdown_buffer_pct": 0.001,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 1,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0,
+        "regime_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "regime_lookback_days": 40,
+        "regime_return_min": 0.0,
+        "regime_min_positive": -1,
+        "router_regime_min_positive": 2,
+        "risk_reward": 1.6,
+        "max_holding_minutes": 120,
+        "use_vwap_exit": true
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_router_broad_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "growth4",
+        "regime_router"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_09",
+      "family": "regime_router_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "20d broad-proxy router tests SPY/QQQ/XLK as a less semis-heavy regime map.",
+      "parameters": {
+        "weak_lookback_days": 10,
+        "weak_return_max": -0.03,
+        "gap_min": -0.015,
+        "gap_max": 0.01,
+        "premarket_vol_ratio_min": 0.004,
+        "bsl_morning_flush_pct": 0.003,
+        "failed_morning_flush_pct": 0.003,
+        "breakdown_buffer_pct": 0.001,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 1,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0,
+        "regime_symbols": [
+          "SPY",
+          "QQQ",
+          "XLK"
+        ],
+        "regime_lookback_days": 20,
+        "regime_return_min": 0.0,
+        "regime_min_positive": -1,
+        "router_regime_min_positive": 2,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": false
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_router_broad_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "growth4",
+        "regime_router"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_10",
+      "family": "regime_router_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "20d tech router with pool2 tests whether broader watchlist rotation helps the routed branch.",
+      "parameters": {
+        "weak_lookback_days": 10,
+        "weak_return_max": -0.03,
+        "gap_min": -0.015,
+        "gap_max": 0.01,
+        "premarket_vol_ratio_min": 0.004,
+        "bsl_morning_flush_pct": 0.003,
+        "failed_morning_flush_pct": 0.003,
+        "breakdown_buffer_pct": 0.001,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 2,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0,
+        "regime_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "regime_lookback_days": 20,
+        "regime_return_min": 0.0,
+        "regime_min_positive": -1,
+        "router_regime_min_positive": 2,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": false
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_router_broad_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "growth4",
+        "regime_router"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    }
+  ]
+}

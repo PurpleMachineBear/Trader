@@ -1,0 +1,37 @@
+# OS and editor noise
+.DS_Store
+.idea/
+.vscode/
+.claude/
+
+# Python cache and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+
+# Local LEAN market data and generated storage
+data/
+storage/
+
+# Generated backtest outputs
+experiments/**/candidate_*/backtest/
+experiments/**/candidate_*/
+Master_Paper_Portfolio/backtests/
+Cloud_Earnings_Research/backtests/
+QQQ_VOO_Rotation/backtests/
+SMA_Crossover/backtests/
+
+# Scratch and smoke projects
+experiments/tmp_*/
+experiments_smoke/
+experiments_exec_loop/
+experiments_docker_check/
+experiments_docker_check_escalated/
+
+# Misc logs
+*.log

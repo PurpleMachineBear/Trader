@@ -1,0 +1,191 @@
+{
+  "iteration": "iter_086",
+  "thesis": "Test whether a hard rolling symbol-quality floor can improve the canonical platform5 cloud branch, especially inside the covered-event subset, without reopening basket permutation work.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Reference benchmark from the same sample via local results"
+  },
+  "universe": {
+    "name": "cloud_platform5_quality_floor_v1",
+    "selection_rule": "Cloud-only Upcoming Earnings dataset on platform5 with hard rolling symbol-quality floors on any versus estimate-required subsets",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "CRM",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "CRM",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "platform5 pre1 hold3 remains the canonical cloud control.",
+      "Estimate availability is a real but partial quality signal.",
+      "Rolling quality floors helped platform7 only slightly, so platform5 itself is the right place to test quality gating next."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "The ungated platform5 pre1 hold3 row remains the recent broad control.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "broad"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If a small number of persistently weak names still dilute the canonical branch, a hard min1 quality floor on the full control should improve return-to-drawdown.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "broad",
+        "quality_filter_min_events": 1,
+        "quality_min_avg_return": 0.0
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "The estimate-required platform5 subset is the correct covered-event reference for quality-floor tests.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "broad",
+        "estimate_mode": "required"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If covered events still need symbol curation, a min1 quality floor inside the estimate-required subset should improve the covered-event branch.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "broad",
+        "estimate_mode": "required",
+        "quality_filter_min_events": 1,
+        "quality_min_avg_return": 0.0
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "The ungated platform5 pre1 hold3 row remains the earlier 2024_2025 aggregate control.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2024_2025"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If the earlier-window control still contains a persistently negative symbol path, a min1 floor on the full branch should improve the 2024_2025 aggregate.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2024_2025",
+        "quality_filter_min_events": 1,
+        "quality_min_avg_return": 0.0
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_07",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "The estimate-required platform5 subset remains the earlier covered-event reference for quality-floor tests.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2024_2025",
+        "estimate_mode": "required"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_08",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If symbol-specific quality is what the covered-event subset still lacks, a min1 floor inside estimate-required events should improve the earlier covered-event branch as well.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2024_2025",
+        "estimate_mode": "required",
+        "quality_filter_min_events": 1,
+        "quality_min_avg_return": 0.0
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    }
+  ]
+}

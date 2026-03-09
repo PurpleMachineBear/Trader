@@ -1,0 +1,890 @@
+{
+  "iteration": "iter_022",
+  "thesis": "Keep the daily dual-momentum architecture fixed and test whether a leveraged beta ladder built from TQQQ, QLD, and SSO can produce a higher-risk branch that is more stable than pure TQQQ switching alone.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Primary passive benchmark for the leveraged beta ladder study"
+  },
+  "universe": {
+    "name": "leveraged_beta_ladder_v1",
+    "allowed_symbols": [
+      "VOO",
+      "QQQ",
+      "GLD",
+      "TQQQ",
+      "QLD",
+      "SSO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ],
+    "notes": [
+      "Treat leveraged and unleveraged rows as separate risk interpretations in analysis.",
+      "Do not promote a leveraged winner directly into the frozen paper master."
+    ]
+  },
+  "research_memory": {
+    "carry_forward": [
+      "QQQ/VOO/GLD dual_momentum 126/7 remains the main non-leveraged daily control.",
+      "TQQQ/*/GLD 126/7 was the campaign's highest-return daily family, but it belongs in a separate high-risk bucket.",
+      "0.75 sizing on TQQQ/VOO/GLD was previously the strongest compromise between raw return and drawdown."
+    ],
+    "avoid": [
+      "Do not reopen a dense lookback or rebalance grid.",
+      "Do not mix leveraged and unleveraged rows into one deployment ranking without explicit risk-bucket interpretation."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "VOO anchors the full-sample leveraged ladder study.",
+      "parameters": {
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO"
+      ],
+      "tags": [
+        "benchmark",
+        "full_sample"
+      ],
+      "start_date": "2022-01-03",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: full sample"
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "QQQ/VOO/GLD 126/7 is the non-leveraged control for the full sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "control",
+        "non_leveraged",
+        "full_sample"
+      ],
+      "start_date": "2022-01-03",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: full sample"
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "TQQQ/VOO/GLD 126/7 1.0x is the raw-return leveraged control for the full sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "control",
+        "leveraged",
+        "full_sample"
+      ],
+      "start_date": "2022-01-03",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: full sample"
+      ]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "TQQQ/VOO/GLD 126/7 0.75x is the prior drawdown-aware leveraged control for the full sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "control",
+        "leveraged",
+        "sized",
+        "full_sample"
+      ],
+      "start_date": "2022-01-03",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: full sample"
+      ]
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "QLD/VOO/GLD may preserve much of the leveraged upside with less path damage than TQQQ.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "QLD",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QLD",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "explore",
+        "leveraged",
+        "full_sample"
+      ],
+      "start_date": "2022-01-03",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: full sample"
+      ]
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "SSO/VOO/GLD may be a lower-octane leveraged branch with a different drawdown profile.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "SSO",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SSO",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "explore",
+        "leveraged",
+        "full_sample"
+      ],
+      "start_date": "2022-01-03",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: full sample"
+      ]
+    },
+    {
+      "candidate_id": "candidate_07",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "TQQQ/QLD/GLD may outperform by rotating between the most aggressive and mid-aggressive beta sleeves before falling back to GLD.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QLD",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QLD",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "explore",
+        "leveraged",
+        "ladder",
+        "full_sample"
+      ],
+      "start_date": "2022-01-03",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: full sample"
+      ]
+    },
+    {
+      "candidate_id": "candidate_08",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "QLD/SSO/GLD may create a smoother leveraged ladder than any branch that includes TQQQ.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "QLD",
+        "SSO",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QLD",
+        "SSO",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "explore",
+        "leveraged",
+        "ladder",
+        "full_sample"
+      ],
+      "start_date": "2022-01-03",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: full sample"
+      ]
+    },
+    {
+      "candidate_id": "candidate_09",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "VOO anchors the 2025 leveraged ladder study.",
+      "parameters": {
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO"
+      ],
+      "tags": [
+        "benchmark",
+        "2025"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "window: 2025"
+      ]
+    },
+    {
+      "candidate_id": "candidate_10",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "QQQ/VOO/GLD 126/7 is the non-leveraged 2025 control.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "control",
+        "non_leveraged",
+        "2025"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "window: 2025"
+      ]
+    },
+    {
+      "candidate_id": "candidate_11",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "TQQQ/VOO/GLD 126/7 1.0x is the raw-return leveraged control for 2025.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "control",
+        "leveraged",
+        "2025"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "window: 2025"
+      ]
+    },
+    {
+      "candidate_id": "candidate_12",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "TQQQ/VOO/GLD 126/7 0.75x is the drawdown-aware leveraged control for 2025.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "control",
+        "leveraged",
+        "sized",
+        "2025"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "window: 2025"
+      ]
+    },
+    {
+      "candidate_id": "candidate_13",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "QLD/VOO/GLD may preserve much of 2025's risk-on upside with less path damage than TQQQ.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "QLD",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QLD",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "explore",
+        "leveraged",
+        "2025"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "window: 2025"
+      ]
+    },
+    {
+      "candidate_id": "candidate_14",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "SSO/VOO/GLD may be a lower-octane 2025 leveraged branch with a different drawdown profile.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "SSO",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SSO",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "explore",
+        "leveraged",
+        "2025"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "window: 2025"
+      ]
+    },
+    {
+      "candidate_id": "candidate_15",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "TQQQ/QLD/GLD may outperform in 2025 by rotating between the most aggressive and mid-aggressive beta sleeves.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QLD",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QLD",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "explore",
+        "leveraged",
+        "ladder",
+        "2025"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "window: 2025"
+      ]
+    },
+    {
+      "candidate_id": "candidate_16",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "QLD/SSO/GLD may create a smoother 2025 leveraged ladder than any branch that includes TQQQ.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "QLD",
+        "SSO",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QLD",
+        "SSO",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "explore",
+        "leveraged",
+        "ladder",
+        "2025"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "window: 2025"
+      ]
+    },
+    {
+      "candidate_id": "candidate_17",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "VOO anchors the 2026 YTD leveraged ladder study.",
+      "parameters": {
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO"
+      ],
+      "tags": [
+        "benchmark",
+        "2026_ytd"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: 2026 YTD"
+      ]
+    },
+    {
+      "candidate_id": "candidate_18",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "QQQ/VOO/GLD 126/7 is the non-leveraged 2026 YTD control.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "control",
+        "non_leveraged",
+        "2026_ytd"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: 2026 YTD"
+      ]
+    },
+    {
+      "candidate_id": "candidate_19",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "TQQQ/VOO/GLD 126/7 1.0x is the raw-return leveraged control for 2026 YTD.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "control",
+        "leveraged",
+        "2026_ytd"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: 2026 YTD"
+      ]
+    },
+    {
+      "candidate_id": "candidate_20",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "TQQQ/VOO/GLD 126/7 0.75x is the drawdown-aware leveraged control for 2026 YTD.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "control",
+        "leveraged",
+        "sized",
+        "2026_ytd"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: 2026 YTD"
+      ]
+    },
+    {
+      "candidate_id": "candidate_21",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "QLD/VOO/GLD may preserve risk-on upside with less path damage than TQQQ in 2026 YTD.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "QLD",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QLD",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "explore",
+        "leveraged",
+        "2026_ytd"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: 2026 YTD"
+      ]
+    },
+    {
+      "candidate_id": "candidate_22",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "SSO/VOO/GLD may be a lower-octane leveraged branch in 2026 YTD.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "SSO",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SSO",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "explore",
+        "leveraged",
+        "2026_ytd"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: 2026 YTD"
+      ]
+    },
+    {
+      "candidate_id": "candidate_23",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "TQQQ/QLD/GLD may outperform in 2026 YTD by rotating between the most aggressive and mid-aggressive beta sleeves.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QLD",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QLD",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "explore",
+        "leveraged",
+        "ladder",
+        "2026_ytd"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: 2026 YTD"
+      ]
+    },
+    {
+      "candidate_id": "candidate_24",
+      "family": "dual_momentum",
+      "role": "explore",
+      "hypothesis": "QLD/SSO/GLD may create a smoother leveraged ladder than any branch that includes TQQQ in 2026 YTD.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "QLD",
+        "SSO",
+        "GLD"
+      ],
+      "universe_name": "leveraged_beta_ladder_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QLD",
+        "SSO",
+        "GLD"
+      ],
+      "tags": [
+        "daily",
+        "explore",
+        "leveraged",
+        "ladder",
+        "2026_ytd"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: 2026 YTD"
+      ]
+    }
+  ]
+}

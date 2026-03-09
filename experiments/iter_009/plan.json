@@ -1,0 +1,7782 @@
+{
+  "iteration": "iter_009",
+  "thesis": "Batch 4 validates the leading GLD-defensive strategies across multiple historical windows so the campaign can separate durable edges from sample-specific winners before the final deployment round.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Primary passive benchmark for all campaign batches"
+  },
+  "universe": {
+    "name": "core_us_macro_v2",
+    "selection_rule": "Validation universe for top GLD-defensive and legacy strategies across multiple historical windows",
+    "allowed_symbols": [
+      "SPY",
+      "VOO",
+      "QQQ",
+      "TQQQ",
+      "IWM",
+      "DIA",
+      "TLT",
+      "IEF",
+      "GLD",
+      "XLK",
+      "AAPL",
+      "MSFT"
+    ],
+    "validation_symbols": [
+      "SPY",
+      "VOO",
+      "QQQ",
+      "TQQQ",
+      "DIA",
+      "TLT",
+      "IEF",
+      "GLD",
+      "XLK"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "GLD-defensive rotation is the dominant current theme.",
+      "0.75 leveraged sizing is the current leading deployable compromise.",
+      "Legacy TLT controls remain important only as validation baselines, not exploration targets."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_001",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "VOO buy-and-hold benchmark should remain coherent in validation window w1_2022_2023.",
+      "parameters": {},
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "benchmark",
+        "passive",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_002",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "GLD buy-and-hold reference should remain coherent in validation window w1_2022_2023.",
+      "parameters": {},
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "reference",
+        "passive",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_003",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "QQQ buy-and-hold reference should remain coherent in validation window w1_2022_2023.",
+      "parameters": {},
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "reference",
+        "passive",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_004",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "TQQQ buy-and-hold reference should remain coherent in validation window w1_2022_2023.",
+      "parameters": {},
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "reference",
+        "passive",
+        "leveraged",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_005",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/7 control should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_006",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/10 should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_007",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/14 should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_008",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 147/7 should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_009",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/SPY/GLD 126/7 should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_010",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/SPY/GLD 147/7 should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_011",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/XLK/GLD 126/7 should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_012",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/XLK/GLD 126/14 should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_013",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/7 1.0x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_014",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/7 0.75x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_015",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/10 1.0x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_016",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/10 0.75x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_017",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/SPY/GLD 126/7 1.0x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_018",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/SPY/GLD 126/7 0.75x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_019",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/SPY/GLD 126/10 1.0x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_020",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/QQQ/GLD 126/7 1.0x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_021",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/QQQ/GLD 126/7 0.75x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_022",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/QQQ/GLD 126/10 1.0x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_023",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/TLT 126/21 legacy should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "GLD",
+        "TQQQ",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "legacy",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_024",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/TLT 126/14 0.75x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "GLD",
+        "TQQQ",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "legacy",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_025",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "GLD 20/120 189 1.0x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_026",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "GLD 20/120 189 0.75x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_027",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "GLD 30/150 252 1.0x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_028",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "GLD 50/25 189 1.0x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "entry_lookback": 50,
+        "exit_lookback": 25,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_029",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "GLD 40/20 189 1.0x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "entry_lookback": 40,
+        "exit_lookback": 20,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_030",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 1.0x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_031",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 0.75x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_032",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 0.67x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_033",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 0.33x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.33
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_034",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 40/20 189 0.5x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "entry_lookback": 40,
+        "exit_lookback": 20,
+        "max_holding_days": 189,
+        "position_size": 0.5
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_035",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 40/20 189 1.0x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "entry_lookback": 40,
+        "exit_lookback": 20,
+        "max_holding_days": 189,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_036",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "QQQ 40/180 252 should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "trend",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_037",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "SPY 40/180 252 + 12% trail should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "trend",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_038",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "XLK 30/150 252 should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "trend",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_039",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "SPY/DIA/GLD 147/21 should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "XLK"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_040",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/7 0.75x should remain coherent in validation window w1_2022_2023.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w1_2022_2023",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w1_2022_2023."
+      ]
+    },
+    {
+      "candidate_id": "candidate_041",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "VOO buy-and-hold benchmark should remain coherent in validation window w2_2023_2024.",
+      "parameters": {},
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "benchmark",
+        "passive",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_042",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "GLD buy-and-hold reference should remain coherent in validation window w2_2023_2024.",
+      "parameters": {},
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "reference",
+        "passive",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_043",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "QQQ buy-and-hold reference should remain coherent in validation window w2_2023_2024.",
+      "parameters": {},
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "reference",
+        "passive",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_044",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "TQQQ buy-and-hold reference should remain coherent in validation window w2_2023_2024.",
+      "parameters": {},
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "reference",
+        "passive",
+        "leveraged",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_045",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/7 control should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_046",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/10 should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_047",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/14 should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_048",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 147/7 should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_049",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/SPY/GLD 126/7 should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_050",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/SPY/GLD 147/7 should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_051",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/XLK/GLD 126/7 should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_052",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/XLK/GLD 126/14 should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_053",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/7 1.0x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_054",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/7 0.75x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_055",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/10 1.0x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_056",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/10 0.75x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_057",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/SPY/GLD 126/7 1.0x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_058",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/SPY/GLD 126/7 0.75x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_059",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/SPY/GLD 126/10 1.0x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_060",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/QQQ/GLD 126/7 1.0x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_061",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/QQQ/GLD 126/7 0.75x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_062",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/QQQ/GLD 126/10 1.0x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_063",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/TLT 126/21 legacy should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "GLD",
+        "TQQQ",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "legacy",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_064",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/TLT 126/14 0.75x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "GLD",
+        "TQQQ",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "legacy",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_065",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "GLD 20/120 189 1.0x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_066",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "GLD 20/120 189 0.75x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_067",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "GLD 30/150 252 1.0x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_068",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "GLD 50/25 189 1.0x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "entry_lookback": 50,
+        "exit_lookback": 25,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_069",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "GLD 40/20 189 1.0x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "entry_lookback": 40,
+        "exit_lookback": 20,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_070",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 1.0x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_071",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 0.75x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_072",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 0.67x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_073",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 0.33x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.33
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_074",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 40/20 189 0.5x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "entry_lookback": 40,
+        "exit_lookback": 20,
+        "max_holding_days": 189,
+        "position_size": 0.5
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_075",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 40/20 189 1.0x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "entry_lookback": 40,
+        "exit_lookback": 20,
+        "max_holding_days": 189,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_076",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "QQQ 40/180 252 should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "trend",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_077",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "SPY 40/180 252 + 12% trail should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "trend",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_078",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "XLK 30/150 252 should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "trend",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_079",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "SPY/DIA/GLD 147/21 should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "XLK"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_080",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/7 0.75x should remain coherent in validation window w2_2023_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w2_2023_2024",
+        "window_validation"
+      ],
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w2_2023_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_081",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "VOO buy-and-hold benchmark should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {},
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "benchmark",
+        "passive",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_082",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "GLD buy-and-hold reference should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {},
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "reference",
+        "passive",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_083",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "QQQ buy-and-hold reference should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {},
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "reference",
+        "passive",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_084",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "TQQQ buy-and-hold reference should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {},
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "reference",
+        "passive",
+        "leveraged",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_085",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/7 control should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_086",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/10 should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_087",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/14 should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_088",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 147/7 should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_089",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/SPY/GLD 126/7 should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_090",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/SPY/GLD 147/7 should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_091",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/XLK/GLD 126/7 should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_092",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/XLK/GLD 126/14 should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_093",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/7 1.0x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_094",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/7 0.75x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_095",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/10 1.0x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_096",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/10 0.75x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_097",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/SPY/GLD 126/7 1.0x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_098",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/SPY/GLD 126/7 0.75x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_099",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/SPY/GLD 126/10 1.0x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_100",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/QQQ/GLD 126/7 1.0x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_101",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/QQQ/GLD 126/7 0.75x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_102",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/QQQ/GLD 126/10 1.0x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_103",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/TLT 126/21 legacy should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "GLD",
+        "TQQQ",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "legacy",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_104",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/TLT 126/14 0.75x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "GLD",
+        "TQQQ",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "legacy",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_105",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "GLD 20/120 189 1.0x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_106",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "GLD 20/120 189 0.75x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_107",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "GLD 30/150 252 1.0x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_108",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "GLD 50/25 189 1.0x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "entry_lookback": 50,
+        "exit_lookback": 25,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_109",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "GLD 40/20 189 1.0x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "entry_lookback": 40,
+        "exit_lookback": 20,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_110",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 1.0x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_111",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 0.75x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_112",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 0.67x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_113",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 0.33x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.33
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_114",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 40/20 189 0.5x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "entry_lookback": 40,
+        "exit_lookback": 20,
+        "max_holding_days": 189,
+        "position_size": 0.5
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_115",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 40/20 189 1.0x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "entry_lookback": 40,
+        "exit_lookback": 20,
+        "max_holding_days": 189,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_116",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "QQQ 40/180 252 should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "trend",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_117",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "SPY 40/180 252 + 12% trail should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "trend",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_118",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "XLK 30/150 252 should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "trend",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_119",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "SPY/DIA/GLD 147/21 should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "XLK"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_120",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/7 0.75x should remain coherent in validation window w3_2024_2026ytd.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w3_2024_2026ytd",
+        "window_validation"
+      ],
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w3_2024_2026ytd."
+      ]
+    },
+    {
+      "candidate_id": "candidate_121",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "VOO buy-and-hold benchmark should remain coherent in validation window w4_2022_2024.",
+      "parameters": {},
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "benchmark",
+        "passive",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_122",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "GLD buy-and-hold reference should remain coherent in validation window w4_2022_2024.",
+      "parameters": {},
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "reference",
+        "passive",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_123",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "QQQ buy-and-hold reference should remain coherent in validation window w4_2022_2024.",
+      "parameters": {},
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "reference",
+        "passive",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_124",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "TQQQ buy-and-hold reference should remain coherent in validation window w4_2022_2024.",
+      "parameters": {},
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "reference",
+        "passive",
+        "leveraged",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_125",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/7 control should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_126",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/10 should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_127",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/14 should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_128",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 147/7 should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_129",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/SPY/GLD 126/7 should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_130",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/SPY/GLD 147/7 should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_131",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/XLK/GLD 126/7 should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_132",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/XLK/GLD 126/14 should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_133",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/7 1.0x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_134",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/7 0.75x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_135",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/10 1.0x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_136",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/10 0.75x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_137",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/SPY/GLD 126/7 1.0x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_138",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/SPY/GLD 126/7 0.75x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_139",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/SPY/GLD 126/10 1.0x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_140",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/QQQ/GLD 126/7 1.0x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_141",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/QQQ/GLD 126/7 0.75x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_142",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/QQQ/GLD 126/10 1.0x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_143",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/TLT 126/21 legacy should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "GLD",
+        "TQQQ",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "legacy",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_144",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/TLT 126/14 0.75x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "GLD",
+        "TQQQ",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "legacy",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_145",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "GLD 20/120 189 1.0x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_146",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "GLD 20/120 189 0.75x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_147",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "GLD 30/150 252 1.0x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_148",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "GLD 50/25 189 1.0x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "entry_lookback": 50,
+        "exit_lookback": 25,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_149",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "GLD 40/20 189 1.0x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "entry_lookback": 40,
+        "exit_lookback": 20,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_150",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 1.0x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_151",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 0.75x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_152",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 0.67x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_153",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 0.33x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.33
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_154",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 40/20 189 0.5x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "entry_lookback": 40,
+        "exit_lookback": 20,
+        "max_holding_days": 189,
+        "position_size": 0.5
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_155",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 40/20 189 1.0x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "entry_lookback": 40,
+        "exit_lookback": 20,
+        "max_holding_days": 189,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_156",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "QQQ 40/180 252 should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "trend",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_157",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "SPY 40/180 252 + 12% trail should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "trend",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_158",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "XLK 30/150 252 should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "trend",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_159",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "SPY/DIA/GLD 147/21 should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "XLK"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_160",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/7 0.75x should remain coherent in validation window w4_2022_2024.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w4_2022_2024",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w4_2022_2024."
+      ]
+    },
+    {
+      "candidate_id": "candidate_161",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "VOO buy-and-hold benchmark should remain coherent in validation window w5_full_sample.",
+      "parameters": {},
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "benchmark",
+        "passive",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_162",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "GLD buy-and-hold reference should remain coherent in validation window w5_full_sample.",
+      "parameters": {},
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "reference",
+        "passive",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_163",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "QQQ buy-and-hold reference should remain coherent in validation window w5_full_sample.",
+      "parameters": {},
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "reference",
+        "passive",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_164",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "TQQQ buy-and-hold reference should remain coherent in validation window w5_full_sample.",
+      "parameters": {},
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "reference",
+        "passive",
+        "leveraged",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_165",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/7 control should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_166",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/10 should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_167",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/14 should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_168",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 147/7 should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_169",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/SPY/GLD 126/7 should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_170",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/SPY/GLD 147/7 should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_171",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/XLK/GLD 126/7 should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_172",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/XLK/GLD 126/14 should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14
+      },
+      "symbols": [
+        "QQQ",
+        "XLK",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "XLK",
+        "GLD",
+        "VOO",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_173",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/7 1.0x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_174",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/7 0.75x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_175",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/10 1.0x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_176",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/VOO/GLD 126/10 0.75x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD",
+        "QQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_177",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/SPY/GLD 126/7 1.0x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_178",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/SPY/GLD 126/7 0.75x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_179",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/SPY/GLD 126/10 1.0x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "SPY",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_180",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/QQQ/GLD 126/7 1.0x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_181",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/QQQ/GLD 126/7 0.75x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_182",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "TQQQ/QQQ/GLD 126/10 1.0x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 10,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "QQQ",
+        "GLD",
+        "VOO",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_183",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/TLT 126/21 legacy should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "GLD",
+        "TQQQ",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "legacy",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_184",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/TLT 126/14 0.75x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 14,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "TLT"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "TLT",
+        "GLD",
+        "TQQQ",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "legacy",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_185",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "GLD 20/120 189 1.0x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_186",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "GLD 20/120 189 0.75x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_187",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "GLD 30/150 252 1.0x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_188",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "GLD 50/25 189 1.0x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "entry_lookback": 50,
+        "exit_lookback": 25,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_189",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "GLD 40/20 189 1.0x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "entry_lookback": 40,
+        "exit_lookback": 20,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_190",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 1.0x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_191",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 0.75x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_192",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 0.67x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.67
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_193",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 20/120 189 0.33x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "fast": 20,
+        "slow": 120,
+        "max_holding_days": 189,
+        "position_size": 0.33
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_194",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 40/20 189 0.5x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "entry_lookback": 40,
+        "exit_lookback": 20,
+        "max_holding_days": 189,
+        "position_size": 0.5
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_195",
+      "family": "donchian_regime",
+      "role": "validation",
+      "hypothesis": "TQQQ 40/20 189 1.0x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "entry_lookback": 40,
+        "exit_lookback": 20,
+        "max_holding_days": 189,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "leveraged",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_196",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "QQQ 40/180 252 should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "trend",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_197",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "SPY 40/180 252 + 12% trail should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252,
+        "trailing_stop_pct": 0.12
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "trend",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_198",
+      "family": "sma_regime",
+      "role": "validation",
+      "hypothesis": "XLK 30/150 252 should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150,
+        "max_holding_days": 252
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK",
+        "VOO",
+        "QQQ",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "trend",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_199",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "SPY/DIA/GLD 147/21 should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 147,
+        "rebalance_days": 21
+      },
+      "symbols": [
+        "SPY",
+        "DIA",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY",
+        "DIA",
+        "GLD",
+        "VOO",
+        "QQQ",
+        "TQQQ",
+        "TLT",
+        "XLK"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    },
+    {
+      "candidate_id": "candidate_200",
+      "family": "dual_momentum",
+      "role": "validation",
+      "hypothesis": "QQQ/VOO/GLD 126/7 0.75x should remain coherent in validation window w5_full_sample.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "core_us_macro_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD",
+        "TQQQ",
+        "TLT",
+        "SPY",
+        "XLK",
+        "DIA"
+      ],
+      "tags": [
+        "validation",
+        "non_levered",
+        "w5_full_sample",
+        "window_validation"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Subperiod validation window w5_full_sample."
+      ]
+    }
+  ]
+}

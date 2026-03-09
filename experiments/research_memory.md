@@ -1,0 +1,444 @@
+# Research Memory
+
+This file is the persistent memory for LEAN strategy research in this repository.
+
+## Effective Findings
+
+- `iter_090`: After the cloud event intraday lane stopped requiring recent weakness, `selection_pool_size = 3` was completely inert and should not get more budget. Removing the `QQQ/XLK` minute context gate was mixed: it was slightly worse on the recent broad window and slightly better on `2024_2025`. Keep the no-weakness `pool2 ctx+1` row as the canonical cloud intraday control and stop tuning watchlist breadth.
+- `iter_089`: The cloud event intraday lane was not failing because of event timing alone; it was being over-filtered by the inherited local `recent weakness` assumption. Removing that requirement improved `platform5 pre1 intraday BSL` from `1.070%` to `3.246%` on the recent broad window and from `0.293%` to `2.498%` on `2024_2025`, while doubling trade count in the longer window. Once weakness was removed, `absolute` and `none` recent-return score modes were identical, so recent-return scoring is no longer the bottleneck.
+- `iter_088`: The first cloud event-aware intraday integration pilot found a real but sparse `platform5 pre1 intraday BSL` branch and no usable `failed_breakdown` branch. `after_close` filtering was inert for the intraday lane. A process caveat also appeared: after extending `Cloud_Earnings_Research`, the carryover swing control changed materially on the recent broad window and the drift was reproducible, so direct comparisons to older cloud swing rounds are stale until invariance is explained.
+- `iter_087`: The repaired earlier-window passive baselines materially refine the cloud thesis. `platform5 pre1 hold3` still massively beat its same-basket passive baseline on `2024_2025` (`93.491%` vs `17.497%`), but it did not beat passive in `2024` alone (`10.449%` vs `12.097%`, with much worse drawdown). `platform7` failed both earlier-window passive checks. The right interpretation is now that `platform5` is a strong two-year event-timing branch, not a clear hostile-2024 passive-beater.
+- `iter_086`: Hard rolling quality floors materially damaged the canonical `platform5` cloud branch. The `any floor min1` and `required floor min1` rows both underperformed their controls by a wide margin in recent broad and `2024_2025`, and the earlier-window floor rows even collapsed to the same reduced path. This means the cloud event-lane bottleneck is not a simple symbol-quality gate; forcing a hard floor removes too much of the useful event path.
+- `iter_085`: Report-time-conditioned holding did not improve the canonical cloud branch. `platform5 pre1 hold3` stayed ahead of all tested `before_open`/`after_close` hold splits in both the recent broad and `2024_2025` windows. The best explore row was `bmo2 amc3`, but it still underperformed the fixed `hold3` control. This means the cloud event-lane bottleneck is not a simple mismatch in hold duration between `before_open` and `after_close` events.
+- `iter_084`: Estimate availability is a real but partial quality signal in the cloud event lane. `platform5 pre1 hold3` remained better than both the `estimate required` and `estimate missing` subsets in recent broad and `2024_2025`, but the `required` subset was consistently far stronger than the `missing` subset. This means the branch mainly lives in covered earnings events, while binary estimate presence alone still does not explain the full edge.
+- `iter_083`: Simple `QQQ/XLK` tape-state gates also failed to improve the canonical cloud branch. `platform5 pre1 hold3` stayed best in both recent broad and `2024_2025`. Positive tech tape reduced performance but stayed positive; weak tech tape largely destroyed the branch. `after_close + positive tape` was behaviorally identical to `positive tape`, so that interaction was inert in the recent broad sample.
+- `iter_082`: Hard pre-event trailing-return state gates made the canonical cloud branch materially worse. `platform5 pre1 hold3` stayed best in both `2025-01-02` to `2026-03-06` and `2024-01-02` to `2025-12-31`. Mild pullback gates, deep pullback gates, and positive-state gates all underperformed the ungated control. The cloud event lane is not a simple `pre-earnings pullback rebound` branch and not a simple `pre-earnings strength continuation` branch either.
+- `data_audit 2026-03-08`: The active daily research set no longer has factor-file start mismatches after backfilling and fixing `setup.py` so later minute downloads cannot overwrite earlier factor starts. A separate local rename-history issue remains for `META` daily data, which has a large internal gap and should not be trusted for `2022`-start local daily work without a rename-aware fix.
+- `iter_081` follow-up: The missing local passive history for `CRM/NOW/ORCL/NFLX/ADBE` was a process gap, not a data-source limitation. Those names had only been downloaded locally for the recent broad cloud work, so `setup.py` correctly wrote factor files starting at the first fetched bar date (`2025-01-01`). After backfilling the local daily and factor files to `2024-01-02`, future same-basket passive checks can use full-window local history instead of truncated samples.
+- `iter_081`: The same-basket passive check materially strengthens the cloud event-branch thesis. On the clean recent broad sample, passive `platform7` was `-1.169%` and passive `platform5` was `-1.650%`, while the corresponding cloud event branches were `59.951%` and `100.059%`. This is strong evidence that the branch is not just piggybacking strong underlying baskets.
+- `iter_080`: The cloud basket map is now complete enough to stop basket-permutation work for now. `enterprise4 pre1 hold3` is the best `2025` refinement at `105.047%` with `9.9%` drawdown, `software3 pre1 hold3` remains the hostile-window alias from `2024`, and `platform5 pre1 hold3` stays canonical because it is the least fragile cross-window control. The next bottleneck is richer event metadata, not more basket tuning.
+- `iter_079`: `enterprise4` is no longer the main promotion candidate. In hostile `2024`, it was roughly tied with `platform5` and clearly behind `software3`, while `2026 YTD` gave identical `CRM`-only paths for all three baskets. Keep `platform5` canonical, keep `software3` only as the hostile-window alias, and treat current `2026 YTD` basket comparisons as sparse evidence rather than promotion evidence.
+- `iter_078`: Narrowing the cloud event basket below `platform5` helped the longer `2024_2025` window but did not produce a clear cross-window promotion. `enterprise4` (`MSFT/CRM/NOW/ORCL`) reached `103.986%` on `2024_2025` versus `93.491%` for `platform5`, but it was only roughly tied with `platform5` in the recent broad sample. `software3` was too narrow and fell materially behind in the recent broad window. Keep `platform5` canonical and carry `enterprise4` only as a narrower shadow alias.
+- `iter_077`: The cloud `platform5 pre1 hold3` branch cleared the hostile earlier-window test. It was positive in `2024` at `10.449%` with `19.5%` drawdown while `platform7` lost `23.061%` with `33.9%` drawdown, and it stayed strong across `2024_2025` at `93.491%`. This upgrades `platform5` from a recent-regime cloud leader to a validated cloud shadow branch, though `2026 YTD` is still too sparse for deployment promotion.
+- `iter_076`: A hard rolling quality floor is directionally valid but weak. `platform7 any floor min1` improved the baseline only slightly to `61.007%` from `59.951%`, while `min2` and the after-close floor variants were worse. This does not challenge `platform5 pre1 hold3` as the cloud lead.
+- `iter_075`: Additive rolling symbol-quality bonuses were completely inert. None of the tested `platform7` quality-score variants changed a single headline metric or trade path, so soft score adjustments are not the right tool for this cloud lane.
+- `iter_074`: The cloud platform event branch is mainly an `after_close` setup. `platform5 pre1 hold3 after_close` returned `82.585%` with the same `10.1%` drawdown as the full `platform5` control, while `platform5 before_open` was only `18.988%` on `4` trades. `platform7 after_close` improved over the old unfiltered `platform7` control. The next improvement should be symbol-specific event quality, not another global report-time sweep.
+- `iter_073`: `platform5 pre1 hold3` remained materially stronger than `platform7 pre1 hold3` in `2025`, while both rows were identical and extremely sparse in `2026 YTD` with only `2` trades. The branch is now the strongest cloud-only event-aware large-cap shadow branch, but it still lacks enough window depth for promotion.
+- `iter_072`: `platform5 pre1 hold3` (`AAPL/MSFT/CRM/NOW/ORCL`) became the new cloud event-aware leader with `100.059%` return, `1.508` Sharpe, and only `10.1%` drawdown on the `2025-01-02` to `2026-03-06` sample. The improvement came from removing `NFLX` and `ADBE`; changing `max_names` from `3` to `2` did nothing, and `max_names 1` was slightly worse.
+- `iter_071`: `platform7 pre1 hold3` beat every other tested cloud event timing row with `59.951%` return and `18.1%` drawdown. `pre1 hold1` was the cleaner conservative variant, `pre2` was positive but weaker, `pre3` lost most of the edge, and `post1` was negative. The branch is anticipation-led rather than a generic post-event carry basket.
+- `iter_067`: `hardware7 failed_breakdown next-gen pool2` improved the old hardware7 branch in `2024`, `2025`, and `2026 YTD`, but it still did not beat the old `growth4 failed_breakdown` hostile-window reference in `2024`. It is now the strongest large-cap alternative shadow branch, but still not all-weather.
+- `iter_066`: Selector upgrades are family-specific. The same premarket-quality and key-level-proximity logic that improved `growth4 BSL` also improved `hardware7 failed_breakdown`, but it hurt `growth4 failed_breakdown`.
+- `iter_065`: The new `growth4` selector is a real improvement, but mainly through a stronger `2025` and a cleaner `2024`. It did not create a better `2026 YTD` branch than the old `growth4 BSL pool2` control.
+- `iter_064`: Large-cap `BSL` did improve when ranking emphasized premarket dollar volume and key-level proximity. `growth4` rose from `13.685%` return with `5.6%` drawdown to about `24%` return with `2.4%-3.1%` drawdown on the broad sample.
+- `iter_063`: The final head-to-head showdown clarified the large-cap failed-breakdown branch. `hardware7 failed_breakdown` beat the old `growth4` version in `2025` and `2026 YTD`, but not in `2024`. The branch is real, but still regime-specific rather than all-weather.
+- `iter_058`: `hardware7 failed_breakdown` remained clearly positive on the broad sample even under `5 bps` slippage, so the branch is not a pure optimistic-fill artifact.
+- `iter_057`: The same branch stayed strongly positive under `3 bps` slippage on the broad sample.
+- `iter_056`: `hardware7 failed_breakdown` also beat the old `growth4 failed_breakdown` control in `2026 YTD`, confirming that the branch is not just a `2025` anomaly.
+- `iter_055`: `hardware7 failed_breakdown` was dramatically stronger than `growth4 failed_breakdown` in `2025`.
+- `iter_051`: `hardware7 failed_breakdown` (`NVDA/AVGO/AMD/MU/MRVL/TSM/MSFT`) became the first clearly stronger large-cap hostile-window branch after the large-cap basket campaign. It returned `21.233%` with only `3.4%` drawdown on the broad sample versus `3.821%` and `2.6%` for the old `growth4` failed-breakdown control.
+- `iter_050`: The same `hardware7 failed_breakdown` basket was also positive in `2026 YTD`, unlike the old `growth4` failed-breakdown control. This made it the first selective large-cap extension that improved both the current failed-breakdown lane and the broad sample.
+- `iter_047`: The `hardware7` basket under plain `BSL` was not better than the growth4 control on the broad sample, but it stayed directionally informative because it showed the basket wants `failed_breakdown`, not `BSL`.
+- `iter_035`: Reversing the symbol order of `growth4 BSL pool2` after the deterministic tie-break fix produced the exact same broad-sample result. The large-cap canonical control was not an artifact of symbol ordering.
+- `iter_034`: Reversing the symbol order of `growth4 BSL pool2` also produced the exact same `2026 YTD` result. The watchlist tie-break fix removed a genuine process risk without changing the current large-cap conclusion.
+- `iter_033`: Narrowing the large-cap lane from `growth4` to `AMZN/TSLA` did not create a better canonical strategy. It improved `2025`, stayed roughly tied in `2026 YTD`, and was materially worse in hostile `2024`, so it should remain an alias rather than a promoted branch.
+- `iter_032`: In the current `2026 YTD` window, the large-cap dynamic traffic is concentrated enough that removing `META`, and sometimes even `NVDA`, barely changed the result. The broader `growth4 BSL pool2` control is already capturing the current winners.
+- `iter_031`: The large-cap regime-router idea survived only partially. `tech40 -> BSL exits` improved hostile `2024`, but it went dead in `2026 YTD`; `spy/qqq/xlk20 -> BSL exits` helped `2024` and `2025` somewhat, but still lagged the base `BSL pool2` in the current regime.
+- `iter_030`: A simple large-cap `regime router` did improve the broad sample. `tech40 -> BSL exits` reached `16.757%` return with only `2.3%` drawdown versus `13.685%` and `5.6%` for the `growth4 BSL pool2` control, which justified validation even though it still lagged `VOO`.
+- `iter_029`: `failed_breakdown pool1` was clearly the best hostile-window large-cap family in `2024`, while `BSL pool2` was clearly the best family in both `2025` and `2026 YTD`. This was the first clean evidence that large-cap regime-awareness might come from family switching instead of bullish gating.
+- `iter_027`: `growth4 BSL pool2` became the first credible large-cap current-regime improvement. It materially improved `2025` and `2026 YTD`, even though it still failed hostile `2024`.
+- `iter_026`: `growth4 BSL pool2` was the first meaningful current-window large-cap improvement over the earlier strict growth4 control, and `hold120` became a valid conservative tweak for the same lane.
+- `iter_024`: The best large-cap broad-sample active branch was `growth4 BSL + strict context`, but even that still lagged both `VOO` and its natural passive basket on the `2024-2026` sample.
+- `iter_024`: Core large-cap BSL remained mostly an `AMZN/META` story. Adding context variants around the old core4 basket did not create a stronger broad-sample branch.
+- `iter_025`: `AMZN/META/NVDA/TSLA` growth4 BSL with strict `QQQ/XLK/SMH` context is not an all-weather branch. It was only clearly strong in `2026 YTD`; `2024` and `2025` were too weak for promotion.
+- `iter_025`: Large-cap dynamic BSL now looks like a `current/range-regime` research lane, not a candidate to replace the frozen all-weather intraday paper sleeve.
+- `iter_023`: Extending the approved high-beta intraday universe to local minute data back to `2024-01-02` materially improved evidence quality and supplied the first proper hostile earlier window for the frozen paper intraday sleeve.
+- `iter_023`: `NVDA/TSLA` fixed aggressive BSL stayed positive in `2024`, `2025`, and `2026 YTD`. It remains the main all-weather intraday paper sleeve after the longer `2024-2026` validation.
+- `iter_023`: `NVDA/TSLA` fixed aggressive BSL with `max_daily_loss_pct = 0.75%` is not a universal upgrade. It reduced some risk but turned negative in `2024` and gave up too much broad-sample return.
+- `iter_023`: `NVDA/AMD/MU/TSM/MRVL/AVGO` semis-only `failed_breakdown_reclaim` remains a real range-regime branch after longer validation. It stayed strong in `2025`, positive in `2026 YTD`, and rotated mainly through `AMD`, `MU`, `MRVL`, `NVDA`, `TSM`, and `AVGO`.
+- `iter_023`: `NVDA/TSLA/AMD/MU/TSM/MRVL/AVGO` dynamic high-beta BSL `120m` still looks recent-regime-specific. It was negative in `2024`, almost flat in `2025`, and only clearly strong in `2026 YTD`.
+- `iter_022`: After correcting the stale local `TQQQ` factor file, `TQQQ/VOO/GLD 126/7 1.0x` again became the raw-return leader of the leveraged daily track with `411.121%` return and `33.4%` drawdown on the `2022-01-03` to `2026-03-06` sample.
+- `iter_022`: `QLD/VOO/GLD 126/7` became the best leveraged compromise tested so far. It returned `275.104%` with only `22.6%` drawdown and Sharpe `1.065`, which is much cleaner than full-size `TQQQ` while still far above the non-leveraged control.
+- `iter_022`: `SSO/VOO/GLD 126/7` was the cleanest leveraged row in the `2025` window, returning `30.461%` with only `8.3%` drawdown.
+- `iter_021`: `NVDA/AMD/MU/TSM/MRVL/AVGO` semis-only `failed_breakdown_reclaim` is a real range-regime branch, not a mixed-basket illusion. It beat the mixed failed-breakdown basket in both `2025` and `2026 YTD`; the best rows reached `14.506%` return with `1.3%` drawdown in `2025` and `3.665%` with `1.2%` drawdown in `2026 YTD`.
+- `iter_020`: Narrowing `failed_breakdown_reclaim` from the mixed high-beta basket to a semis-only basket improved both tested recent windows. The branch rotated through `TSM`, `MU`, `MRVL`, `NVDA`, `AMD`, and `AVGO` in `2025`, and through `AMD`, `NVDA`, and `MU` in `2026 YTD`.
+- `iter_019`: `QQQ/VOO/GLD dual_momentum 126/7` remained the strongest daily control in `2025` and `2026 YTD`, while `NVDA/TSLA` fixed aggressive BSL remained the best all-weather intraday control by stability.
+- `2026-03-07` tooling smoke: The first manual premarket planner ranked `MRVL`, `MU`, `NVDA`, and `TSLA` at the top of the `2026-03-06` high-beta watchlist, and `AMZN` plus `META` at the top of the core large-cap watchlist. That overlaps with the main names our intraday research already surfaced, so the planner looks directionally useful.
+- `iter_018`: `NVDA/TSLA` fixed aggressive BSL remained the best all-weather intraday control across the new `2025-01-02` to `2026-03-06` sample and the `2026 YTD` subset. It stayed positive in both windows with much lower drawdown than the broader dynamic branch.
+- `iter_018`: `NVDA/TSLA` fixed aggressive BSL with `max_daily_loss_pct = 0.75%` became the best new conservative overlay candidate in the tested range. It reduced broad-sample drawdown from `4.8%` to `2.1%` while keeping the same `20` trades.
+- `iter_018`: `NVDA/TSLA/AMD/MU/TSM/MRVL/AVGO` dynamic high-beta BSL still produced real cross-symbol alpha. The broad-sample winner returned `23.828%` with `6.8%` drawdown and rotated mostly through `AMD`, `TSLA`, `AVGO`, `NVDA`, `MRVL`, `MU`, and `TSM`.
+- `iter_018`: The current `2026` range regime favored faster exits and softer reclaim entries. `dynamic high-beta BSL 120m hold` and `dynamic vwap_reclaim 120m hold` were the best new short-window branches, but only on `2026 YTD`.
+- `iter_017`: `NVDA/TSLA` fixed aggressive BSL was the best intraday stability winner. It stayed positive in `2024`, `2025`, and `2026 YTD`, with better average drawdown than the broader dynamic scanner.
+- `iter_017`: `NVDA/TSLA/AMD/MU/TSM/MRVL/AVGO` dynamic high-beta BSL `pool 1` also stayed positive in all three subwindows, so it remains part of the paper set, but now as the more aggressive secondary intraday engine rather than the default primary one.
+- `iter_017`: `NVDA/TSLA` fixed aggressive BSL with `risk_per_trade_pct = 1.00%` is the first conservative sleeve candidate that stayed positive in all three subwindows.
+- `iter_017`: `QQQ/VOO/GLD dual_momentum 126/7` remains the main daily paper engine, but the subwindow test showed it is not all-weather. It lagged badly in `2024` even though it dominated `2025`, `2026 YTD`, and the full sample.
+- `iter_016`: Stop-based `risk_per_trade_pct` is useful as a drawdown suppressor, but not as a way to improve the main paper candidates. The no-risk-sizing intraday controls still lead the primary paper track.
+- `iter_016`: The best conservative sleeve settings in the tested range were around `risk_per_trade_pct = 1.00%`. Smaller budgets like `0.50%` and `0.75%` de-risked too aggressively.
+- `iter_015`: `NVDA/TSLA/AMD/MU/TSM/MRVL/AVGO` dynamic high-beta BSL with `pool 1`, `QQQ/SMH` context, and `1-2bps` slippage survived the extended `2024-01-02` to `2026-03-06` sample best. This is now the main intraday paper candidate.
+- `iter_015`: `NVDA/TSLA` fixed aggressive BSL also survived the longer sample and remains the best secondary intraday control.
+- `iter_014`: Ticker choice should move from fixed manual baskets to dynamic daily watchlists, but only inside structured buckets. The profitable version was `bucketed dynamic selection`, not one giant mixed universe.
+- `iter_014`: `NVDA/TSLA/AMD/MU/TSM/MRVL/AVGO` dynamic high-beta BSL with `QQQ/SMH` context materially beat the prior fixed `NVDA/TSLA` aggressive control. The best row reached `26.245%` return with `7.2%` drawdown.
+- `iter_014`: `NVDA/TSLA/AMD/MU/TSM/MRVL/AVGO` dynamic high-beta gap with `QQQ/XLK` context materially beat the prior fixed `NVDA/TSLA` gap control. The best row reached `22.886%` return with `5.7%` drawdown.
+- `iter_014`: The dynamic winners actually rotated into additional symbols like `AMD`, `MU`, `MRVL`, `AVGO`, and `TSM`, so the improvement was real ticker selection expansion, not only a renamed basket.
+- `iter_013`: Basket passive baselines confirmed that the best intraday scanners were generating real alpha relative to their natural baskets, not just beating weak single-name baselines. `NVDA/TSLA` equal-weight passive returned only `1.997%` with `25.5%` drawdown, while the best high-beta BSL rows returned `13.2%` to `16.8%`.
+- `iter_013`: `NVDA/TSLA bsl_reversal_scanner_intraday` improved materially again. The best aggressive row reached `16.787%` return, and the best clean row reached `13.215%` with only `2.0%` drawdown.
+- `iter_013`: `AAPL/MSFT/AMZN/META bsl_reversal_scanner_intraday` improved to a cleaner configuration around `5-minute` confirmation and `150-minute` holds, with roughly `10.9%` return and only `1.6%` to `1.7%` drawdown.
+- `iter_013`: Narrowing the core branch all the way down to `AMZN/META` was not worth it. `AMZN/META/MSFT` and `core4` were both stronger than the minimal two-name basket.
+- `iter_013`: `gap_reversal_scanner_intraday` on `NVDA/TSLA` stayed valid and reproducible, but it remained clearly second-tier to the BSL high-beta branch.
+- `iter_012`: `BSL` was confirmed as a family edge, not just an `MSFT` quirk. Direct `BSL` transfers on `AMZN`, `TSLA`, and `MSFT` were all positive on the `2025-01-02` to `2026-03-06` sample.
+- `iter_012`: `NVDA/TSLA bsl_reversal_scanner_intraday` became the best intraday branch. The top rows returned `11.1%` to `12.1%` with only `2.0%` drawdown and about `20-21` trades.
+- `iter_012`: `AAPL/MSFT/AMZN/META bsl_reversal_scanner_intraday` also worked and was mostly driven by `AMZN` and `META`, which means the better universe design was to widen the large-cap basket rather than keep over-optimizing `MSFT`.
+- `iter_012`: `gap_reversal_scanner_intraday` should not be treated as a broad family. It became useful only inside the `NVDA/TSLA` high-beta bucket, especially with `QQQ/XLK` context.
+- `iter_012`: Extending minute history back to `2025-01-02` materially improved evidence quality. The intraday families were fully active across the sample instead of being dominated by zero-trade rows.
+- `iter_011`: The repository can now run official minute-data LEAN research locally using Polygon-backed equity minute bars.
+- `iter_011`: Translating discretionary intraday long motifs into systematic rules was feasible. The first usable branch was `bsl_reversal_intraday`.
+- `iter_011`: `MSFT` was the only symbol where the new intraday branch clearly beat its same-symbol passive baseline. The best row was `MSFT bsl_reversal_intraday` with `5.4%` return, `0.6%` drawdown, and `8` trades over the pilot sample.
+- `iter_011`: `AAPL gap_reversal_intraday` produced some positive rows and deserves secondary follow-up, but it was still much weaker than passive `AAPL`.
+- `iter_010`: `TQQQ/VOO/GLD 126/7 1.0x` remained the raw-return leader even after final deployment refinement, and `TQQQ/SPY/GLD 126/7 1.0x` was effectively tied. The middle broad-market proxy is not the main driver of the leveraged edge.
+- `iter_010`: `QQQ/VOO/GLD 126/7` remained the strongest non-leveraged control and `QQQ/SPY/GLD 126/7` stayed effectively tied, which reinforces the control-grade GLD-defensive rotation cluster.
+- `iter_010`: `QQQ/XLK/GLD 126/7` slightly improved on the earlier `QQQ/XLK/GLD 126/14` control, so the tech-tilted non-leveraged branch remains viable.
+- `iter_010`: `GLD 18/110 + 189-day time stop` improved on the earlier `GLD 20/120 + 189d` winner and is now the best active single-asset GLD configuration.
+- `iter_009`: The leading GLD-defensive structures stayed strong across multiple windows, not only in the full sample. Full-size `TQQQ/*/GLD 126/7` variants had worst-window scores above `128`, and the `0.75` variants still kept worst-window scores above `120`.
+- `iter_009`: `QQQ/VOO/GLD 126/7` and `QQQ/SPY/GLD 126/7` were the strongest control-grade structures across windows, with worst-window scores above `110` and much lower drawdown than the leveraged leaders.
+- `iter_009`: `QQQ/XLK/GLD 126/14` also validated well and belongs in the final deployment candidate set.
+- `iter_008`: Full-size leveraged `TQQQ/*/GLD` rotations remained the raw-return leaders, so the edge survived explicit risk-scaling tests.
+- `iter_008`: `0.75` position size was the strongest leveraged compromise tested so far. It cut drawdown meaningfully while preserving a large share of the score advantage.
+- `iter_008`: `0.5` and `0.33` position sizes de-risked too aggressively. They reduced drawdown, but gave up too much of the edge relative to the `0.75` bucket.
+- `iter_007`: `GLD` defensive rotation was confirmed, not just rediscovered. The best `QQQ/VOO/GLD`, `QQQ/SPY/GLD`, and `QQQ/XLK/GLD` variants all clustered around `126-day` lookback and `7-14` day rebalance.
+- `iter_007`: Leveraged `TQQQ/*/GLD` triplets produced the highest absolute returns of the campaign so far. They deserve a separate high-risk bucket rather than being mixed blindly with unleveraged controls.
+- `iter_007`: `GLD 20/120 + 189-day time stop` slightly improved on the earlier GLD SMA winner and is the new best single-asset active GLD configuration.
+- `iter_006`: `QQQ/VOO/GLD dual_momentum` with `126-day` lookback and `10-21` day rebalance is the best observed configuration so far.
+- `iter_006`: `GLD` trend exposure was strong across both `sma_regime` and `donchian_regime`, which means the extended `2022-01-01` to `2026-03-06` sample materially changed the best asset regime.
+- `iter_006`: `GLD 30/150 + 252-day time stop` reduced drawdown materially versus `GLD buy-and-hold` while keeping most of the return.
+- `iter_006`: Active timing on `TQQQ` beat passive `TQQQ buy-and-hold` by a very wide margin, although the remaining drawdown is still high.
+- `iter_006`: `12%` trailing stops improved `SPY` and `VOO` on the extended sample, so the earlier conclusion that trailing stops were always inactive was too broad.
+- `iter_005`: `QQQ 40/180 + 252-day time stop` is the best observed score so far.
+- `iter_005`: `MSFT 40/180 + 252-day time stop` transferred the trend structure well and beat the passive benchmark by a wide margin.
+- `iter_005`: `QQQ/VOO/TLT dual_momentum` is the first non-trend family that clearly deserves continued research.
+- `iter_005`: `VOO 40/180 + 252-day time stop` beat `VOO buy-and-hold`, so the time-reset trend structure is not only a `SPY` artifact.
+- `iter_004`: `SPY 40/180 + 252-day time stop` is the best observed configuration so far.
+- `iter_004`: Structural overlays matter more than additional nearby SMA window tweaks.
+- `iter_004`: A `252-day` reset improved score and evidence quality relative to passive `SPY 40/180`.
+- `iter_003`: `SPY 40/180` beat nearby pure-SMA variants and is a strong baseline trend specification.
+
+## Ineffective Findings
+
+- `iter_062`: Shortening `hardware7 failed_breakdown` to a `90-minute` hold did not improve the broad-sample branch enough to replace the base `120-minute` version.
+- `iter_061`: The `90-minute` hold also failed to improve the current window over the base branch.
+- `iter_060`: Concentrating `hardware7 failed_breakdown` to `pool1` did not improve the broad-sample branch over the base `pool2` version.
+- `iter_059`: `pool1` only gave a very small current-window change, which was not enough to justify replacing the base branch.
+- `iter_054`: `hardware7 failed_breakdown` did not beat the old `growth4 failed_breakdown` control in hostile `2024`. This prevents it from being promoted as an all-weather large-cap branch.
+- `iter_053`: `quality6 BSL hold120` was not a cleaner large-cap extension. Shortening the hold on the quality basket destroyed the broad-sample edge instead of improving it.
+- `iter_052`: The same `quality6 hold120` idea also failed in `2026 YTD`, so this was not just a hostile-window problem.
+- `iter_049`: `quality6 failed_breakdown` did not improve the broad sample. Adding `MSFT` and `AVGO` to the old growth4 failed-breakdown lane was not enough.
+- `iter_048`: `quality6 failed_breakdown` also failed to improve the current window.
+- `iter_047`: `hardware7` under `BSL` was a bad broad-sample extension despite looking like a plausible large-cap tech basket.
+- `iter_046`: `hardware7` under `BSL` was only marginally positive in `2026 YTD` and did not justify replacing the growth4 BSL control.
+- `iter_045`: `growth6` (`AMZN/META/NVDA/TSLA/NFLX/MSFT`) remained a weak broad-sample BSL extension.
+- `iter_044`: `growth6` was also weaker than the current growth4 control in `2026 YTD`.
+- `iter_043`: `quality6` (`AMZN/META/NVDA/TSLA/MSFT/AVGO`) did not become a better broad-sample BSL branch than growth4.
+- `iter_042`: `quality6` was also weaker than the growth4 control in the current regime, so the simplest selective extension did not solve large-cap BSL selection.
+- `iter_041`: The `AMZN/META/NFLX/TSLA` consumer/platform basket remained a poor broad-sample large-cap BSL lane. It stayed negative despite looking directionally plausible for the current regime.
+- `iter_040`: The `AMZN/META/NFLX/TSLA` basket did not beat the `growth4` current-regime control. Removing `NVDA` for `NFLX` reduced current-window alpha.
+- `iter_039`: The platform/software basket `AAPL/MSFT/AMZN/META/NFLX/ADBE/CRM/NOW/ORCL` failed badly on the broad sample. Milder weakness thresholds did not rescue this lane.
+- `iter_038`: The same platform/software basket was not even a better current-regime lane. It stayed near flat while the `growth4` control remained clearly positive.
+- `iter_037`: Expanding `growth4` into a `mixed10` large-cap superset hurt the broad-sample active lane. The added names were not harmless extra optionality; they diluted the branch.
+- `iter_036`: The same `mixed10` superset also hurt the current `2026 YTD` lane. A larger large-cap basket with unchanged BSL filters is not automatically a better dynamic-selection design.
+- `iter_033`: `AMZN/TSLA pool2 hold120` did not become a better cross-window large-cap conservative branch. It was still materially worse than the broader control in both `2024` and `2025`.
+- `iter_031`: The large-cap router did not survive split-window validation strongly enough for promotion. A broad-sample routed win can still fail the current regime.
+- `iter_030`: Routing into failed-breakdown-style exits was the wrong implementation path. Those rows were clearly weaker than the BSL-exit routers.
+- `iter_029`: Large-cap `VWAP reclaim` remained the weakest of the main reversal families. It did not justify more equal-budget exploration.
+- `iter_028`: Hard positive daily regime gates on the large-cap BSL lane were negative-value filters. Every tested version hurt the broad-sample active branch.
+- `iter_022`: `TQQQ/QLD/GLD 126/7` did not improve on `TQQQ/VOO/GLD 126/7`. The ladder idea did not add value at the most aggressive end.
+- `iter_022`: `QLD/SSO/GLD 126/7` was acceptable but still inferior to `QLD/VOO/GLD 126/7` as a broad-sample leveraged compromise.
+- `iter_022`: `2026 YTD` did not meaningfully discriminate between leveraged daily rows because the family mostly collapsed into the same defensive `GLD` state.
+- `iter_021`: No semis-only `failed_breakdown_reclaim` variant survived the hostile `2024` window. Even the least-bad `pool 2` version had only `1.826%` return with negative Sharpe, so the branch is not all-weather.
+- `iter_021`: For semis-only `failed_breakdown_reclaim`, `context_require_above_open = true` was not useful, `gap_max = 0.0` was actively harmful in `2026 YTD`, and stronger-prior-weakness improved only the short `2026` window while weakening broader robustness.
+- `iter_020`: Fixed `NVDA/TSLA` `failed_breakdown_reclaim` was a poor version of the branch. The edge came from the broader semis bucket, not from forcing the setup into the original two-name basket.
+- `iter_020`: On `failed_breakdown_reclaim`, loosening context from `ctx+ 2` to `ctx+ 1`, shortening the hold to `90m`, and tightening the breakdown buffer did not produce a broad improvement. They either reduced quality or only matched the base in one window.
+- `iter_018`: Relaxing `context_min_positive` from `2` to `1` was not useful. It weakened both the fixed and dynamic high-beta BSL branches without improving drawdown.
+- `iter_018`: The semis-only dynamic high-beta basket was weaker than the mixed `NVDA/TSLA/AMD/MU/TSM/MRVL/AVGO` basket in both the broad sample and `2026 YTD`. Dropping `TSLA` hurt the branch.
+- `iter_018`: Broad-sample `vwap_reclaim` was not robust. The broad candidates were over-active and had negative `2025` returns despite positive `2026 YTD`.
+- `iter_018`: Dynamic high-beta BSL with `max_daily_loss_pct = 0.75%` de-risked too aggressively. The broad-sample return fell from `23.828%` to `9.001%`.
+- `iter_017`: `AAPL/MSFT/AMZN/META` core clean BSL failed the subwindow stability test. It was positive only in `2025` and negative in `2024` and `2026 YTD`.
+- `iter_017`: `AAPL/MSFT/AMZN/META` core clean BSL with `risk_per_trade_pct = 1.00%` also failed the subwindow stability test. Lower drawdown did not rescue the branch.
+- `iter_016`: None of the tested risk-sized intraday rows beat their no-risk-sizing controls on raw return. They should not replace the main paper candidates.
+- `iter_015`: `dynamic high-beta gap` failed the longer-sample and slippage test. The branch should be demoted from the paper track.
+- `iter_015`: `fixed high-beta gap` remained positive but clearly inferior to the surviving BSL branches. It no longer deserves equal paper-research budget.
+- `iter_014`: Dynamic high-beta `BSL clean` failed across the board. Broadening the clean branch beyond `NVDA/TSLA` destroyed the prior edge.
+- `iter_014`: Dynamic core large-cap BSL did not beat the fixed `AAPL/MSFT/AMZN/META` clean control.
+- `iter_014`: Dynamic combined-universe BSL was mostly negative once the pool size rose above `1`.
+- `iter_014`: Dynamic event watchlists on `XOM/CVX/OXY/LMT/EXPE/OKTA` were not ready. Gap and BSL rows were mostly negative.
+- `iter_013`: The ultra-narrow `AMZN/META` scanner basket did not beat `core4` or `AMZN/META/MSFT`, so over-narrowing the core branch reduced flexibility without improving quality.
+- `iter_013`: `all6` confirmation rows were acceptable but still inferior to the dedicated `high_beta` and `core4` branches; mixed baskets should not become the main deployment hypothesis.
+- `iter_013`: Turning off `vwap_exit` improved the high-beta BSL branch, but the same change was not attractive on the core large-cap branch.
+- `iter_012`: Direct `gap_reversal_intraday` remained a weak use of budget on `AAPL`, `AMZN`, `META`, and `TSLA`.
+- `iter_012`: `gap_reversal_scanner_intraday` on `AAPL/MSFT` and on `AAPL/MSFT/AMZN/META` stayed negative on average. High-beta names were necessary for the gap branch to work.
+- `iter_012`: Direct `BSL` on `META` stayed weak, and direct `BSL` on `NVDA` was much worse than the scanner-based high-beta version.
+- `iter_012`: `pilot_core` scanner baskets were dominated by `core4` or `NVDA/TSLA`; they should not keep receiving equal search budget.
+- `iter_011`: `day2_breakout_intraday` did not justify immediate continuation. Activation was only `50%`, and average active return stayed negative.
+- `iter_011`: `TQQQ` was a poor target for the translated intraday long families.
+- `iter_011`: Broad ETF intraday long translations on `SPY` were mostly inactive or low-value under the current filters.
+- `iter_011`: Most new intraday rows did not beat their own same-symbol passive baseline over the pilot window.
+- `iter_010`: More micro-tuning around the leveraged `126` lookback cluster did not beat `126/7`; the `5` and `10` day rebalance variants remained second-tier.
+- `iter_010`: The `133` and `147` lookback variants produced respectable alternatives but did not replace `126` as the main deployment choice.
+- `iter_010`: The final `QQQ/VOO/TLT` legacy baselines remained far below the GLD-defensive cluster.
+- `iter_010`: `TQQQ buy-and-hold` remained a poor full-sample deployment reference despite isolated strong windows.
+- `iter_009`: `TQQQ buy-and-hold` looked excellent in the `2023-01-01` to `2024-12-31` window but was not robust enough to be treated as a durable deployment baseline.
+- `iter_008`: Risk-scaled versions of the legacy `QQQ/VOO/TLT` control still did not close the gap to the GLD-defensive cluster.
+- `iter_008`: Leveraged Donchian variants on `TQQQ` remained secondary to the leveraged dual-momentum path.
+- `iter_007`: The legacy `QQQ/VOO/TLT` control was clearly dominated by the GLD-defensive rotation cluster.
+- `iter_007`: `rotation_rsi` still failed to justify its turnover. It remained active and occasionally strong, but the drawdown and order count stayed too high for a primary research direction.
+- `iter_006`: `IEF` remained a poor single-asset research target. Both SMA-style and Donchian-style trend tests were strongly negative.
+- `iter_006`: Most `dual_momentum` triplets that used `TLT` or `IEF` as the defensive leg were dominated by the `GLD` defensive versions.
+- `iter_006`: `TLT buy-and-hold` was a very weak passive reference over the extended sample and should not be treated as a robust default defensive benchmark.
+- `iter_005`: `IWM 40/180 + 252-day time stop` was a weak transfer and failed to beat the passive benchmark.
+- `iter_005`: `QQQ/VOO rotation_rsi` produced large turnover and drawdown relative to its Sharpe, so it is not a priority family right now.
+- `iter_005`: Adding a `10%` trailing stop to `SPY 40/180 + 252-day time stop` remained inactive and added no value.
+- `iter_003`: Further pure SMA window tightening around the winner produced diminishing returns.
+- `iter_003`: `AAPL 25/125` was clearly inferior on both Sharpe and drawdown.
+- `iter_004`: `SPY 15% trailing stop` was effectively inactive over the sample and added no value.
+- `iter_004`: `SPY 126-day time stop + cooldown` raised activity but hurt risk-adjusted performance too much.
+- `iter_004`: `AAPL 10% trailing stop` increased activity but did not rescue transfer quality.
+
+## Invalid Or Misleading Findings
+
+- `iter_022`: The first leveraged-ladder pass was partially invalid because the local [tqqq factor file](/Users/chenchien/lean/data/equity/usa/factor_files/tqqq.csv) started at `2025-06-01`. All `TQQQ` rows had to be rerun after refreshing the data.
+- `iter_020`: The initial `candidate_18` failure was only a Docker container race. The rerun completed cleanly, so the branch study should be judged from the rerun result, not from the transient failure.
+- `iter_019`: The initial `candidate_19` failure was also a Docker container race. The rerun completed cleanly and did not change the round-level conclusions.
+- `iter_018`: Short `2026 YTD` windows made `dynamic BSL 120m` and especially `dynamic vwap_reclaim` look stronger than their broad-sample evidence justified. These branches need prior-window validation before any paper approval.
+- `iter_018`: Scanner structure labels that omit context-gate parameters are misleading. `context_min_positive`, `context_require_above_vwap`, `context_require_above_open`, and similar gates must be part of the readable structure label.
+- `iter_018`: Heavy order churn can hide behind otherwise valid results. The unguarded broad dynamic BSL row submitted `554` orders with `480` cancellations on only `37` trades; this is an execution-quality flag, not a harmless detail.
+- `iter_017`: Short YTD validation windows can produce misleadingly high Sharpe and composite scores. Subwindow rounds must be judged by positive-window count and return/drawdown by window, not by the best single-window score.
+- `iter_016`: Once risk sizing is introduced, the standard score formula becomes even less reliable as a deployment ranking tool. Conservative sleeves should be judged separately from the primary paper track.
+- `iter_015`: The first slippage-validation pass exposed a template indentation bug in scanner strategy generation. The round became valid only after fixing the renderer and rerunning failed rows.
+- `iter_014`: Dynamic-watchlist rounds can be misreported if structure labels omit `selection_pool_size`. `pool 1`, `pool 3`, and `pool 5` are materially different structures and must not be deduplicated away.
+- `iter_013`: Comparing scanner branches only to single-name passive rows is no longer acceptable. Basket passive baselines must be part of the round whenever deployment decisions depend on multi-symbol scanners.
+- `iter_012`: The standard score formula remained misleading for intraday scanner rounds. Several of the most useful minute rows still had weak Sharpe-based scores, so return/drawdown ranking was more informative.
+- `iter_012`: Basket scanners now need basket passive baselines. Comparing `NVDA/TSLA` scanner winners only to single-name buy-and-hold rows is informative but incomplete.
+- `iter_011`: The standard score formula is misleading for low-trade intraday pilots because extreme Sharpe values can dominate even when raw return and drawdown are modest.
+- `iter_010`: Raw leader tables were noisy because several control or exploit aliases represented the same structure. Optimization-heavy rounds need deduplicated structure reporting, not only candidate-id ranking.
+- `iter_006`: The first `dual_momentum` results were misleading because same-bar rotation logic generated invalid orders. The family had to be rerun after fixing the template.
+- `iter_006`: Running the large batch at `--jobs 10` triggered Docker container race failures. The round was only valid after retrying failed candidates at lower concurrency.
+- `iter_001`: Early SMA results were distorted by an initial-entry template bug.
+- `iter_002`: `QQQ` and `VOO` comparisons were invalid because local data only covered `2025-01-02` to `2026-03-05`.
+- Low-trade winners should not be treated as strong evidence without structural exits or multi-symbol confirmation.
+
+## Data Notes
+
+- Confirmed local daily coverage for `SPY`, `VOO`, `QQQ`, `IWM`, `TLT`, `AAPL`, `MSFT`, and `TQQQ` from `2022-01-01` to `2026-03-06` after Polygon backfill.
+- Confirmed local minute coverage for `SPY`, `QQQ`, `TQQQ`, `AAPL`, `MSFT`, and `XLK` from `2025-06-02` to `2026-03-06`.
+- Confirmed local minute coverage for the current large-cap research set (`AMZN`, `META`, `NVDA`, `TSLA`, `AVGO`, `AMD`, `MU`, `MRVL`, `TSM`, `MSFT`, plus `QQQ/XLK/SMH`) from `2024-01-02` to `2026-03-06`.
+- QuantConnect `Upcoming Earnings` is visible through the authenticated CLI account, but the dataset is marked `CloudOnly`. It cannot be assumed available inside the local executor loop without moving the event-aware branch to a cloud-backed workflow.
+- Compliance blocklist must exclude `GOOG` and `GOOGL` from future candidate universes.
+
+## Process Improvements
+
+- `iter_076`: Hard gates can move a branch when soft score bonuses are inert, but a tiny headline improvement is not enough to justify ongoing micro-tuning. Compare the uplift to the best curated reference before spending more budget.
+- `iter_075`: If a whole family of additive ranking tweaks leaves both metrics and trade paths unchanged, treat the selector as behaviorally inert and move on instead of refining weights.
+- `iter_074`: QuantConnect `Upcoming Earnings.report_time` is not a plain string in LEAN Python. Convert it explicitly before string operations, and treat type mismatches here as process bugs rather than strategy evidence.
+- `iter_073`: Cloud YTD validation rows can be so sparse that they are unusable for promotion even when the headline metrics look good. Treat explicit trade-count floors as part of cloud branch validation.
+- `iter_072`: When a cloud event-aware branch is symbol-concentrated, test explicit symbol exclusions before buying richer news data or reopening broad basket discovery. `max_names` sweeps can be a distraction if the strategy rarely fills beyond the same top names.
+- `iter_072`: If a cloud push times out or fails before a code-dependent batch, treat the entire batch as stale until a fresh push succeeds and the affected backtests are rerun.
+- `iter_071`: Event-aware cloud rounds should compare `hold1`, `hold2`, and `hold3` around the same trigger. Event timing and hold window can dominate basket choice.
+- `iter_067`: A broad-sample selector win plus a same-family multi-window validation is still not enough for promotion if the hostile-window blocker remains weaker than the old reference family. Promotion requires clearing the real blocker, not only beating the old same-basket version.
+- `iter_066`: Selector changes must be validated per family, not only per basket. The same ranking logic can help one family and hurt another.
+- `iter_065`: When a new selector improves one strong year, report explicitly whether the current regime also improved or merely stayed unchanged. Broad-sample wins can otherwise overstate current deployability.
+- `iter_064`: When adding new selector knobs, include them in readable structure labels immediately or the first broad-sample results will be hard to trust.
+- `iter_063`: Broad-sample wins for scanner branches can hide one bad window dominating the stability question. Final promotion decisions need direct same-family head-to-head comparisons by window, not just a combined aggregate.
+- `iter_058`: Slippage stress should be part of branch validation for any scanner family that becomes a serious shadow candidate, not only for frozen paper strategies.
+- `iter_054`: When a new branch wins the broad sample, explicitly retest the window that originally motivated the old control. Broad improvement does not guarantee hostile-window improvement.
+- `iter_051`: Large-cap basket discovery should be family-specific. A basket that fails under `BSL` can still be promising under `failed_breakdown`.
+- `iter_047`: When a basket looks plausible but fails under the current family, keep the basket idea alive only if another family has a coherent reason to fit it better.
+- `iter_042`: Selective basket extensions should be judged against the exact family they are trying to improve. The large-cap campaign showed that basket tweaks alone do not rescue `BSL`.
+- `iter_035`: Order-invariance audits are worth running whenever a scanner family depends on ranking and pool selection. A tie-break fix should be followed by a direct control rerun before continuing research.
+- `iter_036`: Superset audits are a useful bug check. If a wider basket materially changes the result, the original branch was not just a narrower labeling of the same effective symbol set.
+- `iter_039`: Large-cap basket discovery should not assume that more stable or more software-heavy names will naturally improve BSL. The branch still appears to need naturally more explosive names than the platform basket provides.
+- `iter_041`: Replacing one high-beta name with a more mature large-cap name is not a free risk cleanup. The consumer/platform basket showed that this kind of substitution can simply remove the edge.
+- `iter_033`: If a narrowed watchlist only improves one favorable window and is worse in the hostile earlier window, keep the broader control as canonical and demote the narrower basket to alias status.
+- `iter_032`: When a narrowed basket reproduces the same current-window trades or same return path as the broader control, treat the broad control as the real signal owner. Do not over-credit the narrowed alias.
+- `iter_031`: Routed or regime-conditioned branches must pass explicit split-window validation before promotion. A broad positive aggregate is not enough.
+- `iter_031`: Zero-trade routed windows are informative failures, not neutral evidence. If the router goes dead in the active current regime, it is not deployment-ready.
+- `iter_030`: Router experiments need to validate the routing rule and the exit style separately. A good family map can still be ruined by the wrong shared exit implementation.
+- `iter_029`: Large-cap family-map rounds are a useful intermediate step before building a router. Family routing should be justified by cross-window family evidence, not by intuition alone.
+- `iter_028`: Do not spend more budget on positive daily regime gates in the large-cap lane unless there is a much richer event or premarket layer. Simple bullish filters were uniformly harmful.
+- `iter_027`: Once a branch is clearly current-regime-specific, stop arguing with all-weather promotion criteria and tune it inside its regime lane instead.
+- `iter_026`: Current-window exploit rounds need a matching hostile-window validation round immediately afterward. Otherwise recent-regime wins get over-promoted.
+- `iter_025`: When a large-cap dynamic branch is only strong in the current window, stop treating it as an all-weather promotion candidate. Move it into a regime-specific lane and tune it there.
+- `iter_024`: Large-cap dynamic sweeps need same-basket passive references immediately. Comparing them only to `VOO` can hide that the active branch is still losing to its own natural basket.
+- `iter_023`: Longer-horizon intraday validation rounds should always pair the broad sample with at least one hostile earlier window plus current `YTD`. A broad positive aggregate is not enough to promote a recent-regime branch.
+- `iter_023`: When a dynamic intraday branch is only tested as a broad-sample row, keep it exploratory even if the headline result is positive. Promotion needs explicit window splits and churn review.
+- `iter_023`: The approved high-beta minute universe now has validated local coverage back to `2024-01-02`. Future intraday promotion rounds should treat that as the baseline minimum evidence level.
+- `iter_022`: Before any leveraged ETF round, inspect factor-file start dates for each leveraged symbol. A stale factor file can silently truncate the usable history and invalidate the first pass.
+- `iter_022`: Leveraged-daily research should keep a distinct `raw-return leader` and `cleaner compromise` track instead of forcing one combined winner.
+- `iter_021`: Branch-promotion rounds for new scanner sub-universes should include at least one hostile earlier window, not only the recent positive windows that motivated the branch.
+- `iter_021`: Narrow branch studies should explicitly record whether any single filter variant improves all windows relative to the base branch. If each knob wins only one window, the branch stays `shadow` or `regime-specific`.
+- `iter_021`: Scanner branch studies should inspect selection distribution by window, not only in aggregate. The losing `2024` semis-only branch was dominated by `AMD` and `MU`, while the stronger recent windows were more diversified or more selective.
+- `2026-03-07` tooling: The repo now has a first manual `Premarket Planning` helper at `orchestrator/premarket_planner.py`. It can rank a ticker list from Polygon minute bars and recent news into a Markdown watchlist, but it is not yet integrated into the main research loop or a live daily automation.
+- `2026-03-07` data: Polygon snapshot, minute aggregates, and news endpoints are available on the current key, but the Benzinga earnings endpoint returned `403 NOT_AUTHORIZED`. A full `earnings/event regime` layer will require another earnings feed, a higher Polygon entitlement, or a separate manual calendar source.
+- `iter_018`: Serious scanner reports must include materially behavior-changing context-gate parameters in the readable structure label. Otherwise unique-structure and stability tables will merge different strategies.
+- `iter_018`: When a dynamic scanner row shows heavy cancellation churn, treat it as an execution-quality problem to investigate before paper deployment, even if the result is profitable.
+- `iter_018`: Range-regime exploration branches should be validated on earlier choppy windows before they are compared directly against the frozen all-weather paper shortlist.
+- `iter_017`: Frozen-shortlist validation rounds should explicitly compare each paper candidate across separate calendar windows before approval. Full-sample results alone are not enough once deployment is the goal.
+- `iter_016`: Deployment-validation rounds should explicitly separate `primary paper candidates` from `conservative sleeve candidates`. One combined leaderboard is not enough once sizing realism enters the picture.
+- `iter_015`: Slippage-validation rounds should be treated as process validation too. A clean rerun path for failed rows is part of deployment readiness, not only a convenience.
+- `iter_014`: Dynamic-watchlist rounds should always compare dynamic winners directly against carryover fixed-basket controls. The point is not only to find a winner, but to prove whether dynamic selection itself added value.
+- `iter_014`: The research stack now supports `selection_pool_size` and broad master-universe watchlists for scanner intraday families. This should become the default way to study ticker selection.
+- `2026-03-07` synthesis: Current intraday research already covers setup qualification, symbol ranking, context gating, and intraday exits, but it still lacks a formal premarket planning stage that converts overnight news, earnings, macro events, and key levels into a daily watchlist.
+- `2026-03-07` synthesis: Strategy-level stops exist, but portfolio-level risk control still does not. Before paper trading becomes meaningful, add daily loss caps, exposure caps, and a no-new-entry kill switch after damage thresholds.
+- `2026-03-07` synthesis: QuantConnect Paper should be treated as an operational rehearsal, not as final execution proof. The first paper week should run only a frozen shortlist, not a wide live candidate set.
+- `2026-03-07` synthesis: Before trusting intraday paper results, add explicit slippage and latency assumptions to research interpretation. Paper fills alone are too optimistic for minute-level execution decisions.
+- `2026-03-07` synthesis: Local Interactive Brokers paper trading is the wrong next step on this `arm64` machine. If IB paper is needed, prefer QuantConnect Cloud or a separate `x86_64` host.
+- `2026-03-07` deployment: A local LEAN project is not cloud-pushable with only `local-id`. `config.json` also needs `algorithm-language` so `lean cloud push` can create the cloud project cleanly.
+- `2026-03-07` deployment: Cloud deploys from this workspace will fail if [lean.json](/Users/chenchien/lean/lean.json) still uses `job-organization-id = local`. The workspace must point to the real QuantConnect organization id before `push` or `live deploy`.
+- `2026-03-07` deployment: Non-interactive QuantConnect Paper deploys need `--data-provider-live QuantConnect` in addition to brokerage, node, restart, and notification flags. Otherwise the CLI falls back to an interactive data-provider prompt and aborts unattended runs.
+- `2026-03-07` deployment: In QuantConnect live trading, `SetStartDate`, `SetEndDate`, and `SetCash` are ignored; warmup is anchored to the current deployment time. A paper algo that is already `Running` on the weekend should begin processing the next market session automatically if the node stays healthy.
+- `2026-03-08` deployment security: `lean cloud status --verbose` can print plaintext brokerage authentication metadata, including IB credentials. Do not use it as a routine status check, and never repeat those secrets into chat, notes, or reports.
+- `iter_013`: `equal_weight_buy_and_hold` is now part of the research toolkit and should be used whenever a scanner family is being judged against a natural passive basket.
+- `iter_013`: Focused exploit rounds were much more informative than reopening large generic grids. Once a branch hierarchy is clear, the next round should optimize around that hierarchy instead of treating all branches equally.
+- `iter_012`: Serious minute rounds need an `Intraday Quality Table` sorted by return, drawdown, and return/drawdown, not only the default score ranking.
+- `iter_012`: Scanner rounds need a `Selection Distribution` check from top order-event files, because basket winners can be driven by different symbols than the previous direct pilots suggested.
+- `iter_012`: Retry Docker/container race failures immediately at lower concurrency before analysis; in this round the only failed row was noise and the rerun completed cleanly.
+- `iter_011`: Intraday pilot reports need an activation table. Zero-trade rows and low-trade rows should not be ranked only by the standard composite score.
+- `iter_011`: New minute-data families should pass a smoke round before entering an official batch.
+- `iter_011`: Intraday and daily tracks should be reported separately even if they share a common benchmark.
+- `iter_010`: Report raw candidate count and deduplicated unique-structure count together in optimization-heavy rounds.
+- `iter_010`: Default report tables should use readable structure labels and explicit risk buckets instead of only raw candidate ids.
+- Use an explicit benchmark in serious rounds, preferably `VOO buy-and-hold`.
+- For heterogeneous universes, include same-symbol passive references for the most important single-asset candidates, not only one common benchmark.
+- Split leveraged and unleveraged candidates into different risk interpretations or scoring buckets once leverage starts dominating raw-return rankings.
+- Treat `universe` design as part of the strategy, not just metadata.
+- Evaluate families across multiple symbols and compare aggregate behavior, not only the single best backtest.
+- Enforce the universe allowlist and compliance blocklist in executor preflight, not only in documentation.
+- Clear candidate `backtest/` artifacts before reruns so latest summaries and order-event files are unambiguous.
+- Inspect the latest order events for rotation families before trusting their results.
+- Keep campaign concurrency below the failure threshold. On this machine and toolchain, `jobs 6` looks stable while `jobs 10` produced avoidable execution noise in a large batch.
+- Keep a clear split between:
+  - benchmark candidate
+  - strategy control candidate
+  - exploit candidates
+  - explore candidates
+
+## Next Research Direction
+
+- Keep the current paper master frozen.
+- Keep `NVDA/TSLA` fixed aggressive BSL as the main intraday paper sleeve.
+- Treat large-cap dynamic BSL as a `range/current-regime` lane, not as a new all-weather paper candidate.
+- Keep `growth4 BSL pool2` as the canonical large-cap current-regime reference.
+- Treat narrowed `AMZN/TSLA` variants only as aliases or favorable-window specializations, not as promotion candidates.
+- Do not spend more budget on large-cap bullish daily regime gates or on the current simple router without a richer event/premarket layer.
+- Keep `hardware7 failed_breakdown` as the main large-cap alternative shadow branch, but do not promote it as all-weather because `2024` still fails.
+- Stop spending more budget on large-cap `BSL` basket expansion. That path is now well explored and mostly negative.
+- If the large-cap lane continues, focus on ranking/filter/context design and event-awareness rather than more basket permutations.
+- Keep `semis-only failed_breakdown_reclaim` as a `range-regime shadow branch`.
+- Do not promote `dynamic high-beta BSL 120m`.
+- Run the next intraday exploit pass on either:
+  - `dynamic high-beta BSL 240m` stability plus order-churn review, or
+  - a regime router and event layer that explains when to activate `semis-only failed_breakdown_reclaim`
+- Open a separate aggressive daily shortlist around:
+  - `TQQQ/VOO/GLD 126/7 1.0x`
+  - `QLD/VOO/GLD 126/7`
+  - `SSO/VOO/GLD 126/7` as the cleaner `2025` reference
+- The next leveraged round should compare the active rows directly against passive `TQQQ`, `QLD`, and `SSO` buy-and-hold.
+- Keep `semis-only failed_breakdown_reclaim` as a `range-regime shadow branch`, not as a frozen paper candidate.
+- Do not spend another dense local grid on `failed_breakdown_reclaim` until there is a better regime or event layer. The next useful question is when to route into it, not another small threshold sweep.
+- Prioritize `Premarket Planning Engine`, `earnings/event regime`, and `regime router` work over more local branch tuning.
+- `lean cloud status --verbose` is secret material, not a normal monitoring command. It can print plaintext brokerage authentication metadata and must not be echoed into chat, reports, or notes.
+- `iter_068` adjacent transfer validation answered the next anti-overfit question cleanly:
+  - the improved `growth4 BSL` selector does not transfer to the adjacent `AAPL/MSFT/NFLX/CRM/ADBE/NOW/ORCL` platform bucket
+  - old selector on that bucket returned `-9.136%`
+  - next-gen `pool2` returned `-9.531%`
+  - next-gen `pool1` reduced damage to `-4.847%` but still stayed clearly negative
+  - same-basket passive was only `-1.170%`, so the active layer added negative alpha
+  - conclusion: the selector remains habitat-specific and the next large-cap step should be event-aware selection, not more adjacent bucket transfer tests
+- `QuantConnect Upcoming Earnings` cloud lane status as of `2026-03-08`:
+  - local cloud-smoke project created at `/Users/chenchien/lean/Cloud_Earnings_Research`
+  - local earnings-universe smoke code is ready
+  - `lean cloud backtest` works against the cloud project
+  - the apparent `Invalid credentials` push failure was actually caused by `projects/update` returning `500` when the local `config.json` included a non-empty `description`
+  - clearing `config.json.description` allowed `lean cloud push` to succeed
+  - first pushed cloud smoke backtest id: `40fc820bf9e780c5086640f26f98149e`
+  - conclusion: for cloud-backed research projects, keep project descriptions empty in local `config.json` and put notes in `README.md` until QuantConnect fixes the `projects/update` bug
+- `iter_069` relative-ranking verdict:
+  - bucket-relative ranking slightly improved the real `growth4` habitat from `21.595% / 3.9% DD` to `22.045% / 2.9% DD`
+  - but it did not rescue `platform7`
+  - `platform7` absolute `pool1` was `-4.847%`
+  - `platform7` relative `pool1` worsened to `-9.713%`
+  - `platform7` relative `pool2` improved versus relative `pool1` but still stayed negative at `-6.671%`
+  - conclusion: the adjacent-bucket failure is not mainly a simple absolute-threshold scaling problem
+- `iter_070` first cloud event-aware verdict:
+  - `platform7 pre1` was strongly positive at `38.970%`
+  - `platform7 day0` stayed positive but much weaker at `8.430%`
+  - `growth4 pre1/day0` were both clearly negative
+  - `hardware7 pre1/day0` were both catastrophic
+  - conclusion: `platform7` is the first large-cap bucket that clearly looks event-driven under QuantConnect `Upcoming Earnings`
+  - immediate implication: do not buy Polygon Benzinga yet; QuantConnect earnings data is sufficient for the next focused cloud round
+- The frozen `Master_Paper_Portfolio` now has first-pass portfolio-level controls:
+  - `portfolio_daily_loss_pct_total`
+  - `max_total_exposure_pct`
+  - master no-new-entry kill behavior after a daily-loss breach
+- The first broker runbook for the current deployment is:
+  - `/Users/chenchien/lean/Master_Paper_Portfolio/IB_PAPER_RUNBOOK.md`
+- The first execution-realism audit for `iter_018 candidate_05` found:
+  - total filled turnover about `$4.27M`
+  - adjusted return still `14.595%` at `5 bp`
+  - adjusted return `12.460%` at `10 bp`
+  - estimated break-even around `39 bp`
+  - keep fixed aggressive BSL in the paper shortlist, but do not over-read its backtest fills as quote-accurate execution
+- The new master daily-loss kill path has been smoke-tested with an artificially tiny threshold:
+  - `master_daily_loss_kill` liquidated both core and intraday holdings as intended
+  - the kill switch stayed active for the rest of the day and reset on the next session
+- Keep the paper shortlist frozen:
+  - `QQQ/VOO/GLD dual_momentum 126/7`
+  - `fixed NVDA/TSLA aggressive BSL`
+  - `dynamic high-beta BSL pool 1` as the aggressive secondary intraday engine
+- Do not approve `dynamic vwap_reclaim` yet.
+- Do not replace the fixed intraday control with the new `120m` dynamic branch yet.
+- Run the next validation pass on earlier choppy windows for:
+  - `fixed BSL + daily_loss 0.75%`
+  - `dynamic high-beta BSL 120m hold`
+  - `dynamic vwap_reclaim 120m hold`
+- Inspect the heavy cancellation churn in the broad dynamic BSL implementation before expanding that branch toward paper deployment.
+- Add a simple intraday regime router so `all-weather`, `aggressive`, and `range-regime` branches are judged in the correct operating context.
+- Freeze the paper shortlist around:
+  - `QQQ/VOO/GLD dual_momentum 126/7`
+  - `fixed NVDA/TSLA aggressive BSL`
+  - `dynamic high-beta BSL pool 1` as the more aggressive secondary intraday engine
+  - `fixed NVDA/TSLA aggressive BSL risk 1.00%` as the optional conservative version
+- Remove `core clean BSL` from the primary paper track.
+- Do not keep `gap` in the primary paper track.
+- The next meaningful upgrade is paper-deployment preparation:
+  - runbook
+  - logging expectations
+  - first-week paper candidate freeze
+- Split the intraday track into three explicit branches:
+  - `BSL high-beta` on `NVDA/TSLA`
+  - `BSL core large-cap` on `AAPL/MSFT/AMZN/META`
+  - `gap high-beta` on `NVDA/TSLA`
+- Add same-sample basket passive baselines for the scanner branches, especially `NVDA/TSLA` and `AAPL/MSFT/AMZN/META`.
+- Prefer structural exit and context refinement over reopening broad symbol-agnostic gap grids.
+- Extend minute history earlier than `2025-01-02` before spending another large batch on narrow local parameter tuning.
+- Split the campaign into two tracks:
+  - validated daily allocation / trend controls
+  - intraday minute family research
+- In the intraday track, focus next on:
+  - `MSFT bsl_reversal_intraday`
+  - `AAPL gap_reversal_intraday`
+- Add structural changes instead of another broad threshold sweep:
+  - `5-minute` confirmation
+  - improved exit logic
+  - narrower symbol set
+- Move from local parameter refinement to broader validation:
+  - extend history earlier than `2022` where data quality allows
+  - keep separate `leveraged`, `non-leveraged`, and `single-asset trend` deployment tracks
+  - prefer rolling-window or walk-forward validation over another dense local parameter grid
+- Keep `VOO buy-and-hold` as the passive benchmark.
+- Keep `SPY 40/180 + 252-day time stop` as the conservative trend control.
+- Keep `QQQ 40/180 + 252-day time stop` as the aggressive trend control.
+- Promote `QQQ/VOO/GLD dual_momentum` to the main cross-family control.
+- Keep `GLD buy-and-hold` as a reference whenever GLD-driven active candidates are being judged.
+- Expand around `QQQ/VOO/GLD` and nearby `GLD` trend configurations instead of continuing to spend equal effort on `TLT` or `IEF` defensive variants.
+- Run the next phase in two tracks:
+  - non-leveraged GLD-defensive exploit
+  - leveraged `TQQQ/*/GLD` exploit with explicit risk scaling
+- Treat `0.75` leveraged sizing as the current leading deployable hypothesis and validate it across multiple subperiods before spending much more budget on smaller or larger sizing changes.
+- For the final deployment round, prioritize only structures that passed multi-window validation instead of reopening the broad search space.

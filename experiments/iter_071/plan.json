@@ -1,0 +1,251 @@
+{
+  "iteration": "iter_071",
+  "thesis": "Refine the first cloud earnings winner by testing whether platform7 alpha is specifically a pre1 effect, a wider pre-event accumulation effect, or a short-lived post-event carry effect.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Reference benchmark from the same sample via local results"
+  },
+  "universe": {
+    "name": "cloud_platform7_earnings_refinement_v1",
+    "selection_rule": "Cloud-only Upcoming Earnings dataset on the approved platform7 large-cap bucket",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "platform7 pre1 was the first clearly positive cloud earnings branch.",
+      "platform7 day0 stayed positive but materially weaker than pre1.",
+      "growth4 and hardware7 should be excluded from the next naive earnings timing round."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "The original platform7 pre1 hold2 row should remain the event-aware control.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 2,
+        "max_names": 3
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "tags": [
+        "cloud",
+        "earnings",
+        "platform7",
+        "pre1",
+        "hold2"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If the edge is a one-day anticipation effect, pre1 hold1 should beat the longer hold.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 1,
+        "max_names": 3
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "tags": [
+        "cloud",
+        "earnings",
+        "platform7",
+        "pre1",
+        "hold1"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If the pre1 effect needs a fuller event window, pre1 hold3 should beat the shorter variants.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "tags": [
+        "cloud",
+        "earnings",
+        "platform7",
+        "pre1",
+        "hold3"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "A cleaner pre2 timing test can show whether the platform7 edge begins earlier than the last day before earnings.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre2",
+        "hold_days": 2,
+        "max_names": 3
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "tags": [
+        "cloud",
+        "earnings",
+        "platform7",
+        "pre2",
+        "hold2"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If the edge is a wider run-up effect, the original pre3 window should remain competitive with pre1.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre3",
+        "hold_days": 2,
+        "max_names": 3
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "tags": [
+        "cloud",
+        "earnings",
+        "platform7",
+        "pre3",
+        "hold2"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "A post1 basket can show whether the platform7 event edge is anticipation-driven or whether there is still post-event carry.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "post1",
+        "hold_days": 2,
+        "max_names": 3
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "tags": [
+        "cloud",
+        "earnings",
+        "platform7",
+        "post1",
+        "hold2"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    }
+  ]
+}

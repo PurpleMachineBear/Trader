@@ -1,0 +1,174 @@
+{
+  "iteration": "iter_081",
+  "thesis": "Measure passive equal-weight buy-and-hold baselines for the cloud platform baskets on the same windows, so the event-aware branch can be judged against its natural basket instead of only against VOO or symbol-level anecdotes.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Common market reference; primary focus of this round is same-basket passive comparison"
+  },
+  "universe": {
+    "name": "platform_event_passive_baselines_v1",
+    "selection_rule": "Equal-weight passive baskets for the cloud platform event universes",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "platform5 is the canonical cloud control, enterprise4 is the positive-window alias, software3 is the hostile-window alias.",
+      "The cloud lane now needs same-basket passive baselines to answer whether the event edge is real or merely piggybacks strong underlying stocks."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "Common market reference for the recent broad sample.",
+      "parameters": {},
+      "symbols": [
+        "VOO"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "equal_weight_buy_and_hold",
+      "role": "control",
+      "hypothesis": "Passive equal-weight platform7 basket over the recent broad sample.",
+      "parameters": {},
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "equal_weight_buy_and_hold",
+      "role": "control",
+      "hypothesis": "Passive equal-weight platform5 basket over the recent broad sample.",
+      "parameters": {},
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "equal_weight_buy_and_hold",
+      "role": "explore",
+      "hypothesis": "Passive equal-weight platform7 basket across 2024_2025 for direct comparison with the cloud two-year branch.",
+      "parameters": {},
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "equal_weight_buy_and_hold",
+      "role": "explore",
+      "hypothesis": "Passive equal-weight platform5 basket across 2024_2025 for direct comparison with the cloud two-year branch.",
+      "parameters": {},
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "equal_weight_buy_and_hold",
+      "role": "explore",
+      "hypothesis": "Passive equal-weight platform7 basket in hostile 2024.",
+      "parameters": {},
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_07",
+      "family": "equal_weight_buy_and_hold",
+      "role": "explore",
+      "hypothesis": "Passive equal-weight platform5 basket in hostile 2024.",
+      "parameters": {},
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": []
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "iteration": "iter_070",
+  "project": "Cloud_Earnings_Research",
+  "project_id": 28794465,
+  "results": [
+    {
+      "candidate_id": "candidate_01",
+      "status": "completed",
+      "backtest_id": "2bcca96f1945a041c5a33ebdbc84c06e",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "growth4",
+        "event_mode": "pre1",
+        "net_profit_pct": -18.069,
+        "sharpe_ratio": -0.741,
+        "max_drawdown_pct": 20.2,
+        "total_orders": 68.0,
+        "trade_count": 32.0,
+        "ending_equity": 81930.78
+      }
+    },
+    {
+      "candidate_id": "candidate_02",
+      "status": "completed",
+      "backtest_id": "c49b08d5a5021ec821c0827cb9eab90e",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "growth4",
+        "event_mode": "day0",
+        "net_profit_pct": -33.029,
+        "sharpe_ratio": -1.584,
+        "max_drawdown_pct": 33.3,
+        "total_orders": 76.0,
+        "trade_count": 38.0,
+        "ending_equity": 66971.36
+      }
+    },
+    {
+      "candidate_id": "candidate_03",
+      "status": "completed",
+      "backtest_id": "ca0e8b1ee38e11e5fbfe52b0721bd7c5",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "net_profit_pct": 38.97,
+        "sharpe_ratio": 0.641,
+        "max_drawdown_pct": 19.3,
+        "total_orders": 104.0,
+        "trade_count": 50.0,
+        "ending_equity": 138970.46
+      }
+    },
+    {
+      "candidate_id": "candidate_04",
+      "status": "completed",
+      "backtest_id": "d7d4c6e13b12d7985580b4bb74f3ee51",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "platform7",
+        "event_mode": "day0",
+        "net_profit_pct": 8.43,
+        "sharpe_ratio": 0.086,
+        "max_drawdown_pct": 23.1,
+        "total_orders": 116.0,
+        "trade_count": 58.0,
+        "ending_equity": 108429.98
+      }
+    },
+    {
+      "candidate_id": "candidate_05",
+      "status": "completed",
+      "backtest_id": "91997143a3780343ea833b8caf7bd135",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "hardware7",
+        "event_mode": "pre1",
+        "net_profit_pct": -53.876,
+        "sharpe_ratio": -1.25,
+        "max_drawdown_pct": 57.2,
+        "total_orders": 119.0,
+        "trade_count": 55.0,
+        "ending_equity": 46124.22
+      }
+    },
+    {
+      "candidate_id": "candidate_06",
+      "status": "completed",
+      "backtest_id": "691d14e41a6a8c2218875c7a6107304f",
+      "metrics": {
+        "family": "cloud_earnings_event_basket",
+        "bucket": "hardware7",
+        "event_mode": "day0",
+        "net_profit_pct": -58.931,
+        "sharpe_ratio": -1.83,
+        "max_drawdown_pct": 60.4,
+        "total_orders": 119.0,
+        "trade_count": 57.0,
+        "ending_equity": 41069.06
+      }
+    }
+  ]
+}

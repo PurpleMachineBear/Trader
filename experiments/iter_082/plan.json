@@ -1,0 +1,185 @@
+{
+  "iteration": "iter_082",
+  "thesis": "Test whether the cloud event-aware large-cap edge is materially state-dependent by gating platform5 pre1 hold3 on pre-event trailing return state rather than changing the basket again.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Reference benchmark from the same sample via local results"
+  },
+  "universe": {
+    "name": "cloud_platform5_event_state_v1",
+    "selection_rule": "Cloud-only Upcoming Earnings dataset on the canonical platform5 basket with explicit pre-event state gates",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "CRM",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "CRM",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "platform5 pre1 hold3 is the canonical cloud event-aware large-cap control.",
+      "software3 is the hostile-window alias and enterprise4 is the positive-window alias, so the next bottleneck is event state rather than more basket permutation.",
+      "Same-basket passive baselines showed that the cloud event branch has real timing edge rather than merely piggybacking strong underlying baskets."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "The ungated platform5 pre1 hold3 branch remains the canonical cloud control on the recent broad sample.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "broad"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "A mild pre-event pullback filter may improve the branch if most edge comes from names already under pressure before earnings.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "broad",
+        "recent_return_max": 0.0
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "A deeper pre-event pullback gate may improve drawdown if the branch mainly works after sharper negative drift into earnings.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "broad",
+        "recent_return_max": -0.05
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If the branch is actually strongest in pre-event strength, a positive trailing-return gate should preserve or improve the control.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "broad",
+        "recent_return_min": 0.0
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "The ungated platform5 pre1 hold3 branch should remain the earlier-window control on the combined 2024-2025 sample.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2024_2025"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "A mild pre-event pullback filter may also improve the earlier-window aggregate if the branch is structurally mean-reverting into earnings.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2024_2025",
+        "recent_return_max": 0.0
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_07",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "A deeper negative-state gate may reveal a more robust hostile-window subset of the platform5 branch.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2024_2025",
+        "recent_return_max": -0.05
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_08",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "A positive-state gate on 2024-2025 can test whether the control is actually a pre-earnings strength branch instead of a pullback branch.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2024_2025",
+        "recent_return_min": 0.0
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    }
+  ]
+}

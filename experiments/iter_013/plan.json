@@ -1,0 +1,5652 @@
+{
+  "iteration": "iter_013",
+  "thesis": "Exploit the validated intraday branches from iter_012 by separating high-beta BSL, core large-cap BSL, and high-beta gap tracks while introducing equal-weight basket passive baselines.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Primary passive benchmark on the common 2025-01-02 to 2026-03-06 sample"
+  },
+  "universe": {
+    "name": "mag7_intraday_context_v2",
+    "selection_rule": "Approved Mag7 ex-GOOG large caps plus ETF context proxies, with explicit high-beta and core-large-cap baskets",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "AMZN",
+      "META",
+      "NVDA",
+      "TSLA",
+      "SPY",
+      "QQQ",
+      "IWM",
+      "XLK",
+      "SMH",
+      "VOO",
+      "GLD",
+      "TQQQ"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "AMZN",
+      "META",
+      "NVDA",
+      "TSLA",
+      "QQQ",
+      "XLK",
+      "SMH"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "iter_012: NVDA/TSLA BSL scanner is the strongest intraday branch so far.",
+      "iter_012: Core large-cap BSL scanner works and is mainly driven by AMZN/META selection.",
+      "iter_012: Gap research should stay inside the NVDA/TSLA high-beta basket; broad gap grids were low quality.",
+      "iter_012: Basket passive baselines are now required for scanner decisions."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_001",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "Passive VOO remains the common benchmark.",
+      "parameters": {
+        "position_size": 1.0
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO"
+      ],
+      "tags": [
+        "benchmark",
+        "passive",
+        "daily"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_002",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "QQQ/VOO/GLD 126/7 remains the non-leveraged daily control.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "control",
+        "daily",
+        "rotation"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_003",
+      "family": "sma_regime",
+      "role": "control",
+      "hypothesis": "GLD 18/110 + 189d remains the single-asset daily control.",
+      "parameters": {
+        "fast": 18,
+        "slow": 110,
+        "max_holding_days": 189,
+        "position_size": 1.0
+      },
+      "symbols": [
+        "GLD"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "GLD"
+      ],
+      "tags": [
+        "control",
+        "daily",
+        "trend"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_004",
+      "family": "equal_weight_buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "Equal-weight NVDA/TSLA passive basket anchors the high-beta scanner comparisons.",
+      "parameters": {
+        "position_size": 1.0
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "baseline",
+        "passive",
+        "basket"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_005",
+      "family": "equal_weight_buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "Equal-weight AAPL/MSFT/AMZN/META passive basket anchors the core BSL scanner comparisons.",
+      "parameters": {
+        "position_size": 1.0
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "baseline",
+        "passive",
+        "basket"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_006",
+      "family": "equal_weight_buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "Equal-weight AMZN/META basket isolates the names that drove the core BSL scanner winners.",
+      "parameters": {
+        "position_size": 1.0
+      },
+      "symbols": [
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "baseline",
+        "passive",
+        "basket"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_007",
+      "family": "equal_weight_buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "Equal-weight AMZN/META/MSFT basket anchors the narrowed core BSL sub-universe.",
+      "parameters": {
+        "position_size": 1.0
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "tags": [
+        "baseline",
+        "passive",
+        "basket"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_008",
+      "family": "equal_weight_buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "Equal-weight AAPL/MSFT/AMZN/META/NVDA/TSLA basket measures the diluted all-in passive alternative.",
+      "parameters": {
+        "position_size": 1.0
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "baseline",
+        "passive",
+        "basket"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_009",
+      "family": "buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "Passive NVDA baseline on the same sample.",
+      "parameters": {
+        "position_size": 1.0
+      },
+      "symbols": [
+        "NVDA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA"
+      ],
+      "tags": [
+        "baseline",
+        "passive",
+        "daily"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_010",
+      "family": "buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "Passive TSLA baseline on the same sample.",
+      "parameters": {
+        "position_size": 1.0
+      },
+      "symbols": [
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TSLA"
+      ],
+      "tags": [
+        "baseline",
+        "passive",
+        "daily"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_011",
+      "family": "buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "Passive AMZN baseline on the same sample.",
+      "parameters": {
+        "position_size": 1.0
+      },
+      "symbols": [
+        "AMZN"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN"
+      ],
+      "tags": [
+        "baseline",
+        "passive",
+        "daily"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_012",
+      "family": "buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "Passive META baseline on the same sample.",
+      "parameters": {
+        "position_size": 1.0
+      },
+      "symbols": [
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "META"
+      ],
+      "tags": [
+        "baseline",
+        "passive",
+        "daily"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_013",
+      "family": "buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "Passive QQQ baseline on the same sample.",
+      "parameters": {
+        "position_size": 1.0
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ"
+      ],
+      "tags": [
+        "baseline",
+        "passive",
+        "daily"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_014",
+      "family": "buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "Passive SMH baseline on the same sample.",
+      "parameters": {
+        "position_size": 1.0
+      },
+      "symbols": [
+        "SMH"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SMH"
+      ],
+      "tags": [
+        "baseline",
+        "passive",
+        "daily"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_015",
+      "family": "bsl_reversal_intraday",
+      "role": "reference",
+      "hypothesis": "AMZN direct BSL reference remains the simplest single-name comparison for the scanner track.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true
+      },
+      "symbols": [
+        "AMZN"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN"
+      ],
+      "tags": [
+        "intraday",
+        "single_symbol",
+        "bsl",
+        "reference"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_016",
+      "family": "bsl_reversal_intraday",
+      "role": "reference",
+      "hypothesis": "MSFT direct BSL reference remains the simplest single-name comparison for the scanner track.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true
+      },
+      "symbols": [
+        "MSFT"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "single_symbol",
+        "bsl",
+        "reference"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_017",
+      "family": "bsl_reversal_intraday",
+      "role": "reference",
+      "hypothesis": "TSLA direct BSL reference remains the simplest single-name comparison for the scanner track.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true
+      },
+      "symbols": [
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "single_symbol",
+        "bsl",
+        "reference"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_018",
+      "family": "gap_reversal_intraday",
+      "role": "reference",
+      "hypothesis": "NVDA direct gap reference remains the simplest single-name comparison for the high-beta gap track.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 90,
+        "use_vwap_exit": true
+      },
+      "symbols": [
+        "NVDA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA"
+      ],
+      "tags": [
+        "intraday",
+        "single_symbol",
+        "gap",
+        "reference"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_019",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "control",
+      "hypothesis": "Carry over the best high-beta BSL structure from iter_012.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "control"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_020",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "control",
+      "hypothesis": "Carry over the best core large-cap BSL structure from iter_012.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "core",
+        "control"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_021",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "control",
+      "hypothesis": "Carry over the best high-beta gap structure from iter_012.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 90,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "control"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_022",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_023",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_024",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_025",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_026",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_027",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_028",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_029",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_030",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_031",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_032",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_033",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_034",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_035",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_036",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_037",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_038",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_039",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_040",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "hybrid"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_041",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "hybrid"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_042",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "hybrid"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_043",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "hybrid"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_044",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "hybrid"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_045",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "High-beta BSL should remain the primary intraday exploit when context confirms risk-on recovery.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "high_beta",
+        "hybrid"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_046",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "core4",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_047",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 150,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 5,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "core4",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_048",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "core4",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_049",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "core4",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_050",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "core4",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_051",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 150,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 5,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "core4",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_052",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "core4",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_053",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "core4",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_054",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "core4",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_055",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 150,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 5,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "core4",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_056",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "core4",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_057",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "core4",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_058",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta_msft",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_059",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 150,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 5,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta_msft",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_060",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta_msft",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_061",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta_msft",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_062",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta_msft",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_063",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 150,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 5,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta_msft",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_064",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta_msft",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_065",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta_msft",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_066",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta_msft",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_067",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 150,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 5,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta_msft",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_068",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta_msft",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_069",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta_msft",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_070",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_071",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 150,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 5,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_072",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_073",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_074",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_075",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 150,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 5,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_076",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_077",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_078",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_079",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 150,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 5,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_080",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_081",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "exploit",
+      "hypothesis": "Core large-cap BSL should improve when the basket is centered on the names that actually drove the iter_012 winners.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "amzn_meta",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_082",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 90,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_083",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.08,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 75,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 120,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_084",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.12,
+        "premarket_vol_ratio_min": 0.006,
+        "opening_pullback_pct": 0.004,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_085",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.008,
+        "gap_up_pct_max": 0.1,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.0035,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 1.75,
+        "max_holding_minutes": 150,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_086",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.08,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.0025,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 75,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 120,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_087",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.1,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 1.75,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_088",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 90,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_089",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.08,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 75,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 120,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_090",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.12,
+        "premarket_vol_ratio_min": 0.006,
+        "opening_pullback_pct": 0.004,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_091",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.008,
+        "gap_up_pct_max": 0.1,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.0035,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 1.75,
+        "max_holding_minutes": 150,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_092",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.08,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.0025,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 75,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 120,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_093",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.1,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 1.75,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_094",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 90,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_095",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.08,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 75,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 120,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_096",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.12,
+        "premarket_vol_ratio_min": 0.006,
+        "opening_pullback_pct": 0.004,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_097",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.008,
+        "gap_up_pct_max": 0.1,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.0035,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 1.75,
+        "max_holding_minutes": 150,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_098",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.08,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.0025,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 75,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 120,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_099",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.1,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 1.75,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "semi"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_100",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 90,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "hybrid"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_101",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.08,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 75,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 120,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "hybrid"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_102",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.12,
+        "premarket_vol_ratio_min": 0.006,
+        "opening_pullback_pct": 0.004,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "hybrid"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_103",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.008,
+        "gap_up_pct_max": 0.1,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.0035,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 1.75,
+        "max_holding_minutes": 150,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "hybrid"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_104",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.08,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.0025,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 75,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 120,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "hybrid"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_105",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Gap should stay inside the high-beta NVDA/TSLA basket and be judged as its own specialist branch.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.1,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 1.75,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "high_beta",
+        "hybrid"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_106",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "All6 gap rows only stay if the high-beta names still carry the branch after adding the slower large caps.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 90,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "all6",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_107",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "All6 gap rows only stay if the high-beta names still carry the branch after adding the slower large caps.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.08,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 75,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 120,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "all6",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_108",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "All6 gap rows only stay if the high-beta names still carry the branch after adding the slower large caps.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.12,
+        "premarket_vol_ratio_min": 0.006,
+        "opening_pullback_pct": 0.004,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "all6",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_109",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "All6 gap rows only stay if the high-beta names still carry the branch after adding the slower large caps.",
+      "parameters": {
+        "gap_up_pct_min": 0.008,
+        "gap_up_pct_max": 0.1,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.0035,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 1.75,
+        "max_holding_minutes": 150,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "all6",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_110",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "All6 gap rows only stay if the high-beta names still carry the branch after adding the slower large caps.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 90,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "all6",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_111",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "All6 gap rows only stay if the high-beta names still carry the branch after adding the slower large caps.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.08,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 75,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 120,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "all6",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_112",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "All6 gap rows only stay if the high-beta names still carry the branch after adding the slower large caps.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.12,
+        "premarket_vol_ratio_min": 0.006,
+        "opening_pullback_pct": 0.004,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "all6",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_113",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "All6 gap rows only stay if the high-beta names still carry the branch after adding the slower large caps.",
+      "parameters": {
+        "gap_up_pct_min": 0.008,
+        "gap_up_pct_max": 0.1,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.0035,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 1.75,
+        "max_holding_minutes": 150,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "all6",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_114",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "All6 BSL rows only stay if the extra high-beta names improve the branch without overwhelming it.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "all6",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_115",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "All6 BSL rows only stay if the extra high-beta names improve the branch without overwhelming it.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "all6",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_116",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "All6 BSL rows only stay if the extra high-beta names improve the branch without overwhelming it.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "all6",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_117",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "All6 BSL rows only stay if the extra high-beta names improve the branch without overwhelming it.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "all6",
+        "tech"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_118",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "All6 BSL rows only stay if the extra high-beta names improve the branch without overwhelming it.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "all6",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_119",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "All6 BSL rows only stay if the extra high-beta names improve the branch without overwhelming it.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "all6",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_120",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "All6 BSL rows only stay if the extra high-beta names improve the branch without overwhelming it.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "all6",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_121",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "All6 BSL rows only stay if the extra high-beta names improve the branch without overwhelming it.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "SPY",
+          "QQQ",
+          "IWM"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "mag7_intraday_context_v2",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "all6",
+        "broad"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    }
+  ]
+}

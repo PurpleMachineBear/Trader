@@ -1,0 +1,97 @@
+{
+  "iteration": "iter_002",
+  "thesis": "After fixing the SMA initial-entry bug, retest SPY trend-following with a clean control, tighten windows to raise signal density, and check whether the edge generalizes to QQQ and VOO.",
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "sma_crossover",
+      "hypothesis": "SPY 50/200 remains the control after the template fix and should now express a full trend-following exposure profile.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Control candidate.",
+        "Uses the fixed SMA initial-entry logic."
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "sma_crossover",
+      "hypothesis": "A moderately faster SPY 40/180 crossover may preserve trend quality while increasing trade count.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Exploit around the prior winner."
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "sma_crossover",
+      "hypothesis": "A faster SPY 30/150 crossover may improve responsiveness further, at the risk of more whipsaw.",
+      "parameters": {
+        "fast": 30,
+        "slow": 150
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Higher-signal exploit candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "sma_crossover",
+      "hypothesis": "QQQ 50/200 tests whether the apparent trend edge is really a growth-heavy index effect rather than SPY-specific behavior.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Cross-symbol validation using local QQQ daily data."
+      ]
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "sma_crossover",
+      "hypothesis": "VOO 50/200 tests whether the trend result persists on a SPY-like broad market proxy with a different fund structure.",
+      "parameters": {
+        "fast": 50,
+        "slow": 200
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "Cross-symbol validation using local VOO daily data."
+      ]
+    }
+  ]
+}

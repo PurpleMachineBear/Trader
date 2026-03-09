@@ -1,0 +1,1253 @@
+{
+  "iteration": "iter_015",
+  "thesis": "Paper-trading candidates should survive a longer minute-level sample and modest slippage stress before promotion.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Primary passive benchmark for deployment validation"
+  },
+  "universe": {
+    "name": "paper_validation_v1",
+    "selection_rule": "Validated paper-trading shortlist using approved high-beta and core universes with contextual ETF proxies.",
+    "allowed_symbols": [
+      "AAPL",
+      "AMD",
+      "AMZN",
+      "AVGO",
+      "GLD",
+      "IWM",
+      "META",
+      "MRVL",
+      "MSFT",
+      "MU",
+      "NVDA",
+      "QQQ",
+      "SMH",
+      "SPY",
+      "TSLA",
+      "TSM",
+      "VOO",
+      "XLK"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "AMD",
+      "AMZN",
+      "AVGO",
+      "GLD",
+      "IWM",
+      "META",
+      "MRVL",
+      "MSFT",
+      "MU",
+      "NVDA",
+      "QQQ",
+      "SMH",
+      "SPY",
+      "TSLA",
+      "TSM",
+      "VOO",
+      "XLK"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "iter_014: Dynamic high-beta watchlists clearly beat fixed high-beta baskets.",
+      "iter_014: Fixed core clean BSL still beat wider dynamic core watchlists.",
+      "2026-03-07 synthesis: Paper promotion requires longer samples and explicit slippage pressure."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "VOO buy-and-hold is the passive benchmark for deployment validation.",
+      "parameters": {
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO"
+      ],
+      "tags": [
+        "benchmark",
+        "passive",
+        "daily"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "QQQ/VOO/GLD dual momentum remains the main daily control for paper-trading comparison.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "control",
+        "daily",
+        "allocation"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "equal_weight_buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "High-beta passive basket anchors dynamic high-beta intraday comparisons.",
+      "parameters": {
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "tags": [
+        "baseline",
+        "passive",
+        "basket"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "equal_weight_buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "Core4 passive basket anchors the fixed core intraday branch.",
+      "parameters": {
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "baseline",
+        "passive",
+        "basket"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "control",
+      "hypothesis": "Fixed high-beta clean BSL remains the low-drawdown intraday control.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 1,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "control",
+        "high_beta",
+        "clean"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "control",
+      "hypothesis": "Fixed high-beta aggressive BSL remains the historical high-beta intraday control.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 1,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "control",
+        "high_beta",
+        "aggressive"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_07",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "control",
+      "hypothesis": "Fixed high-beta gap remains the specialist intraday gap control.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 90,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true,
+        "selection_pool_size": 1,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "control",
+        "high_beta"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_08",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "control",
+      "hypothesis": "Fixed core clean BSL remains the core large-cap intraday control.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 150,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 5,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 1,
+        "min_prev_close": 30,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "control",
+        "core"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_09",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "paper_candidate",
+      "hypothesis": "Dynamic high-beta BSL aggressive should survive a longer sample and modest slippage stress if it is paper-worthy.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 1,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "paper_candidate",
+        "high_beta",
+        "aggressive"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_10",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "paper_candidate",
+      "hypothesis": "Dynamic high-beta BSL aggressive should survive a longer sample and modest slippage stress if it is paper-worthy.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 3,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "paper_candidate",
+        "high_beta",
+        "aggressive"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_11",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "paper_candidate",
+      "hypothesis": "Dynamic high-beta BSL aggressive should survive a longer sample and modest slippage stress if it is paper-worthy.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 5,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "paper_candidate",
+        "high_beta",
+        "aggressive"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_12",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "paper_candidate",
+      "hypothesis": "Dynamic high-beta BSL aggressive should survive a longer sample and modest slippage stress if it is paper-worthy.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 1,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 2.0
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "paper_candidate",
+        "high_beta",
+        "aggressive"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_13",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "paper_candidate",
+      "hypothesis": "Dynamic high-beta BSL aggressive should survive a longer sample and modest slippage stress if it is paper-worthy.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 240,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 3,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 2.0
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "paper_candidate",
+        "high_beta",
+        "aggressive"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_14",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "paper_candidate",
+      "hypothesis": "Dynamic high-beta gap should survive a longer sample and modest slippage stress if it is paper-worthy.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 90,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true,
+        "selection_pool_size": 1,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "paper_candidate",
+        "high_beta"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_15",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "paper_candidate",
+      "hypothesis": "Dynamic high-beta gap should survive a longer sample and modest slippage stress if it is paper-worthy.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 90,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true,
+        "selection_pool_size": 3,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "paper_candidate",
+        "high_beta"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_16",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "paper_candidate",
+      "hypothesis": "Dynamic high-beta gap should survive a longer sample and modest slippage stress if it is paper-worthy.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 90,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true,
+        "selection_pool_size": 5,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "paper_candidate",
+        "high_beta"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_17",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "paper_candidate",
+      "hypothesis": "Dynamic high-beta gap should survive a longer sample and modest slippage stress if it is paper-worthy.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 90,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true,
+        "selection_pool_size": 3,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 2.0
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "paper_candidate",
+        "high_beta"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_18",
+      "family": "gap_reversal_scanner_intraday",
+      "role": "paper_candidate",
+      "hypothesis": "Dynamic high-beta gap should survive a longer sample and modest slippage stress if it is paper-worthy.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 90,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 2,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": true,
+        "selection_pool_size": 5,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 2.0
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "MU",
+        "TSM",
+        "MRVL",
+        "AVGO"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "gap",
+        "paper_candidate",
+        "high_beta"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_19",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "paper_candidate",
+      "hypothesis": "Fixed core clean BSL should preserve its low-drawdown sleeve profile under longer sample and slippage.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 150,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 5,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 1,
+        "min_prev_close": 30,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "paper_candidate",
+        "core"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_20",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "paper_candidate",
+      "hypothesis": "Fixed high-beta clean BSL should be kept only if the low-drawdown profile survives the longer sample and slippage.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 1,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "paper_candidate",
+        "high_beta",
+        "clean"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_21",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "paper_candidate",
+      "hypothesis": "Fixed core clean BSL should preserve its low-drawdown sleeve profile under longer sample and slippage.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 1.5,
+        "max_holding_minutes": 150,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 5,
+        "context_symbols": [
+          "QQQ",
+          "XLK"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 1,
+        "min_prev_close": 30,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 2.0
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "AMZN",
+        "META"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "paper_candidate",
+        "core"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    },
+    {
+      "candidate_id": "candidate_22",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "paper_candidate",
+      "hypothesis": "Fixed high-beta clean BSL should be kept only if the low-drawdown profile survives the longer sample and slippage.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5,
+        "max_holding_minutes": 300,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 1,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 2.0
+      },
+      "symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "paper_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "bsl",
+        "paper_candidate",
+        "high_beta",
+        "clean"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": []
+    }
+  ]
+}

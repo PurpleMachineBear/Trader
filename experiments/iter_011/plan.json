@@ -1,0 +1,2806 @@
+{
+  "iteration": "iter_011",
+  "thesis": "Translate discretionary long intraday motifs from BSL / day-2 breakout / gap reversal notes into systematic large-cap and ETF families, while retaining validated daily controls.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Primary passive benchmark across daily and intraday pilot batches"
+  },
+  "universe": {
+    "name": "intraday_large_cap_liquid_v1",
+    "selection_rule": "Liquid large-cap names and broad ETFs with minute Polygon data and existing daily baselines",
+    "allowed_symbols": [
+      "VOO",
+      "SPY",
+      "QQQ",
+      "TQQQ",
+      "AAPL",
+      "MSFT",
+      "XLK",
+      "GLD"
+    ],
+    "validation_symbols": [
+      "SPY",
+      "QQQ",
+      "TQQQ",
+      "AAPL",
+      "MSFT",
+      "XLK"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": "/Users/chenchien/lean/experiments/research_memory.md",
+  "candidates": [
+    {
+      "candidate_id": "candidate_001",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "Primary campaign benchmark remains VOO buy-and-hold.",
+      "parameters": {},
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO"
+      ],
+      "tags": [
+        "passive",
+        "benchmark"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Carryover benchmark for intraday pilot."
+      ]
+    },
+    {
+      "candidate_id": "candidate_002",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "SPY passive baseline for same-symbol intraday comparison.",
+      "parameters": {},
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY"
+      ],
+      "tags": [
+        "passive",
+        "reference"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Same-symbol passive baseline."
+      ]
+    },
+    {
+      "candidate_id": "candidate_003",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "QQQ passive baseline for same-symbol intraday comparison.",
+      "parameters": {},
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ"
+      ],
+      "tags": [
+        "passive",
+        "reference"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Same-symbol passive baseline."
+      ]
+    },
+    {
+      "candidate_id": "candidate_004",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "TQQQ passive baseline for same-symbol intraday comparison.",
+      "parameters": {},
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "passive",
+        "reference"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Same-symbol passive baseline."
+      ]
+    },
+    {
+      "candidate_id": "candidate_005",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "AAPL passive baseline for same-symbol intraday comparison.",
+      "parameters": {},
+      "symbols": [
+        "AAPL"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL"
+      ],
+      "tags": [
+        "passive",
+        "reference"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Same-symbol passive baseline."
+      ]
+    },
+    {
+      "candidate_id": "candidate_006",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "MSFT passive baseline for same-symbol intraday comparison.",
+      "parameters": {},
+      "symbols": [
+        "MSFT"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "MSFT"
+      ],
+      "tags": [
+        "passive",
+        "reference"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Same-symbol passive baseline."
+      ]
+    },
+    {
+      "candidate_id": "candidate_007",
+      "family": "buy_and_hold",
+      "role": "reference",
+      "hypothesis": "XLK passive baseline for same-symbol intraday comparison.",
+      "parameters": {},
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK"
+      ],
+      "tags": [
+        "passive",
+        "reference"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Same-symbol passive baseline."
+      ]
+    },
+    {
+      "candidate_id": "candidate_008",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "Carry forward the validated non-leveraged daily control into the intraday pilot window.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7
+      },
+      "symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "control",
+        "non_levered",
+        "daily_carryover"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Carryover daily control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_009",
+      "family": "dual_momentum",
+      "role": "control",
+      "hypothesis": "Carry forward the deployable leveraged daily control into the intraday pilot window.",
+      "parameters": {
+        "lookback": 126,
+        "rebalance_days": 7,
+        "position_size": 0.75
+      },
+      "symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ",
+        "VOO",
+        "GLD"
+      ],
+      "tags": [
+        "control",
+        "leveraged",
+        "daily_carryover"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Carryover daily control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_010",
+      "family": "gap_reversal_intraday",
+      "role": "control",
+      "hypothesis": "gap_reversal_intraday pilot on SPY using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.08,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 75,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf",
+        "control"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate.",
+        "Family-level intraday control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_011",
+      "family": "gap_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "gap_reversal_intraday pilot on SPY using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.12,
+        "premarket_vol_ratio_min": 0.006,
+        "opening_pullback_pct": 0.004,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_012",
+      "family": "gap_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "gap_reversal_intraday pilot on SPY using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.02,
+        "gap_up_pct_max": 0.15,
+        "premarket_vol_ratio_min": 0.008,
+        "opening_pullback_pct": 0.005,
+        "opening_range_minutes": 10,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_013",
+      "family": "gap_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "gap_reversal_intraday pilot on SPY using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_014",
+      "family": "gap_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "gap_reversal_intraday pilot on QQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.08,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 75,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_015",
+      "family": "gap_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "gap_reversal_intraday pilot on QQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.12,
+        "premarket_vol_ratio_min": 0.006,
+        "opening_pullback_pct": 0.004,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_016",
+      "family": "gap_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "gap_reversal_intraday pilot on QQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.02,
+        "gap_up_pct_max": 0.15,
+        "premarket_vol_ratio_min": 0.008,
+        "opening_pullback_pct": 0.005,
+        "opening_range_minutes": 10,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_017",
+      "family": "gap_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "gap_reversal_intraday pilot on QQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_018",
+      "family": "gap_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "gap_reversal_intraday pilot on TQQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.08,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 75,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_019",
+      "family": "gap_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "gap_reversal_intraday pilot on TQQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.12,
+        "premarket_vol_ratio_min": 0.006,
+        "opening_pullback_pct": 0.004,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_020",
+      "family": "gap_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "gap_reversal_intraday pilot on TQQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.02,
+        "gap_up_pct_max": 0.15,
+        "premarket_vol_ratio_min": 0.008,
+        "opening_pullback_pct": 0.005,
+        "opening_range_minutes": 10,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_021",
+      "family": "gap_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "gap_reversal_intraday pilot on TQQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_022",
+      "family": "gap_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "gap_reversal_intraday pilot on AAPL using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.08,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 75,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_023",
+      "family": "gap_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "gap_reversal_intraday pilot on AAPL using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.12,
+        "premarket_vol_ratio_min": 0.006,
+        "opening_pullback_pct": 0.004,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_024",
+      "family": "gap_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "gap_reversal_intraday pilot on AAPL using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.02,
+        "gap_up_pct_max": 0.15,
+        "premarket_vol_ratio_min": 0.008,
+        "opening_pullback_pct": 0.005,
+        "opening_range_minutes": 10,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_025",
+      "family": "gap_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "gap_reversal_intraday pilot on AAPL using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_026",
+      "family": "gap_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "gap_reversal_intraday pilot on MSFT using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.08,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 75,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "MSFT"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_027",
+      "family": "gap_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "gap_reversal_intraday pilot on MSFT using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.12,
+        "premarket_vol_ratio_min": 0.006,
+        "opening_pullback_pct": 0.004,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "MSFT"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_028",
+      "family": "gap_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "gap_reversal_intraday pilot on MSFT using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.02,
+        "gap_up_pct_max": 0.15,
+        "premarket_vol_ratio_min": 0.008,
+        "opening_pullback_pct": 0.005,
+        "opening_range_minutes": 10,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5
+      },
+      "symbols": [
+        "MSFT"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_029",
+      "family": "gap_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "gap_reversal_intraday pilot on MSFT using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "MSFT"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_030",
+      "family": "gap_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "gap_reversal_intraday pilot on XLK using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.08,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_pullback_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 75,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_031",
+      "family": "gap_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "gap_reversal_intraday pilot on XLK using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.01,
+        "gap_up_pct_max": 0.12,
+        "premarket_vol_ratio_min": 0.006,
+        "opening_pullback_pct": 0.004,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_032",
+      "family": "gap_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "gap_reversal_intraday pilot on XLK using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.02,
+        "gap_up_pct_max": 0.15,
+        "premarket_vol_ratio_min": 0.008,
+        "opening_pullback_pct": 0.005,
+        "opening_range_minutes": 10,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_033",
+      "family": "gap_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "gap_reversal_intraday pilot on XLK using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "gap_up_pct_min": 0.005,
+        "gap_up_pct_max": 0.06,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_pullback_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK"
+      ],
+      "tags": [
+        "intraday",
+        "gap_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_034",
+      "family": "day2_breakout_intraday",
+      "role": "control",
+      "hypothesis": "day2_breakout_intraday pilot on SPY using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.02,
+        "prior_day_close_position_min": 0.65,
+        "prior_day_volume_ratio_min": 1.0,
+        "today_gap_min": -0.01,
+        "today_gap_max": 0.05,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf",
+        "control"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate.",
+        "Family-level intraday control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_035",
+      "family": "day2_breakout_intraday",
+      "role": "explore",
+      "hypothesis": "day2_breakout_intraday pilot on SPY using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.03,
+        "prior_day_close_position_min": 0.7,
+        "prior_day_volume_ratio_min": 1.2,
+        "today_gap_min": -0.01,
+        "today_gap_max": 0.05,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_036",
+      "family": "day2_breakout_intraday",
+      "role": "explore",
+      "hypothesis": "day2_breakout_intraday pilot on SPY using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.05,
+        "prior_day_close_position_min": 0.75,
+        "prior_day_volume_ratio_min": 1.5,
+        "today_gap_min": -0.005,
+        "today_gap_max": 0.08,
+        "premarket_vol_ratio_min": 0.005,
+        "opening_range_minutes": 10,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_037",
+      "family": "day2_breakout_intraday",
+      "role": "explore",
+      "hypothesis": "day2_breakout_intraday pilot on SPY using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.015,
+        "prior_day_close_position_min": 0.6,
+        "prior_day_volume_ratio_min": 0.8,
+        "today_gap_min": -0.02,
+        "today_gap_max": 0.03,
+        "premarket_vol_ratio_min": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_038",
+      "family": "day2_breakout_intraday",
+      "role": "exploit",
+      "hypothesis": "day2_breakout_intraday pilot on QQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.02,
+        "prior_day_close_position_min": 0.65,
+        "prior_day_volume_ratio_min": 1.0,
+        "today_gap_min": -0.01,
+        "today_gap_max": 0.05,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_039",
+      "family": "day2_breakout_intraday",
+      "role": "exploit",
+      "hypothesis": "day2_breakout_intraday pilot on QQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.03,
+        "prior_day_close_position_min": 0.7,
+        "prior_day_volume_ratio_min": 1.2,
+        "today_gap_min": -0.01,
+        "today_gap_max": 0.05,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_040",
+      "family": "day2_breakout_intraday",
+      "role": "exploit",
+      "hypothesis": "day2_breakout_intraday pilot on QQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.05,
+        "prior_day_close_position_min": 0.75,
+        "prior_day_volume_ratio_min": 1.5,
+        "today_gap_min": -0.005,
+        "today_gap_max": 0.08,
+        "premarket_vol_ratio_min": 0.005,
+        "opening_range_minutes": 10,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_041",
+      "family": "day2_breakout_intraday",
+      "role": "exploit",
+      "hypothesis": "day2_breakout_intraday pilot on QQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.015,
+        "prior_day_close_position_min": 0.6,
+        "prior_day_volume_ratio_min": 0.8,
+        "today_gap_min": -0.02,
+        "today_gap_max": 0.03,
+        "premarket_vol_ratio_min": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_042",
+      "family": "day2_breakout_intraday",
+      "role": "exploit",
+      "hypothesis": "day2_breakout_intraday pilot on TQQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.02,
+        "prior_day_close_position_min": 0.65,
+        "prior_day_volume_ratio_min": 1.0,
+        "today_gap_min": -0.01,
+        "today_gap_max": 0.05,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_043",
+      "family": "day2_breakout_intraday",
+      "role": "exploit",
+      "hypothesis": "day2_breakout_intraday pilot on TQQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.03,
+        "prior_day_close_position_min": 0.7,
+        "prior_day_volume_ratio_min": 1.2,
+        "today_gap_min": -0.01,
+        "today_gap_max": 0.05,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_044",
+      "family": "day2_breakout_intraday",
+      "role": "exploit",
+      "hypothesis": "day2_breakout_intraday pilot on TQQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.05,
+        "prior_day_close_position_min": 0.75,
+        "prior_day_volume_ratio_min": 1.5,
+        "today_gap_min": -0.005,
+        "today_gap_max": 0.08,
+        "premarket_vol_ratio_min": 0.005,
+        "opening_range_minutes": 10,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_045",
+      "family": "day2_breakout_intraday",
+      "role": "exploit",
+      "hypothesis": "day2_breakout_intraday pilot on TQQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.015,
+        "prior_day_close_position_min": 0.6,
+        "prior_day_volume_ratio_min": 0.8,
+        "today_gap_min": -0.02,
+        "today_gap_max": 0.03,
+        "premarket_vol_ratio_min": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_046",
+      "family": "day2_breakout_intraday",
+      "role": "exploit",
+      "hypothesis": "day2_breakout_intraday pilot on AAPL using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.02,
+        "prior_day_close_position_min": 0.65,
+        "prior_day_volume_ratio_min": 1.0,
+        "today_gap_min": -0.01,
+        "today_gap_max": 0.05,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_047",
+      "family": "day2_breakout_intraday",
+      "role": "exploit",
+      "hypothesis": "day2_breakout_intraday pilot on AAPL using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.03,
+        "prior_day_close_position_min": 0.7,
+        "prior_day_volume_ratio_min": 1.2,
+        "today_gap_min": -0.01,
+        "today_gap_max": 0.05,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_048",
+      "family": "day2_breakout_intraday",
+      "role": "exploit",
+      "hypothesis": "day2_breakout_intraday pilot on AAPL using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.05,
+        "prior_day_close_position_min": 0.75,
+        "prior_day_volume_ratio_min": 1.5,
+        "today_gap_min": -0.005,
+        "today_gap_max": 0.08,
+        "premarket_vol_ratio_min": 0.005,
+        "opening_range_minutes": 10,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_049",
+      "family": "day2_breakout_intraday",
+      "role": "exploit",
+      "hypothesis": "day2_breakout_intraday pilot on AAPL using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.015,
+        "prior_day_close_position_min": 0.6,
+        "prior_day_volume_ratio_min": 0.8,
+        "today_gap_min": -0.02,
+        "today_gap_max": 0.03,
+        "premarket_vol_ratio_min": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_050",
+      "family": "day2_breakout_intraday",
+      "role": "explore",
+      "hypothesis": "day2_breakout_intraday pilot on MSFT using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.02,
+        "prior_day_close_position_min": 0.65,
+        "prior_day_volume_ratio_min": 1.0,
+        "today_gap_min": -0.01,
+        "today_gap_max": 0.05,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "MSFT"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_051",
+      "family": "day2_breakout_intraday",
+      "role": "explore",
+      "hypothesis": "day2_breakout_intraday pilot on MSFT using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.03,
+        "prior_day_close_position_min": 0.7,
+        "prior_day_volume_ratio_min": 1.2,
+        "today_gap_min": -0.01,
+        "today_gap_max": 0.05,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "MSFT"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_052",
+      "family": "day2_breakout_intraday",
+      "role": "explore",
+      "hypothesis": "day2_breakout_intraday pilot on MSFT using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.05,
+        "prior_day_close_position_min": 0.75,
+        "prior_day_volume_ratio_min": 1.5,
+        "today_gap_min": -0.005,
+        "today_gap_max": 0.08,
+        "premarket_vol_ratio_min": 0.005,
+        "opening_range_minutes": 10,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5
+      },
+      "symbols": [
+        "MSFT"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_053",
+      "family": "day2_breakout_intraday",
+      "role": "explore",
+      "hypothesis": "day2_breakout_intraday pilot on MSFT using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.015,
+        "prior_day_close_position_min": 0.6,
+        "prior_day_volume_ratio_min": 0.8,
+        "today_gap_min": -0.02,
+        "today_gap_max": 0.03,
+        "premarket_vol_ratio_min": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "MSFT"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_054",
+      "family": "day2_breakout_intraday",
+      "role": "explore",
+      "hypothesis": "day2_breakout_intraday pilot on XLK using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.02,
+        "prior_day_close_position_min": 0.65,
+        "prior_day_volume_ratio_min": 1.0,
+        "today_gap_min": -0.01,
+        "today_gap_max": 0.05,
+        "premarket_vol_ratio_min": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_055",
+      "family": "day2_breakout_intraday",
+      "role": "explore",
+      "hypothesis": "day2_breakout_intraday pilot on XLK using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.03,
+        "prior_day_close_position_min": 0.7,
+        "prior_day_volume_ratio_min": 1.2,
+        "today_gap_min": -0.01,
+        "today_gap_max": 0.05,
+        "premarket_vol_ratio_min": 0.004,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_056",
+      "family": "day2_breakout_intraday",
+      "role": "explore",
+      "hypothesis": "day2_breakout_intraday pilot on XLK using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.05,
+        "prior_day_close_position_min": 0.75,
+        "prior_day_volume_ratio_min": 1.5,
+        "today_gap_min": -0.005,
+        "today_gap_max": 0.08,
+        "premarket_vol_ratio_min": 0.005,
+        "opening_range_minutes": 10,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_057",
+      "family": "day2_breakout_intraday",
+      "role": "explore",
+      "hypothesis": "day2_breakout_intraday pilot on XLK using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "prior_day_return_min": 0.015,
+        "prior_day_close_position_min": 0.6,
+        "prior_day_volume_ratio_min": 0.8,
+        "today_gap_min": -0.02,
+        "today_gap_max": 0.03,
+        "premarket_vol_ratio_min": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK"
+      ],
+      "tags": [
+        "intraday",
+        "day2_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_058",
+      "family": "bsl_reversal_intraday",
+      "role": "control",
+      "hypothesis": "bsl_reversal_intraday pilot on SPY using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 10,
+        "downtrend_return_max": -0.03,
+        "gap_min": -0.01,
+        "premarket_vol_ratio_min": 0.003,
+        "morning_flush_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf",
+        "control"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate.",
+        "Family-level intraday control."
+      ]
+    },
+    {
+      "candidate_id": "candidate_059",
+      "family": "bsl_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "bsl_reversal_intraday pilot on SPY using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_060",
+      "family": "bsl_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "bsl_reversal_intraday pilot on SPY using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 20,
+        "downtrend_return_max": -0.08,
+        "gap_min": 0.0,
+        "premarket_vol_ratio_min": 0.006,
+        "morning_flush_pct": 0.004,
+        "opening_range_minutes": 10,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_061",
+      "family": "bsl_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "bsl_reversal_intraday pilot on SPY using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 8,
+        "downtrend_return_max": -0.02,
+        "gap_min": -0.02,
+        "premarket_vol_ratio_min": 0.002,
+        "morning_flush_pct": 0.0015,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "SPY"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "SPY"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_062",
+      "family": "bsl_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "bsl_reversal_intraday pilot on QQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 10,
+        "downtrend_return_max": -0.03,
+        "gap_min": -0.01,
+        "premarket_vol_ratio_min": 0.003,
+        "morning_flush_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_063",
+      "family": "bsl_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "bsl_reversal_intraday pilot on QQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_064",
+      "family": "bsl_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "bsl_reversal_intraday pilot on QQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 20,
+        "downtrend_return_max": -0.08,
+        "gap_min": 0.0,
+        "premarket_vol_ratio_min": 0.006,
+        "morning_flush_pct": 0.004,
+        "opening_range_minutes": 10,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_065",
+      "family": "bsl_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "bsl_reversal_intraday pilot on QQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 8,
+        "downtrend_return_max": -0.02,
+        "gap_min": -0.02,
+        "premarket_vol_ratio_min": 0.002,
+        "morning_flush_pct": 0.0015,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "QQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "QQQ"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_066",
+      "family": "bsl_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "bsl_reversal_intraday pilot on TQQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 10,
+        "downtrend_return_max": -0.03,
+        "gap_min": -0.01,
+        "premarket_vol_ratio_min": 0.003,
+        "morning_flush_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_067",
+      "family": "bsl_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "bsl_reversal_intraday pilot on TQQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_068",
+      "family": "bsl_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "bsl_reversal_intraday pilot on TQQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 20,
+        "downtrend_return_max": -0.08,
+        "gap_min": 0.0,
+        "premarket_vol_ratio_min": 0.006,
+        "morning_flush_pct": 0.004,
+        "opening_range_minutes": 10,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_069",
+      "family": "bsl_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "bsl_reversal_intraday pilot on TQQQ using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 8,
+        "downtrend_return_max": -0.02,
+        "gap_min": -0.02,
+        "premarket_vol_ratio_min": 0.002,
+        "morning_flush_pct": 0.0015,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "TQQQ"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "TQQQ"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_070",
+      "family": "bsl_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "bsl_reversal_intraday pilot on AAPL using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 10,
+        "downtrend_return_max": -0.03,
+        "gap_min": -0.01,
+        "premarket_vol_ratio_min": 0.003,
+        "morning_flush_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_071",
+      "family": "bsl_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "bsl_reversal_intraday pilot on AAPL using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_072",
+      "family": "bsl_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "bsl_reversal_intraday pilot on AAPL using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 20,
+        "downtrend_return_max": -0.08,
+        "gap_min": 0.0,
+        "premarket_vol_ratio_min": 0.006,
+        "morning_flush_pct": 0.004,
+        "opening_range_minutes": 10,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_073",
+      "family": "bsl_reversal_intraday",
+      "role": "exploit",
+      "hypothesis": "bsl_reversal_intraday pilot on AAPL using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 8,
+        "downtrend_return_max": -0.02,
+        "gap_min": -0.02,
+        "premarket_vol_ratio_min": 0.002,
+        "morning_flush_pct": 0.0015,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "AAPL"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_074",
+      "family": "bsl_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "bsl_reversal_intraday pilot on MSFT using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 10,
+        "downtrend_return_max": -0.03,
+        "gap_min": -0.01,
+        "premarket_vol_ratio_min": 0.003,
+        "morning_flush_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "MSFT"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_075",
+      "family": "bsl_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "bsl_reversal_intraday pilot on MSFT using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "MSFT"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_076",
+      "family": "bsl_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "bsl_reversal_intraday pilot on MSFT using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 20,
+        "downtrend_return_max": -0.08,
+        "gap_min": 0.0,
+        "premarket_vol_ratio_min": 0.006,
+        "morning_flush_pct": 0.004,
+        "opening_range_minutes": 10,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5
+      },
+      "symbols": [
+        "MSFT"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_077",
+      "family": "bsl_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "bsl_reversal_intraday pilot on MSFT using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 8,
+        "downtrend_return_max": -0.02,
+        "gap_min": -0.02,
+        "premarket_vol_ratio_min": 0.002,
+        "morning_flush_pct": 0.0015,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "MSFT"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_078",
+      "family": "bsl_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "bsl_reversal_intraday pilot on XLK using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 10,
+        "downtrend_return_max": -0.03,
+        "gap_min": -0.01,
+        "premarket_vol_ratio_min": 0.003,
+        "morning_flush_pct": 0.002,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_079",
+      "family": "bsl_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "bsl_reversal_intraday pilot on XLK using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_080",
+      "family": "bsl_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "bsl_reversal_intraday pilot on XLK using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 20,
+        "downtrend_return_max": -0.08,
+        "gap_min": 0.0,
+        "premarket_vol_ratio_min": 0.006,
+        "morning_flush_pct": 0.004,
+        "opening_range_minutes": 10,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.5
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    },
+    {
+      "candidate_id": "candidate_081",
+      "family": "bsl_reversal_intraday",
+      "role": "explore",
+      "hypothesis": "bsl_reversal_intraday pilot on XLK using an abstracted rule set inspired by discretionary long setups.",
+      "parameters": {
+        "downtrend_lookback_days": 8,
+        "downtrend_return_max": -0.02,
+        "gap_min": -0.02,
+        "premarket_vol_ratio_min": 0.002,
+        "morning_flush_pct": 0.0015,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 60,
+        "risk_reward": 1.5
+      },
+      "symbols": [
+        "XLK"
+      ],
+      "universe_name": "intraday_large_cap_liquid_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "XLK"
+      ],
+      "tags": [
+        "intraday",
+        "bsl_intraday",
+        "large_cap_or_etf"
+      ],
+      "start_date": "2025-06-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Intraday pilot candidate."
+      ]
+    }
+  ]
+}

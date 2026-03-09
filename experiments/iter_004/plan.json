@@ -1,0 +1,158 @@
+{
+  "iteration": "iter_004",
+  "thesis": "The benchmark SPY 40/180 trend rule is profitable but under-traded. Test structural overlays that can force more realistic entry and exit behavior: trailing stops, time stops, entry buffers, and limited cross-symbol validation on AAPL.",
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "sma_regime",
+      "hypothesis": "SPY 40/180 without overlays is the structural control for the new regime family.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180
+      },
+      "symbols": ["SPY"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": ["Control candidate."]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "sma_regime",
+      "hypothesis": "A 10% trailing stop may convert the passive trend hold into a more testable re-entry process without cutting too much of the upside.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "trailing_stop_pct": 0.10
+      },
+      "symbols": ["SPY"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": ["Risk overlay explore."]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "sma_regime",
+      "hypothesis": "A wider 15% trailing stop may allow more trend persistence than the tighter 10% version.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "trailing_stop_pct": 0.15
+      },
+      "symbols": ["SPY"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": ["Risk overlay explore."]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "sma_regime",
+      "hypothesis": "A 252-day time stop may create one annual reset while keeping the core medium-term trend structure intact.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 252
+      },
+      "symbols": ["SPY"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": ["Time-stop explore."]
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "sma_regime",
+      "hypothesis": "A 126-day time stop with a 20-day cooldown may increase trade count enough to test whether the edge survives forced resets.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 126,
+        "cooldown_days": 20
+      },
+      "symbols": ["SPY"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": ["Higher-activity structural explore."]
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "sma_regime",
+      "hypothesis": "A 1% entry buffer may reduce weak regime entries while staying close to the benchmark timing.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "entry_buffer_pct": 0.01
+      },
+      "symbols": ["SPY"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": ["Signal-quality explore."]
+    },
+    {
+      "candidate_id": "candidate_07",
+      "family": "sma_regime",
+      "hypothesis": "Combining a 1% entry buffer with a 10% trailing stop may reduce weak entries while still forcing measurable exits.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "entry_buffer_pct": 0.01,
+        "trailing_stop_pct": 0.10
+      },
+      "symbols": ["SPY"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": ["Combined overlay explore."]
+    },
+    {
+      "candidate_id": "candidate_08",
+      "family": "sma_regime",
+      "hypothesis": "SPY 35/160 plus a 10% trailing stop tests whether a slightly faster base can work once a structural exit is added.",
+      "parameters": {
+        "fast": 35,
+        "slow": 160,
+        "trailing_stop_pct": 0.10
+      },
+      "symbols": ["SPY"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": ["Exploit around the prior challenger."]
+    },
+    {
+      "candidate_id": "candidate_09",
+      "family": "sma_regime",
+      "hypothesis": "AAPL 40/180 with a 10% trailing stop tests whether the SPY overlay idea transfers to a single-name stock.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "trailing_stop_pct": 0.10
+      },
+      "symbols": ["AAPL"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": ["Cross-symbol validation."]
+    },
+    {
+      "candidate_id": "candidate_10",
+      "family": "sma_regime",
+      "hypothesis": "AAPL 40/180 with a 126-day time stop checks whether forced resets rescue cross-symbol performance better than a stop overlay.",
+      "parameters": {
+        "fast": 40,
+        "slow": 180,
+        "max_holding_days": 126,
+        "cooldown_days": 20
+      },
+      "symbols": ["AAPL"],
+      "start_date": "2022-01-01",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": ["Cross-symbol time-stop validation."]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+Started compiling project 'Cloud_Earnings_Research'
+Build Request Successful for Project ID: 28794465, with CompileID: 
+ffa065392d342741ea9da011188c5b20-1ec57f9991fa3d873b66b8dd395d10de, Lean Version:
+2.5.0.0.17558
+Successfully compiled project 'Cloud_Earnings_Research'
+Started backtest named 
+'iter_088_candidate_07_cloud_event_intraday_failed_breakdown' for project 
+'Cloud_Earnings_Research'
+Backtest url: 
+https://www.quantconnect.com/project/28794465/7121647907ffc144777fc09517cc7c30
+ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100%
+┌───────────────────────────┬─────────────┬───────────────────────────┬────────┐
+│ Statistic                 │ Value       │ Statistic                 │ Value  │
+├───────────────────────────┼─────────────┼───────────────────────────┼────────┤
+│ Equity                    │ $100,000.00 │ Fees                      │ -$0.00 │
+│ Holdings                  │ $0.00       │ Net Profit                │ $0.00  │
+│ Probabilistic Sharpe      │ 0%          │ Return                    │ 0.00 % │
+│ Ratio                     │             │                           │        │
+│ Unrealized                │ $0.00       │ Volume                    │ $0.00  │
+├───────────────────────────┼─────────────┼───────────────────────────┼────────┤
+│ Total Orders              │ 0           │ Average Win               │ 0%     │
+│ Average Loss              │ 0%          │ Compounding Annual Return │ 0%     │
+│ Drawdown                  │ 0%          │ Expectancy                │ 0      │
+│ Start Equity              │ 100000      │ End Equity                │ 100000 │
+│ Net Profit                │ 0%          │ Sharpe Ratio              │ 0      │
+│ Sortino Ratio             │ 0           │ Probabilistic Sharpe      │ 0%     │
+│                           │             │ Ratio                     │        │
+│ Loss Rate                 │ 0%          │ Win Rate                  │ 0%     │
+│ Profit-Loss Ratio         │ 0           │ Alpha                     │ 0      │
+│ Beta                      │ 0           │ Annual Standard Deviation │ 0      │
+│ Annual Variance           │ 0           │ Information Ratio         │ -1.142 │
+│ Tracking Error            │ 0.136       │ Treynor Ratio             │ 0      │
+│ Total Fees                │ $0.00       │ Estimated Strategy        │ $0     │
+│                           │             │ Capacity                  │        │
+│ Lowest Capacity Asset     │             │ Portfolio Turnover        │ 0%     │
+│ Drawdown Recovery         │ 0           │                           │        │
+└───────────────────────────┴─────────────┴───────────────────────────┴────────┘
+Backtest id: 7121647907ffc144777fc09517cc7c30
+Backtest name: iter_088_candidate_07_cloud_event_intraday_failed_breakdown
+Backtest url: 
+https://www.quantconnect.com/project/28794465/7121647907ffc144777fc09517cc7c30

@@ -1,0 +1,451 @@
+{
+  "iteration": "iter_069",
+  "thesis": "Test whether bucket-relative ranking rescues adjacent large-cap transfer better than absolute selector thresholds.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Reference benchmark"
+  },
+  "universe": {
+    "name": "large_cap_relative_rank_v1",
+    "selection_rule": "Local minute-data large-cap buckets for selector normalization tests",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "AMZN",
+      "META",
+      "NVDA",
+      "TSLA",
+      "QQQ",
+      "XLK",
+      "SMH",
+      "VOO"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "AMZN",
+      "META",
+      "NVDA",
+      "TSLA",
+      "QQQ",
+      "XLK",
+      "SMH",
+      "VOO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "The improved growth4 selector remains habitat-specific under adjacent transfer.",
+      "The next anti-overfit local question is whether bucket-relative ranking rescales better than absolute thresholds."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "Benchmark for the same sample.",
+      "parameters": {
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "large_cap_relative_rank_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO"
+      ],
+      "tags": [
+        "benchmark",
+        "passive"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Benchmark."
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "equal_weight_buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "Same-basket passive baseline for platform7.",
+      "parameters": {
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "universe_name": "large_cap_relative_rank_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "tags": [
+        "baseline",
+        "passive",
+        "platform7"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Platform7 passive baseline."
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "reference",
+      "hypothesis": "Carry forward the growth4 next-gen control on the same sample.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "gap_max": 0.02,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 2,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 3000000,
+        "max_key_level_distance_pct": 0.03,
+        "rank_premarket_dollar_volume_scale": 5000000,
+        "rank_key_level_distance_penalty": 0.01,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_relative_rank_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "reference",
+        "growth4",
+        "nextgen_selector"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Reference line."
+      ]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "control",
+      "hypothesis": "Best adjacent-bucket absolute-threshold result from iter_068.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "gap_max": 0.02,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 1,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 150000000,
+        "min_premarket_dollar_volume": 2500000,
+        "max_key_level_distance_pct": 0.03,
+        "rank_premarket_dollar_volume_scale": 4000000,
+        "rank_key_level_distance_penalty": 0.01,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "universe_name": "large_cap_relative_rank_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "tags": [
+        "control",
+        "platform7",
+        "absolute_selector"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Pool1 absolute control from iter_068."
+      ]
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Platform7 may need bucket-relative premarket ranking rather than absolute pm$ scaling.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "gap_max": 0.02,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 1,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 150000000,
+        "min_premarket_dollar_volume": 2500000,
+        "max_key_level_distance_pct": 0.03,
+        "rank_relative_premarket_dollar_volume_weight": 0.75,
+        "rank_relative_key_level_distance_weight": 0.5,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "universe_name": "large_cap_relative_rank_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "tags": [
+        "explore",
+        "platform7",
+        "relative_selector"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Relative ranking pool1."
+      ]
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "A wider pool may help after relative ranking normalizes platform7 names within the bucket.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "gap_max": 0.02,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 2,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 150000000,
+        "min_premarket_dollar_volume": 2500000,
+        "max_key_level_distance_pct": 0.03,
+        "rank_relative_premarket_dollar_volume_weight": 0.75,
+        "rank_relative_key_level_distance_weight": 0.5,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "universe_name": "large_cap_relative_rank_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "tags": [
+        "explore",
+        "platform7",
+        "relative_selector"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Relative ranking pool2."
+      ]
+    },
+    {
+      "candidate_id": "candidate_07",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "Relative ranking should not damage the original growth4 habitat if the idea is genuinely scale-normalizing rather than overfitting platform7.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "gap_max": 0.02,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 2,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 3000000,
+        "max_key_level_distance_pct": 0.03,
+        "rank_relative_premarket_dollar_volume_weight": 0.75,
+        "rank_relative_key_level_distance_weight": 0.5,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_relative_rank_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "explore",
+        "growth4",
+        "relative_selector"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Growth4 relative ranking sanity check."
+      ]
+    }
+  ]
+}

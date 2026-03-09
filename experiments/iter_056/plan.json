@@ -1,0 +1,264 @@
+{
+  "iteration": "iter_056",
+  "thesis": "Validate hardware7 failed_breakdown directly on 2026 YTD.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Primary passive benchmark"
+  },
+  "universe": {
+    "name": "large_cap_dynamic_minute_v1",
+    "selection_rule": "Local minute-data large-cap tech and approved high-liquidity growth names with benchmark and context ETFs",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "AMZN",
+      "META",
+      "NVDA",
+      "TSLA",
+      "NFLX",
+      "ADBE",
+      "CRM",
+      "NOW",
+      "ORCL",
+      "AVGO",
+      "AMD",
+      "MU",
+      "MRVL",
+      "TSM",
+      "QQQ",
+      "XLK",
+      "SMH",
+      "SPY",
+      "VOO"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "AMZN",
+      "META",
+      "NVDA",
+      "TSLA",
+      "NFLX",
+      "ADBE",
+      "CRM",
+      "NOW",
+      "ORCL",
+      "AVGO",
+      "AMD",
+      "MU",
+      "MRVL",
+      "TSM",
+      "QQQ",
+      "XLK",
+      "SMH",
+      "SPY",
+      "VOO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "iter_050 and iter_051 identified hardware7 failed_breakdown as the first clearly stronger large-cap hostile-window branch.",
+      "The large-cap basket campaign showed that BSL basket expansion mostly failed, while hardware7 only became interesting under failed_breakdown.",
+      "The next step is validation and stress testing, not more random basket expansion."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "Primary passive benchmark.",
+      "parameters": {
+        "position_size": 1.0,
+        "slippage_bps": 1
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "large_cap_dynamic_minute_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO"
+      ],
+      "tags": [
+        "baseline",
+        "daily"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Written by Codex."
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "equal_weight_buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "Same-basket passive baseline.",
+      "parameters": {
+        "slippage_bps": 1
+      },
+      "symbols": [
+        "NVDA",
+        "AVGO",
+        "AMD",
+        "MU",
+        "MRVL",
+        "TSM",
+        "MSFT"
+      ],
+      "universe_name": "large_cap_dynamic_minute_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "AVGO",
+        "AMD",
+        "MU",
+        "MRVL",
+        "TSM",
+        "MSFT"
+      ],
+      "tags": [
+        "baseline",
+        "daily"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Written by Codex."
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "failed_breakdown_reclaim_scanner_intraday",
+      "role": "control",
+      "hypothesis": "Carry the old growth4 current-window failed-breakdown control.",
+      "parameters": {
+        "weak_lookback_days": 10,
+        "weak_return_max": -0.03,
+        "gap_min": -0.015,
+        "gap_max": 0.01,
+        "premarket_vol_ratio_min": 0.004,
+        "breakdown_buffer_pct": 0.001,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 1.6,
+        "max_holding_minutes": 120,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 1,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_dynamic_minute_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "large_cap"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Written by Codex."
+      ]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "failed_breakdown_reclaim_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "The new hardware7 branch should stay better than growth4 in the current range regime.",
+      "parameters": {
+        "weak_lookback_days": 10,
+        "weak_return_max": -0.03,
+        "gap_min": -0.015,
+        "gap_max": 0.01,
+        "premarket_vol_ratio_min": 0.004,
+        "breakdown_buffer_pct": 0.001,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 90,
+        "risk_reward": 1.6,
+        "max_holding_minutes": 120,
+        "use_vwap_exit": true,
+        "confirm_hold_minutes": 4,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 2,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 2,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 150000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1
+      },
+      "symbols": [
+        "NVDA",
+        "AVGO",
+        "AMD",
+        "MU",
+        "MRVL",
+        "TSM",
+        "MSFT"
+      ],
+      "universe_name": "large_cap_dynamic_minute_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "NVDA",
+        "AVGO",
+        "AMD",
+        "MU",
+        "MRVL",
+        "TSM",
+        "MSFT"
+      ],
+      "tags": [
+        "intraday",
+        "scanner",
+        "large_cap"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Written by Codex."
+      ]
+    }
+  ]
+}

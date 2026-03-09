@@ -1,0 +1,251 @@
+{
+  "iteration": "iter_072",
+  "thesis": "Test whether the platform7 pre-earnings cloud winner can be improved by tightening basket quality around the symbols that actually drove the first event-aware profits.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Reference benchmark from the same sample via local results"
+  },
+  "universe": {
+    "name": "cloud_platform7_event_filter_v1",
+    "selection_rule": "Cloud-only Upcoming Earnings dataset on platform-style large-cap event buckets",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "platform7 pre1 hold3 became the strongest cloud event-aware row.",
+      "ORCL dominated profits while NFLX and ADBE stayed persistent drags across the pre-event variants.",
+      "post1 was negative, so the branch still looks anticipation-led rather than pure post-event carry."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "The best timing row stays the canonical control until a narrower event basket proves better.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "tags": [
+        "cloud",
+        "earnings",
+        "platform7",
+        "pre1",
+        "hold3",
+        "max3"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If the best alpha is concentrated in the top event names, max_names 2 should improve return quality.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 2
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "tags": [
+        "cloud",
+        "earnings",
+        "platform7",
+        "pre1",
+        "hold3",
+        "max2"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If one dominant name is doing most of the work, max_names 1 should expose it and possibly improve drawdown.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 1
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "tags": [
+        "cloud",
+        "earnings",
+        "platform7",
+        "pre1",
+        "hold3",
+        "max1"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "Dropping both persistent drags NFLX and ADBE should show whether the event branch is still broad enough without them.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "tags": [
+        "cloud",
+        "earnings",
+        "platform5",
+        "pre1",
+        "hold3",
+        "drop_nflx_adbe"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "Removing only NFLX can test whether it is the main negative outlier while preserving ADBE diversification.",
+      "parameters": {
+        "bucket": "platform6_no_nflx",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "tags": [
+        "cloud",
+        "earnings",
+        "platform6_no_nflx",
+        "pre1",
+        "hold3"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "Removing only ADBE can test whether ADBE is the softer drag while NFLX still belongs in the event basket.",
+      "parameters": {
+        "bucket": "platform6_no_adbe",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "NOW",
+        "ORCL"
+      ],
+      "tags": [
+        "cloud",
+        "earnings",
+        "platform6_no_adbe",
+        "pre1",
+        "hold3"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    }
+  ]
+}

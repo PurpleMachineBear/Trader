@@ -1,0 +1,189 @@
+{
+  "iteration": "iter_084",
+  "thesis": "Test whether the canonical cloud event-aware branch depends on estimate availability and report-time interaction rather than on coarse price-state or tape-state filters.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Reference benchmark from the same sample via local results"
+  },
+  "universe": {
+    "name": "cloud_platform5_estimate_metadata_v1",
+    "selection_rule": "Cloud-only Upcoming Earnings dataset on platform5 with explicit estimate-state and report-time filters",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "CRM",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "CRM",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "platform5 pre1 hold3 remains the canonical cloud control.",
+      "Hard pre-event trailing-return gates did not help.",
+      "Simple QQQ/XLK tape gating also did not help, so richer event metadata is now the next useful branch."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "The ungated platform5 pre1 hold3 row remains the recent broad control.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "broad",
+        "estimate_mode": "any"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If estimate visibility is part of event quality, requiring estimates should preserve or improve the control.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "broad",
+        "estimate_mode": "required"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If hidden-information or low-coverage names drive the branch, missing-estimate events may retain a distinct edge.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "broad",
+        "estimate_mode": "missing"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If the best branch is really high-quality scheduled earnings, after-close plus required estimates should be the cleanest recent subset.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "broad",
+        "estimate_mode": "required",
+        "report_time_filter": "after_close"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "cloud_earnings_event_basket",
+      "role": "control",
+      "hypothesis": "The ungated platform5 pre1 hold3 row remains the earlier aggregate control.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2024_2025",
+        "estimate_mode": "any"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If estimate visibility is a stable quality filter, the required-estimate subset should also stay competitive on the longer 2024-2025 aggregate.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2024_2025",
+        "estimate_mode": "required"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_07",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "If missing-estimate events are simply noise, the missing-estimate subset should be sparse and inferior on the longer aggregate window.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2024_2025",
+        "estimate_mode": "missing"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    },
+    {
+      "candidate_id": "candidate_08",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "After-close plus required estimates on the longer window can test whether scheduled, fully-covered events are the durable subset of the branch.",
+      "parameters": {
+        "bucket": "platform5",
+        "event_mode": "pre1",
+        "hold_days": 3,
+        "max_names": 3,
+        "sample_window": "2024_2025",
+        "estimate_mode": "required",
+        "report_time_filter": "after_close"
+      },
+      "symbols": ["AAPL", "MSFT", "CRM", "NOW", "ORCL"],
+      "start_date": "2024-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000
+    }
+  ]
+}

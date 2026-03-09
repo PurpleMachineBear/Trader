@@ -1,0 +1,256 @@
+{
+  "iteration": "iter_070",
+  "thesis": "Use QuantConnect Upcoming Earnings in the cloud to test whether large-cap buckets show more promise on explicit earnings-event windows than they do in the local non-event BSL transfer lane.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Reference benchmark from the same sample via local results"
+  },
+  "universe": {
+    "name": "cloud_large_cap_earnings_v1",
+    "selection_rule": "Cloud-only Upcoming Earnings dataset on approved large-cap buckets",
+    "allowed_symbols": [
+      "AAPL",
+      "MSFT",
+      "AMZN",
+      "META",
+      "NVDA",
+      "TSLA",
+      "AVGO",
+      "AMD",
+      "MU",
+      "MRVL",
+      "TSM",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "validation_symbols": [
+      "AAPL",
+      "MSFT",
+      "AMZN",
+      "META",
+      "NVDA",
+      "TSLA",
+      "AVGO",
+      "AMD",
+      "MU",
+      "MRVL",
+      "TSM",
+      "NFLX",
+      "CRM",
+      "ADBE",
+      "NOW",
+      "ORCL",
+      "VOO"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "The improved growth4 BSL selector did not transfer to the adjacent platform7 bucket in local research.",
+      "The next large-cap question is whether event-aware windows explain some of that missing edge."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "growth4 may work better when explicitly limited to pre-earnings names.",
+      "parameters": {
+        "bucket": "growth4",
+        "event_mode": "pre1",
+        "hold_days": 2,
+        "max_names": 3
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "cloud",
+        "earnings",
+        "growth4",
+        "pre1"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "growth4 day0 may be more informative than generic pre-event positioning.",
+      "parameters": {
+        "bucket": "growth4",
+        "event_mode": "day0",
+        "hold_days": 2,
+        "max_names": 3
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "cloud",
+        "earnings",
+        "growth4",
+        "day0"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "platform7 may need explicit earnings timing to show any large-cap edge.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "pre1",
+        "hold_days": 2,
+        "max_names": 3
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "tags": [
+        "cloud",
+        "earnings",
+        "platform7",
+        "pre1"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "platform7 day0 may work better than pre1 if the event itself is the real catalyst.",
+      "parameters": {
+        "bucket": "platform7",
+        "event_mode": "day0",
+        "hold_days": 2,
+        "max_names": 3
+      },
+      "symbols": [
+        "AAPL",
+        "MSFT",
+        "NFLX",
+        "CRM",
+        "ADBE",
+        "NOW",
+        "ORCL"
+      ],
+      "tags": [
+        "cloud",
+        "earnings",
+        "platform7",
+        "day0"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "hardware7 may show stronger event sensitivity than platform7 because the bucket is more semis/hardware concentrated.",
+      "parameters": {
+        "bucket": "hardware7",
+        "event_mode": "pre1",
+        "hold_days": 2,
+        "max_names": 3
+      },
+      "symbols": [
+        "NVDA",
+        "AVGO",
+        "AMD",
+        "MU",
+        "MRVL",
+        "TSM",
+        "MSFT"
+      ],
+      "tags": [
+        "cloud",
+        "earnings",
+        "hardware7",
+        "pre1"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "cloud_earnings_event_basket",
+      "role": "explore",
+      "hypothesis": "hardware7 day0 may carry the strongest direct event reaction.",
+      "parameters": {
+        "bucket": "hardware7",
+        "event_mode": "day0",
+        "hold_days": 2,
+        "max_names": 3
+      },
+      "symbols": [
+        "NVDA",
+        "AVGO",
+        "AMD",
+        "MU",
+        "MRVL",
+        "TSM",
+        "MSFT"
+      ],
+      "tags": [
+        "cloud",
+        "earnings",
+        "hardware7",
+        "day0"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "Cloud project Cloud_Earnings_Research."
+      ]
+    }
+  ]
+}

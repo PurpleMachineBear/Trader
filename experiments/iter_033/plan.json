@@ -1,0 +1,711 @@
+{
+  "iteration": "iter_033",
+  "thesis": "The final question for the large-cap current-regime shadow sleeve is whether narrowing to AMZN/TSLA or shortening the holding period provides any cross-window advantage over the carryover growth4 control. If not, the large-cap branch should be left as a current-window shadow idea rather than promoted further.",
+  "benchmark": {
+    "symbol": "VOO",
+    "family": "buy_and_hold",
+    "purpose": "Per-window passive benchmark"
+  },
+  "universe": {
+    "name": "large_cap_shadow_validation_v1",
+    "selection_rule": "Final validation of narrowed AMZN/TSLA current-regime BSL against the growth4 control across windows",
+    "allowed_symbols": [
+      "VOO",
+      "QQQ",
+      "XLK",
+      "SMH",
+      "AMZN",
+      "META",
+      "NVDA",
+      "TSLA"
+    ],
+    "validation_symbols": [
+      "AMZN",
+      "TSLA",
+      "AMZN",
+      "META",
+      "NVDA",
+      "TSLA"
+    ],
+    "blocklist": [
+      "GOOG",
+      "GOOGL"
+    ]
+  },
+  "research_memory": {
+    "memory_path": "experiments/research_memory.md",
+    "carry_forward_findings": [
+      "Large-cap router improved broad sample but failed stability validation.",
+      "Current-regime narrowing around AMZN/TSLA improved 2026 return/drawdown ratio only marginally and often matched the growth4 control exactly.",
+      "The final validation should decide whether the narrowed branch offers any real multi-window advantage or should remain a shadow idea only."
+    ]
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "VOO anchors 2024.",
+      "parameters": {
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "large_cap_shadow_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO"
+      ],
+      "tags": [
+        "benchmark",
+        "2024"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "window: 2024"
+      ]
+    },
+    {
+      "candidate_id": "candidate_02",
+      "family": "equal_weight_buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "AMZN/TSLA passive anchors the narrowed winner pair in 2024.",
+      "parameters": {
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AMZN",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_shadow_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "TSLA"
+      ],
+      "tags": [
+        "baseline",
+        "amzn_tsla",
+        "2024"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "window: 2024"
+      ]
+    },
+    {
+      "candidate_id": "candidate_03",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "control",
+      "hypothesis": "Growth4 pool2 remains the carryover large-cap control in 2024.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 2,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_shadow_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "growth4",
+        "2024"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "window: 2024"
+      ]
+    },
+    {
+      "candidate_id": "candidate_04",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "AMZN/TSLA pool2 rechecks the narrowed winner pair in 2024.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 2,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AMZN",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_shadow_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "amzn_tsla",
+        "2024"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "window: 2024"
+      ]
+    },
+    {
+      "candidate_id": "candidate_05",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "AMZN/TSLA pool2 hold120 rechecks the conservative current-regime branch in 2024.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 120,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 2,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AMZN",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_shadow_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "amzn_tsla",
+        "hold120",
+        "2024"
+      ],
+      "start_date": "2024-01-02",
+      "end_date": "2024-12-31",
+      "cash": 100000,
+      "notes": [
+        "window: 2024"
+      ]
+    },
+    {
+      "candidate_id": "candidate_06",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "VOO anchors 2025.",
+      "parameters": {
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "large_cap_shadow_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO"
+      ],
+      "tags": [
+        "benchmark",
+        "2025"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "window: 2025"
+      ]
+    },
+    {
+      "candidate_id": "candidate_07",
+      "family": "equal_weight_buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "AMZN/TSLA passive anchors the narrowed winner pair in 2025.",
+      "parameters": {
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AMZN",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_shadow_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "TSLA"
+      ],
+      "tags": [
+        "baseline",
+        "amzn_tsla",
+        "2025"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "window: 2025"
+      ]
+    },
+    {
+      "candidate_id": "candidate_08",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "control",
+      "hypothesis": "Growth4 pool2 remains the carryover large-cap control in 2025.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 2,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_shadow_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "growth4",
+        "2025"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "window: 2025"
+      ]
+    },
+    {
+      "candidate_id": "candidate_09",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "AMZN/TSLA pool2 rechecks the narrowed winner pair in 2025.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 2,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AMZN",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_shadow_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "amzn_tsla",
+        "2025"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "window: 2025"
+      ]
+    },
+    {
+      "candidate_id": "candidate_10",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "AMZN/TSLA pool2 hold120 rechecks the conservative current-regime branch in 2025.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 120,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 2,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AMZN",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_shadow_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "amzn_tsla",
+        "hold120",
+        "2025"
+      ],
+      "start_date": "2025-01-02",
+      "end_date": "2025-12-31",
+      "cash": 100000,
+      "notes": [
+        "window: 2025"
+      ]
+    },
+    {
+      "candidate_id": "candidate_11",
+      "family": "buy_and_hold",
+      "role": "benchmark",
+      "hypothesis": "VOO anchors 2026YTD.",
+      "parameters": {
+        "position_size": 1.0,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "VOO"
+      ],
+      "universe_name": "large_cap_shadow_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "VOO"
+      ],
+      "tags": [
+        "benchmark",
+        "2026YTD"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: 2026YTD"
+      ]
+    },
+    {
+      "candidate_id": "candidate_12",
+      "family": "equal_weight_buy_and_hold",
+      "role": "baseline",
+      "hypothesis": "AMZN/TSLA passive anchors the narrowed winner pair in 2026YTD.",
+      "parameters": {
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AMZN",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_shadow_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "TSLA"
+      ],
+      "tags": [
+        "baseline",
+        "amzn_tsla",
+        "2026YTD"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: 2026YTD"
+      ]
+    },
+    {
+      "candidate_id": "candidate_13",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "control",
+      "hypothesis": "Growth4 pool2 remains the carryover large-cap control in 2026YTD.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 2,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_shadow_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "growth4",
+        "2026YTD"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: 2026YTD"
+      ]
+    },
+    {
+      "candidate_id": "candidate_14",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "AMZN/TSLA pool2 rechecks the narrowed winner pair in 2026YTD.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 180,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 2,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AMZN",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_shadow_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "amzn_tsla",
+        "2026YTD"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: 2026YTD"
+      ]
+    },
+    {
+      "candidate_id": "candidate_15",
+      "family": "bsl_reversal_scanner_intraday",
+      "role": "explore",
+      "hypothesis": "AMZN/TSLA pool2 hold120 rechecks the conservative current-regime branch in 2026YTD.",
+      "parameters": {
+        "downtrend_lookback_days": 15,
+        "downtrend_return_max": -0.05,
+        "gap_min": -0.005,
+        "premarket_vol_ratio_min": 0.004,
+        "morning_flush_pct": 0.003,
+        "opening_range_minutes": 5,
+        "max_entry_minutes": 120,
+        "risk_reward": 2.0,
+        "max_holding_minutes": 120,
+        "use_vwap_exit": false,
+        "confirm_hold_minutes": 3,
+        "context_symbols": [
+          "QQQ",
+          "XLK",
+          "SMH"
+        ],
+        "context_min_positive": 3,
+        "context_require_above_vwap": true,
+        "context_require_above_open": false,
+        "selection_pool_size": 2,
+        "min_prev_close": 20,
+        "min_avg_dollar_volume": 250000000,
+        "min_premarket_dollar_volume": 1000000,
+        "slippage_bps": 1.0
+      },
+      "symbols": [
+        "AMZN",
+        "TSLA"
+      ],
+      "universe_name": "large_cap_shadow_validation_v1",
+      "benchmark_symbol": "VOO",
+      "validation_symbols": [
+        "AMZN",
+        "TSLA"
+      ],
+      "tags": [
+        "intraday",
+        "amzn_tsla",
+        "hold120",
+        "2026YTD"
+      ],
+      "start_date": "2026-01-02",
+      "end_date": "2026-03-06",
+      "cash": 100000,
+      "notes": [
+        "window: 2026YTD"
+      ]
+    }
+  ]
+}
