@@ -770,7 +770,8 @@ class MasterPaperPortfolio(QCAlgorithm):
         self.intraday = FixedAggressiveBSLSleeve(self, self.core)
         self.tracked_symbols = list(dict.fromkeys(self.core.core_symbols + self.intraday.symbols))
 
-        warmup_days = max(self.core.lookback, self.intraday.volume_lookback_days + 5)
+        # ROC requires lookback + 1 samples to be ready on the first live day.
+        warmup_days = max(self.core.lookback + 1, self.intraday.volume_lookback_days + 5)
         self.set_warm_up(warmup_days, Resolution.DAILY)
 
         self.log(
@@ -855,6 +856,12 @@ class MasterPaperPortfolio(QCAlgorithm):
             f"equity={self.portfolio.total_portfolio_value:.2f} "
             f"exposure={self.total_absolute_exposure_pct():.2f}"
         )
+
+    def on_warmup_finished(self):
+        self.core.log_snapshot("post_warmup")
+        self.warmup_snapshot_logged = True
+        self.core.request_rebalance()
+        self.log("[MASTER] warmup_finished initial_rebalance_requested=True")
 
     def on_data(self, data: Slice):
         self._roll_risk_day()
